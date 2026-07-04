@@ -19,7 +19,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --paper:#f5efdf;
@@ -209,7 +210,7 @@ section .kicker{
 .flagbtn:hover,.flagbtn.active{border-color:var(--crimson)}
 .flagbtn.active{box-shadow:3px 3px 0 rgba(147,33,31,.2)}
 .flagbtn .fname{display:block;font-size:13px;margin-top:6px}
-.flagbtn .fyear{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--gold)}
+.flagbtn .fyear{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7d5a0e}
 .flagcard{
   display:none;border:2px solid var(--ink);border-left:6px solid var(--crimson);
   background:#fffdf6;padding:20px 24px;margin-top:18px;text-align:left;
@@ -318,8 +319,8 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 </div>
 
 <script type="module">
-import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
-env.allowLocalModels = false;
+// Loaded after first paint so the 1 MB module never competes with initial render
+let pipeline, env;
 
 const $ = (s) => document.querySelector(s);
 const statusEl = $('#status'), statusText = $('#statusText');
@@ -329,6 +330,12 @@ let index = null, embedder = null;
 
 async function init(){
   try {
+    if (document.readyState !== 'complete') await new Promise(r => addEventListener('load', r, { once: true }));
+    ({ pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2'));
+    env.allowLocalModels = false;
+    env.backends.onnx.wasm.proxy = true; // run ONNX in a worker so model init never blocks scrolling
+    const cached = 'caches' in window && await caches.has('transformers-cache').catch(() => false);
+    console.info(`Model source: ${cached ? 'Local Cache (Cache API, zero network)' : 'Network (Hugging Face CDN, cached for next visit)'}`);
     const [idx, emb] = await Promise.all([
       fetch('data/index.json').then(r => r.json()),
       pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
@@ -574,7 +581,7 @@ const flagcard = document.getElementById('flagcard');
 WORLD.forEach((w, i) => {
   const b = document.createElement('button');
   b.className = 'flagbtn';
-  b.innerHTML = `<img src="https://flagcdn.com/w80/${w.code}.png" srcset="https://flagcdn.com/w160/${w.code}.png 2x" alt="Flag of ${w.name}" loading="lazy" width="46">
+  b.innerHTML = `<img src="https://flagcdn.com/w80/${w.code}.png" srcset="https://flagcdn.com/w160/${w.code}.png 2x" alt="Flag of ${w.name}" loading="lazy" width="46" height="31">
     <span class="fname">${w.name}</span><span class="fyear">${w.year}</span>`;
   b.addEventListener('click', () => {
     const already = b.classList.contains('active');
