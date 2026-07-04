@@ -97,7 +97,7 @@ footer .motto{font-style:italic;color:var(--gold);font-size:17px}
 <h2>Questions people ask</h2>
 <dl class="faq">
   <dt>Is my question stored or tracked?</dt>
-  <dd>No. Your question is embedded into a vector inside your own browser tab and compared against the index locally. It never leaves your device. There are no analytics on this site.</dd>
+  <dd>No. Your question is embedded into a vector inside your own browser tab and compared against the index locally. It never leaves your device. This site uses Vercel Web Analytics for privacy-friendly page view tracking, but your search queries are never sent to any server.</dd>
 
   <dt>Why does the first search take a moment?</dt>
   <dd>Your browser downloads the embedding model (about 25&nbsp;MB) once, then caches it. After that, searches run in under a millisecond. That one-time download is the honest price of a site with no servers and no API keys.</dd>
@@ -120,5 +120,6 @@ footer .motto{font-style:italic;color:var(--gold);font-size:17px}
 </footer>
 </article>
 </div>
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </body>
 </html>
