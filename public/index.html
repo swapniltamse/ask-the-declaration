@@ -637,6 +637,43 @@
         margin-top: 12px;
       }
 
+      /* ---------- synthesis ---------- */
+      .synthesis {
+        background: var(--paper-deep);
+        border: 2px solid var(--ink);
+        border-left: 6px solid var(--ink);
+        padding: 20px 24px;
+        margin-bottom: 20px;
+        animation: rise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+      }
+      .synthesis-kicker {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 10px;
+      }
+      .synthesis p { font-size: 18px; line-height: 1.6; }
+      .synthesis-disclaimer {
+        font-size: 11px;
+        color: var(--ink-soft);
+        font-family: "IBM Plex Mono", monospace;
+        margin-top: 10px;
+        opacity: 0.7;
+      }
+      .synthesis.loading { opacity: 0.5; }
+      .source-group-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 16px 0 6px;
+        border-top: 1px dashed var(--rule);
+        margin-top: 4px;
+      }
+
       /* ---------- dramatic red-white-blue ---------- */
       .bunting {
         height: 22px;
@@ -914,7 +951,34 @@
         results = $("#results");
 
       let index = null,
-        embedder = null;
+        embedder = null,
+        generator = null,
+        generatorLoading = false;
+
+      async function loadGenerator() {
+        if (generator || generatorLoading) return;
+        generatorLoading = true;
+        try {
+          generator = await pipeline("text2text-generation", "Xenova/LaMini-Flan-T5-77M");
+        } catch (e) {
+          console.warn("Synthesis model unavailable:", e);
+        }
+        generatorLoading = false;
+      }
+
+      async function generateSynthesis(q, hits) {
+        if (!generator || hits.length < 2) return null;
+        const context = hits.slice(0, 3).map(h =>
+          `[${h.c.source}, ${h.c.section}]: ${h.c.text}`
+        ).join("\n\n");
+        const prompt = `Based only on these passages from America's founding documents, give a brief, accurate answer.\n\nQuestion: ${q}\n\nPassages:\n${context}\n\nAnswer:`;
+        try {
+          const out = await generator(prompt, { max_new_tokens: 100, temperature: 0.2 });
+          return out[0]?.generated_text?.trim() || null;
+        } catch (e) {
+          return null;
+        }
+      }
 
       async function init() {
         try {
@@ -1031,28 +1095,50 @@
             "The founders did not address this directly. The most loosely related passages:";
           results.appendChild(lc);
         }
-        hits.forEach((h, i) => {
+        const makeResultEl = (h, idx) => {
           const el = document.createElement("article");
           el.className = "result";
-          el.style.setProperty("--i", i + (curated ? 1 : 0));
-          const rel =
-            h.s === null
-              ? ""
-              : `<span class="score"><span class="bar"><i style="width:${Math.min(100, h.s * 130)}%"></i></span></span>`;
-          el.innerHTML = `
-      <div class="meta">
-        <span class="cite">${h.c.source} &mdash; ${h.c.section} <span class="yr">&#10022; ${h.c.year}</span></span>
-        ${rel}
-      </div>
-      <p class="passage">${h.c.text}</p>
-      ${h.c.plain ? `<p class="plain"><span>In plain words</span>${h.c.plain}</p>` : ""}`;
-          results.appendChild(el);
-        });
-        // "We hold these truths" shimmer — if any result contains the most famous line
-        document.querySelectorAll('#results .result').forEach(el => {
-          if (el.textContent.toLowerCase().includes('we hold these truths')) {
-            el.classList.add('shimmer');
-          }
+          el.style.setProperty("--i", idx);
+          const rel = h.s === null ? "" : `<span class="score"><span class="bar"><i style="width:${Math.min(100, h.s * 130)}%"></i></span></span>`;
+          el.innerHTML = `<div class="meta"><span class="cite">${h.c.source} &mdash; ${h.c.section} <span class="yr">&#10022; ${h.c.year}</span></span>${rel}</div><p class="passage">${h.c.text}</p>${h.c.plain ? `<p class="plain"><span>In plain words</span>${h.c.plain}</p>` : ""}`;
+          return el;
+        };
+
+        const sources = [...new Set(hits.map(h => h.c.source))];
+        const multiSource = sources.length > 1 && hits.length > 1;
+
+        if (multiSource) {
+          // Synthesis placeholder — fills in async while user reads passages
+          const synCard = document.createElement("article");
+          synCard.className = "synthesis loading";
+          synCard.innerHTML = `<div class="synthesis-kicker">Founders' Synthesis <span style="font-weight:normal;text-transform:none;letter-spacing:0">&#10022; generating…</span></div><p style="opacity:0.5;font-style:italic">Reasoning across ${sources.length} founding documents…</p>`;
+          results.appendChild(synCard);
+          // Passages grouped by source document
+          sources.forEach(src => {
+            const label = document.createElement("div");
+            label.className = "source-group-label";
+            label.textContent = src;
+            results.appendChild(label);
+            hits.filter(h => h.c.source === src).forEach((h, i) => results.appendChild(makeResultEl(h, i)));
+          });
+          // Fill synthesis card when generator resolves
+          generateSynthesis(q, hits).then(text => {
+            if (text) {
+              synCard.classList.remove("loading");
+              synCard.innerHTML = `<div class="synthesis-kicker">Founders' Synthesis</div><p>${text}</p><p class="synthesis-disclaimer">Generated in your browser from the passages above. Not human-curated — verify against the quoted text.</p>`;
+            } else {
+              synCard.remove();
+            }
+          });
+          loadGenerator(); // warm for next query
+        } else {
+          // Single-source: flat rendering, no synthesis
+          hits.forEach((h, i) => results.appendChild(makeResultEl(h, i + (curated ? 1 : 0))));
+        }
+
+        // "We hold these truths" shimmer
+        document.querySelectorAll("#results .result").forEach(el => {
+          if (el.textContent.toLowerCase().includes("we hold these truths")) el.classList.add("shimmer");
         });
 
         if (curated || hits.length) {
