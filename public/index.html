@@ -639,11 +639,32 @@
 
       /* ---------- dramatic red-white-blue ---------- */
       .bunting {
-        height: 14px;
+        height: 22px;
         background: linear-gradient(90deg, #002868 0 33.3%, #ffffff 33.3% 66.6%, #b22234 66.6% 100%);
+        animation: bunting-wave 3s ease-in-out infinite alternate;
+      }
+      @keyframes bunting-wave {
+        from { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 87.5% 52%, 75% 100%, 62.5% 52%, 50% 100%, 37.5% 52%, 25% 100%, 12.5% 52%, 0% 100%); }
+        to   { clip-path: polygon(0% 0%, 100% 0%, 100% 52%, 87.5% 100%, 75% 52%, 62.5% 100%, 50% 52%, 37.5% 100%, 25% 52%, 12.5% 100%, 0% 52%); }
       }
       header {
-        background: #002868;
+        background:
+          radial-gradient(circle 1.5px at  5% 22%, rgba(255,255,255,0.55) 0, transparent 2px),
+          radial-gradient(circle 1px  at 13% 60%, rgba(255,255,255,0.40) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 21% 28%, rgba(255,255,255,0.60) 0, transparent 2px),
+          radial-gradient(circle 1px  at 29% 74%, rgba(255,255,255,0.35) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 36% 18%, rgba(255,255,255,0.50) 0, transparent 2px),
+          radial-gradient(circle 1px  at 43% 64%, rgba(255,255,255,0.40) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 51% 32%, rgba(255,255,255,0.45) 0, transparent 2px),
+          radial-gradient(circle 1px  at 59% 78%, rgba(255,255,255,0.30) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 66% 20%, rgba(255,255,255,0.55) 0, transparent 2px),
+          radial-gradient(circle 1px  at 73% 68%, rgba(255,255,255,0.40) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 81% 38%, rgba(255,255,255,0.50) 0, transparent 2px),
+          radial-gradient(circle 1px  at 88% 16%, rgba(255,255,255,0.35) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 94% 56%, rgba(255,255,255,0.45) 0, transparent 2px),
+          radial-gradient(circle 1px  at  7% 84%, rgba(255,255,255,0.25) 0, transparent 2px),
+          radial-gradient(circle 1.5px at 56% 86%, rgba(255,255,255,0.30) 0, transparent 2px),
+          #002868;
         border-bottom: 6px solid #b22234;
         color: #ffffff;
       }
@@ -651,6 +672,37 @@
       header h1 { color: #ffffff; }
       header .subtitle { color: rgba(255,255,255,0.82); }
       header .stars { color: #b22234; }
+
+      /* seal tooltip */
+      .seal { cursor: pointer; }
+      .seal::after {
+        content: 'E Pluribus Unum';
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 7px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0);
+        white-space: nowrap;
+        transition: color 0.4s;
+        pointer-events: none;
+      }
+      .seal:hover::after { color: rgba(255,255,255,0.85); }
+
+      /* alternating result card left-border colors */
+      .result:nth-child(even) { border-left-color: #002868; }
+
+      /* shimmer for the "We hold these truths" result */
+      @keyframes shimmer-rwb {
+        0%, 100% { box-shadow: 5px 5px 0 rgba(0,40,104,0.15); }
+        30%  { box-shadow: 0 0 24px rgba(178,34,52,0.5), 5px 5px 0 rgba(0,40,104,0.15); }
+        70%  { box-shadow: 0 0 24px rgba(0,40,104,0.5), 5px 5px 0 rgba(0,40,104,0.15); }
+      }
+      .shimmer { animation: shimmer-rwb 2s ease-in-out; }
+
       .searchbox { background: #ffffff; box-shadow: 5px 5px 0 rgba(0,40,104,0.18); }
       .result { background: #ffffff; }
       .sharebtn { background: #ffffff; }
@@ -908,6 +960,15 @@
       const ANSWER_THRESHOLD = 0.6; // paraphrases score 0.63+, off-topic stays under 0.2
 
       async function ask(q) {
+        // 1776 easter egg
+        if (q.trim() === "1776") {
+          fireworks();
+          yankeeDooDle();
+          const prev = statusText.textContent;
+          statusText.textContent = "Happy Birthday, America. 250 years and still in production.";
+          setTimeout(() => { statusText.textContent = prev; }, 4000);
+          return;
+        }
         if (!embedder || !q.trim()) return;
         btn.disabled = true;
         btn.textContent = "…";
@@ -973,6 +1034,13 @@
       ${h.c.plain ? `<p class="plain"><span>In plain words</span>${h.c.plain}</p>` : ""}`;
           results.appendChild(el);
         });
+        // "We hold these truths" shimmer — if any result contains the most famous line
+        document.querySelectorAll('#results .result').forEach(el => {
+          if (el.textContent.toLowerCase().includes('we hold these truths')) {
+            el.classList.add('shimmer');
+          }
+        });
+
         if (curated || hits.length) {
           const share = document.createElement("div");
           share.className = "shareline";
@@ -1058,6 +1126,7 @@
         if (kpos === KONAMI.length) {
           kpos = 0;
           fireworks();
+          yankeeDooDle();
         }
       });
       function fireworks() {
@@ -1071,7 +1140,7 @@
         cv.height = innerHeight;
         document.body.appendChild(cv);
         const ctx = cv.getContext("2d");
-        const colors = ["#9a7014", "#93211f", "#1c2942", "#c9a227"];
+        const colors = ["#b22234", "#ffffff", "#002868", "#b22234", "#ffffff"];
         const parts = [];
         for (let burst = 0; burst < 5; burst++) {
           const bx = innerWidth * (0.2 + Math.random() * 0.6);
@@ -1114,6 +1183,40 @@
           else cv.remove();
         })();
       }
+
+      // Seal: 5 rapid clicks triggers RWB fireworks
+      let sealClicks = 0, sealTimer;
+      document.querySelector('.seal').addEventListener('click', () => {
+        sealClicks++;
+        clearTimeout(sealTimer);
+        sealTimer = setTimeout(() => { sealClicks = 0; }, 800);
+        if (sealClicks >= 5) { sealClicks = 0; fireworks(); }
+      });
+
+      // Yankee Doodle via Web Audio API (no audio file needed)
+      function yankeeDooDle() {
+        if (!window.AudioContext && !window.webkitAudioContext) return;
+        const ac = new (window.AudioContext || window.webkitAudioContext)();
+        const notes = [
+          [523,0.25],[523,0.25],[659,0.25],[523,0.25],[698,0.25],[659,0.5],
+          [523,0.25],[523,0.25],[659,0.25],[523,0.25],[784,0.25],[698,0.5],
+          [523,0.25],[523,0.25],[1047,0.25],[880,0.25],[698,0.25],[659,0.25],[587,0.25],
+          [932,0.25],[932,0.25],[880,0.25],[698,0.25],[784,0.5]
+        ];
+        let t = ac.currentTime + 0.05;
+        for (const [freq, dur] of notes) {
+          const osc = ac.createOscillator();
+          const gain = ac.createGain();
+          osc.connect(gain); gain.connect(ac.destination);
+          osc.frequency.value = freq;
+          osc.type = 'triangle';
+          gain.gain.setValueAtTime(0.18, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + dur - 0.02);
+          osc.start(t); osc.stop(t + dur);
+          t += dur;
+        }
+      }
+
 
       // July 4th only: gold stars drift over the masthead
       const today = new Date();
