@@ -1,601 +1,1322 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ask the Declaration &middot; The Founders Will Answer</title>
-<meta name="description" content="Ask the founders a question and they answer in their own words, with exact citations. A birthday card for America's 250th that runs entirely in your browser.">
-<meta name="author" content="Swapnil Tamse">
-<meta property="og:title" content="Ask the Declaration">
-<meta property="og:description" content="Ask the founders a question and they answer in their own words, with exact citations. A birthday card for America's 250th that runs entirely in your browser.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Ask the Declaration">
-<meta property="og:url" content="https://askthedeclaration.com/">
-<meta property="og:image" content="https://askthedeclaration.com/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://askthedeclaration.com/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<style>
-:root{
-  --paper:#f5efdf;
-  --paper-deep:#efe6cf;
-  --ink:#1c2942;
-  --ink-soft:#3d4a66;
-  --crimson:#93211f;
-  --gold:#9a7014;
-  --rule:#c9bb98;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-::selection{background:var(--gold);color:#fffdf6}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Newsreader',Georgia,serif;
-  font-size:19px;
-  line-height:1.55;
-  background-image:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(154,112,20,.07), transparent 60%),
-    repeating-linear-gradient(0deg, transparent 0 2px, rgba(28,41,66,.012) 2px 4px);
-}
-.sheet{max-width:800px;margin:0 auto;padding:0 24px 80px}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask the Declaration &middot; The Founders Will Answer</title>
+    <meta
+      name="description"
+      content="Ask the founders a question and they answer in their own words, with exact citations. A birthday card for America's 250th that runs entirely in your browser."
+    />
+    <meta name="author" content="Swapnil Tamse" />
+    <meta property="og:title" content="Ask the Declaration" />
+    <meta
+      property="og:description"
+      content="Ask the founders a question and they answer in their own words, with exact citations. A birthday card for America's 250th that runs entirely in your browser."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ask the Declaration" />
+    <meta property="og:url" content="https://askthedeclaration.com/" />
+    <meta property="og:image" content="https://askthedeclaration.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://askthedeclaration.com/og.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript
+      ><link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+    /></noscript>
+    <style>
+      :root {
+        --paper: #f5efdf;
+        --paper-deep: #efe6cf;
+        --ink: #1c2942;
+        --ink-soft: #3d4a66;
+        --crimson: #93211f;
+        --gold: #9a7014;
+        --rule: #c9bb98;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      ::selection {
+        background: var(--gold);
+        color: #fffdf6;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 19px;
+        line-height: 1.55;
+        background-image:
+          radial-gradient(
+            ellipse 90% 60% at 50% -10%,
+            rgba(154, 112, 20, 0.07),
+            transparent 60%
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent 0 2px,
+            rgba(28, 41, 66, 0.012) 2px 4px
+          );
+      }
+      .sheet {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+      }
 
-/* ---------- masthead ---------- */
-.bunting{height:6px;background:linear-gradient(90deg,var(--ink) 0 33.3%,var(--paper-deep) 33.3% 66.6%,var(--crimson) 66.6% 100%)}
-header{text-align:center;padding:44px 0 30px;border-bottom:4px double var(--rule);position:relative}
-.dateline{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--crimson);
-}
-h1{
-  font-family:'Fraunces',serif;font-weight:900;
-  font-size:clamp(44px,9vw,84px);line-height:.98;
-  margin:18px 0 14px;letter-spacing:-.01em;
-}
-h1 .amp{color:var(--crimson);font-style:italic;font-weight:400}
-.subtitle{font-size:21px;color:var(--ink-soft);max-width:560px;margin:0 auto;font-style:italic}
-.seal{
-  width:108px;height:108px;margin:26px auto 8px;position:relative;
-  animation:sealIn 1.2s cubic-bezier(.2,1.4,.4,1) both .3s;
-}
-@keyframes sealIn{from{transform:scale(.4) rotate(-14deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
-.seal svg{width:100%;height:100%}
-.stars{color:var(--gold);letter-spacing:.6em;font-size:14px;margin-top:22px}
-header{overflow:hidden}
-.seal.spin{animation:sealSpin 1.5s cubic-bezier(.3,.8,.3,1)}
-@keyframes sealSpin{to{transform:rotate(360deg)}}
-.fx{position:fixed;inset:0;pointer-events:none;z-index:99}
-.star-fall{
-  position:absolute;top:-16px;color:var(--gold);pointer-events:none;opacity:0;
-  animation:starFall 6s linear forwards;
-}
-@keyframes starFall{
-  0%{transform:translateY(0) rotate(0);opacity:0}
-  8%{opacity:.85}
-  100%{transform:translateY(340px) rotate(120deg);opacity:0}
-}
-
-/* ---------- search ---------- */
-.ask{padding:46px 0 8px}
-.ask label{
-  display:block;font-family:'Fraunces',serif;font-weight:600;font-size:26px;
-  margin-bottom:16px;text-align:center;
-}
-.searchbox{display:flex;gap:0;border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14)}
-.searchbox input{
-  flex:1;border:0;outline:0;background:transparent;padding:16px 18px;
-  font-family:'Newsreader',serif;font-size:19px;color:var(--ink);
-}
-.searchbox button{
-  border:0;background:var(--crimson);color:#f7f1e1;padding:0 26px;cursor:pointer;
-  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  transition:background .15s;
-}
-.searchbox button:hover{background:#7c1a18}
-.searchbox button:disabled{background:#8a8672;cursor:wait}
-.status{
-  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
-  color:var(--ink-soft);margin-top:14px;min-height:20px;letter-spacing:.04em;
-}
-.status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:7px;animation:pulse 1.2s infinite}
-.status.ready .dot{background:#3d7a3d;animation:none}
-@keyframes pulse{50%{opacity:.25}}
-.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
-.chip{
-  font-family:'Newsreader',serif;font-size:15.5px;font-style:italic;
-  border:1px solid var(--rule);background:var(--paper-deep);color:var(--ink-soft);
-  padding:7px 15px;border-radius:999px;cursor:pointer;transition:all .15s;
-}
-.chip:hover{border-color:var(--crimson);color:var(--crimson);background:#fffdf6}
-.trust{
-  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
-  letter-spacing:.06em;color:var(--ink-soft);margin-top:10px;
-}
-.trust a{color:var(--crimson)}
-
-/* ---------- results ---------- */
-#results{padding:26px 0 10px}
-.shortanswer{
-  background:var(--paper-deep);border:2px solid var(--gold);
-  padding:20px 24px;margin-bottom:20px;box-shadow:5px 5px 0 rgba(154,112,20,.15);
-  animation:rise .5s cubic-bezier(.2,.9,.3,1) both;
-}
-.sa-kicker{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--gold);margin-bottom:10px;
-}
-.sa-kicker span{color:var(--ink-soft);letter-spacing:.06em;text-transform:none;font-size:11.5px}
-.shortanswer p{font-size:19px}
-.plain{
-  border-top:1px dashed var(--rule);margin-top:12px;padding-top:10px;
-  font-size:16px;color:var(--ink-soft);font-style:italic;
-}
-.plain span{
-  font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:10.5px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-right:8px;
-}
-.lowconf{
-  font-style:italic;color:var(--ink-soft);text-align:center;font-size:16px;
-  padding:4px 0 14px;
-}
-.shareline{
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  padding:10px 0 2px;
-}
-.sharebtn{
-  background:#fffdf6;border:1px solid var(--rule);color:var(--crimson);cursor:pointer;
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
-  padding:9px 18px;transition:all .15s;
-}
-.sharebtn:hover{border-color:var(--crimson)}
-.resnote{
-  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
-  letter-spacing:.06em;color:#8a8266;padding:8px 0 0;
-}
-.result{
-  background:#fffdf6;border:1px solid var(--rule);border-left:5px solid var(--crimson);
-  padding:20px 24px;margin-bottom:18px;
-  animation:rise .5s cubic-bezier(.2,.9,.3,1) both;
-  animation-delay:calc(var(--i) * 90ms);
-}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.result .meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
-.cite{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--crimson)}
-.cite .yr{color:var(--gold)}
-.score{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);display:flex;align-items:center;gap:8px}
-.bar{width:64px;height:5px;background:var(--paper-deep);border:1px solid var(--rule)}
-.bar i{display:block;height:100%;background:var(--gold)}
-.passage{font-size:18px}
-.passage::first-letter{font-family:'Fraunces',serif;font-weight:600}
-.noresult{text-align:center;font-style:italic;color:var(--ink-soft);padding:20px}
-
-/* ---------- sections ---------- */
-.divider{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:14px;padding:38px 0 6px}
-section h2{
-  font-family:'Fraunces',serif;font-weight:900;font-size:34px;text-align:center;margin:14px 0 8px;
-}
-section .kicker{
-  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--crimson);
-}
-.lede{text-align:center;color:var(--ink-soft);font-style:italic;max-width:540px;margin:6px auto 30px}
-
-/* world section — sits between masthead and search */
-.world{text-align:center;padding-top:34px}
-.world h2{font-size:28px;margin:12px 0 4px}
-.world .lede2{max-width:540px;margin:8px auto 0;color:var(--ink-soft);font-size:16.5px;font-style:italic}
-.world a{color:var(--crimson)}
-.flags{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));
-  gap:10px;margin:22px 0 0;
-}
-/* two even rows of six once there is room */
-@media (min-width:640px){.flags{grid-template-columns:repeat(6,1fr)}}
-.flagbtn{
-  background:#fffdf6;border:1px solid var(--rule);padding:10px 4px 8px;
-  cursor:pointer;text-align:center;font-family:'Newsreader',serif;color:var(--ink);
-  transition:all .15s;
-}
-.flagbtn img{
-  width:38px;height:auto;border:1px solid var(--rule);display:block;margin:0 auto;
-  filter:sepia(.45) saturate(.6);transition:filter .15s;
-}
-.flagbtn:hover img,.flagbtn.active img{filter:none}
-.flagbtn:hover,.flagbtn.active{border-color:var(--crimson)}
-.flagbtn.active{box-shadow:3px 3px 0 rgba(147,33,31,.2)}
-.flagbtn .fname{display:block;font-size:13px;margin-top:6px}
-.flagbtn .fyear{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7d5a0e}
-.flagcard{
-  display:none;border:2px solid var(--ink);border-left:6px solid var(--crimson);
-  background:#fffdf6;padding:20px 24px;margin-top:18px;text-align:left;
-  box-shadow:5px 5px 0 rgba(28,41,66,.14);
-}
-.flagcard.open{display:block;animation:rise .4s cubic-bezier(.2,.9,.3,1) both}
-.flagcard h3{font-family:'Fraunces',serif;font-weight:900;font-size:22px;margin-bottom:2px}
-.flagcard .fc-year{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;
-  color:var(--gold);margin-bottom:10px;
-}
-.flagcard p{font-size:17px;color:var(--ink-soft)}
-.flagcard .fc-src{
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.04em;
-  margin-top:12px;padding-top:10px;border-top:1px dashed var(--rule);
-}
-.flagcard .fc-src a{color:var(--crimson)}
-.flagcard .fc-src{line-height:1.7}
-.worldanchor{
-  max-width:560px;margin:20px auto 0;font-size:14px;color:var(--ink-soft);
-  font-style:italic;
-}
-.worldanchor a{color:var(--crimson)}
-
-/* footer */
-footer{border-top:4px double var(--rule);margin-top:52px;padding-top:30px;text-align:center}
-footer a{color:var(--crimson)}
-footer .motto{font-style:italic;color:var(--gold);font-size:18px}
-footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
-
-@media (max-width:560px){
-  body{font-size:17px}
-  .arch-num{flex-basis:48px;font-size:22px}
-  .searchbox button{padding:0 16px}
-}
-</style>
-</head>
-<body>
-<div class="bunting"></div>
-<div class="sheet">
-
-<header>
-  <div class="seal" aria-hidden="true">
-    <svg viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#9a7014" stroke-width="2"/>
-      <circle cx="60" cy="60" r="49" fill="none" stroke="#9a7014" stroke-width="1" stroke-dasharray="2 3"/>
-      <g fill="#9a7014">
-        <path id="star" d="M60 12l1.8 4.4 4.7.3-3.6 3 1.1 4.6L60 21.8l-4 2.5 1.1-4.6-3.6-3 4.7-.3z"/>
-        <use href="#star" transform="rotate(72 60 60)"/>
-        <use href="#star" transform="rotate(144 60 60)"/>
-        <use href="#star" transform="rotate(216 60 60)"/>
-        <use href="#star" transform="rotate(288 60 60)"/>
-      </g>
-      <text x="60" y="72" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="34" fill="#93211f">250</text>
-      <text x="60" y="88" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7.5" letter-spacing="2" fill="#1c2942">1776 &#8226; 2026</text>
-    </svg>
-  </div>
-  <div class="dateline">The Semiquincentennial Edition &mdash; July 4, 2026</div>
-  <h1>Ask the<br>Declaration</h1>
-  <p class="subtitle">Two hundred fifty years later, the founding documents still answer questions. Ask them one.</p>
-  <div class="stars">&#10022; &#10022; &#10022;</div>
-</header>
-
-<section class="world" id="world">
-  <div class="kicker">For the Rest of the World</div>
-  <h2>The Template the World Forked</h2>
-  <p class="lede2">The U.S. Constitution is the oldest written national constitution still in operation. Most of the world's founding documents borrowed from it, argued with it, or improved on it. Tap a flag to see the lineage.</p>
-  <div class="flags" id="flags"></div>
-  <div class="flagcard" id="flagcard"></div>
-  <p class="worldanchor">Each card cites the document and the scholarship documenting the influence.<br>
-  The definitive study: David Armitage, <a href="https://www.hup.harvard.edu/books/9780674030329" target="_blank" rel="noopener"><em>The Declaration of Independence: A Global History</em></a> (Harvard Univ. Press), tracing 100+ declarations descended from 1776.</p>
-</section>
-
-<div class="divider">&#10022; &#10022; &#10022;</div>
-
-<section class="ask">
-  <label for="q">What would you like to ask America's first authors?</label>
-  <div class="searchbox">
-    <input id="q" type="text" placeholder="e.g., Can the government search my house?" autocomplete="off">
-    <button id="go" disabled>Ask</button>
-  </div>
-  <div class="status" id="status"><span class="dot"></span><span id="statusText">Loading the model in your browser (first visit only, cached after)&hellip;</span></div>
-  <div class="trust">No servers. No API keys. Your question never leaves your browser. <a href="how.html">How this works &rarr;</a></div>
-  <div class="chips" id="chips">
-    <button class="chip">Why did the colonies separate from Britain?</button>
-    <button class="chip">Can the government search my house?</button>
-    <button class="chip">How do you amend the Constitution?</button>
-    <button class="chip">What did Madison say about factions?</button>
-    <button class="chip">Who commands the army?</button>
-    <button class="chip">What protects free speech?</button>
-  </div>
-</section>
-
-<section id="results" aria-live="polite"></section>
-
-<div class="divider">&#10022; &#10022; &#10022;</div>
-
-<p class="lede2" style="text-align:center;max-width:560px;margin:0 auto">The lesson inside these documents has no nationality: name your assumptions, sign your work, ship the v1, and build in the power to amend.</p>
-
-<p class="lede2" style="text-align:center;max-width:560px;margin:14px auto 0">Read <a href="review.html">the Declaration reviewed as a product spec</a>, or see <a href="how.html">how a site with no servers answers in the founders' words</a>.</p>
-
-<footer>
-  <p class="motto">Happy 250th, America. Ship your v1.</p>
-  <p class="colophon"><a href="how.html">Under the Hood</a> &#10022; <a href="review.html">The Review</a> &#10022; <a href="about.html">About this project &amp; author</a></p>
-</footer>
-
-</div>
-
-<script type="module">
-// Loaded after first paint so the 1 MB module never competes with initial render
-let pipeline, env;
-
-const $ = (s) => document.querySelector(s);
-const statusEl = $('#status'), statusText = $('#statusText');
-const input = $('#q'), btn = $('#go'), results = $('#results');
-
-let index = null, embedder = null;
-
-async function init(){
-  try {
-    if (document.readyState !== 'complete') await new Promise(r => addEventListener('load', r, { once: true }));
-    ({ pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2'));
-    env.allowLocalModels = false;
-    env.backends.onnx.wasm.proxy = true; // run ONNX in a worker so model init never blocks scrolling
-    const cached = 'caches' in window && await caches.has('transformers-cache').catch(() => false);
-    console.info(`Model source: ${cached ? 'Local Cache (Cache API, zero network)' : 'Network (Hugging Face CDN, cached for next visit)'}`);
-    const [idx, emb] = await Promise.all([
-      fetch('data/index.json').then(r => r.json()),
-      pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
-        progress_callback: (p) => {
-          if (p.status === 'progress' && p.file && p.file.endsWith('.onnx')) {
-            statusText.textContent = `Downloading model… ${Math.round(p.progress)}% (first visit only)`;
-          }
+      /* ---------- masthead ---------- */
+      .bunting {
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          var(--ink) 0 33.3%,
+          var(--paper-deep) 33.3% 66.6%,
+          var(--crimson) 66.6% 100%
+        );
+      }
+      header {
+        text-align: center;
+        padding: 44px 0 30px;
+        border-bottom: 4px double var(--rule);
+        position: relative;
+      }
+      .dateline {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--crimson);
+      }
+      h1 {
+        font-family: "Fraunces", serif;
+        font-weight: 900;
+        font-size: clamp(44px, 9vw, 84px);
+        line-height: 0.98;
+        margin: 18px 0 14px;
+        letter-spacing: -0.01em;
+      }
+      h1 .amp {
+        color: var(--crimson);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .subtitle {
+        font-size: 21px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        margin: 0 auto;
+        font-style: italic;
+      }
+      .seal {
+        width: 108px;
+        height: 108px;
+        margin: 26px auto 8px;
+        position: relative;
+        animation: sealIn 1.2s cubic-bezier(0.2, 1.4, 0.4, 1) both 0.3s;
+      }
+      @keyframes sealIn {
+        from {
+          transform: scale(0.4) rotate(-14deg);
+          opacity: 0;
         }
-      })
-    ]);
-    index = idx; embedder = emb;
-    statusEl.classList.add('ready');
-    statusText.textContent = `Ready — ${index.chunks.length} passages indexed · 384-dim vectors · running entirely in your browser`;
-    btn.disabled = false;
-    // Deep link: shared URLs carry the question and auto-run it
-    const shared = new URLSearchParams(location.search).get('q');
-    if (shared) {
-      input.value = shared;
-      ask(shared);
-    }
-  } catch (e) {
-    statusText.textContent = 'The model failed to load. Refresh to try again.';
-    console.error(e);
-  }
-}
-init();
+        to {
+          transform: scale(1) rotate(0);
+          opacity: 1;
+        }
+      }
+      .seal svg {
+        width: 100%;
+        height: 100%;
+      }
+      .stars {
+        color: var(--gold);
+        letter-spacing: 0.6em;
+        font-size: 14px;
+        margin-top: 22px;
+      }
+      header {
+        overflow: hidden;
+      }
+      .seal.spin {
+        animation: sealSpin 1.5s cubic-bezier(0.3, 0.8, 0.3, 1);
+      }
+      @keyframes sealSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .fx {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 99;
+      }
+      .star-fall {
+        position: absolute;
+        top: -16px;
+        color: var(--gold);
+        pointer-events: none;
+        opacity: 0;
+        animation: starFall 6s linear forwards;
+      }
+      @keyframes starFall {
+        0% {
+          transform: translateY(0) rotate(0);
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.85;
+        }
+        100% {
+          transform: translateY(340px) rotate(120deg);
+          opacity: 0;
+        }
+      }
 
-const dot = (a, b) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; };
+      /* ---------- search ---------- */
+      .ask {
+        padding: 46px 0 8px;
+      }
+      .ask label {
+        display: block;
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 26px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .searchbox {
+        display: flex;
+        gap: 0;
+        border: 2px solid var(--ink);
+        background: #fffdf6;
+        box-shadow: 5px 5px 0 rgba(28, 41, 66, 0.14);
+      }
+      .searchbox input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        padding: 16px 18px;
+        font-family: "Newsreader", serif;
+        font-size: 19px;
+        color: var(--ink);
+      }
+      .searchbox button {
+        border: 0;
+        background: var(--crimson);
+        color: #f7f1e1;
+        padding: 0 26px;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: background 0.15s;
+      }
+      .searchbox button:hover {
+        background: #7c1a18;
+      }
+      .searchbox button:disabled {
+        background: #8a8672;
+        cursor: wait;
+      }
+      .status {
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        margin-top: 14px;
+        min-height: 20px;
+        letter-spacing: 0.04em;
+      }
+      .status .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        margin-right: 7px;
+        animation: pulse 1.2s infinite;
+      }
+      .status.ready .dot {
+        background: #3d7a3d;
+        animation: none;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.25;
+        }
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 22px;
+      }
+      .chip {
+        font-family: "Newsreader", serif;
+        font-size: 15.5px;
+        font-style: italic;
+        border: 1px solid var(--rule);
+        background: var(--paper-deep);
+        color: var(--ink-soft);
+        padding: 7px 15px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .chip:hover {
+        border-color: var(--crimson);
+        color: var(--crimson);
+        background: #fffdf6;
+      }
+      .trust {
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        color: var(--ink-soft);
+        margin-top: 10px;
+      }
+      .trust a {
+        color: var(--crimson);
+      }
 
-const ANSWER_THRESHOLD = 0.6; // paraphrases score 0.63+, off-topic stays under 0.2
+      /* ---------- results ---------- */
+      #results {
+        padding: 26px 0 10px;
+      }
+      .shortanswer {
+        background: var(--paper-deep);
+        border: 2px solid var(--gold);
+        padding: 20px 24px;
+        margin-bottom: 20px;
+        box-shadow: 5px 5px 0 rgba(154, 112, 20, 0.15);
+        animation: rise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+      }
+      .sa-kicker {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .sa-kicker span {
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+        text-transform: none;
+        font-size: 11.5px;
+      }
+      .shortanswer p {
+        font-size: 19px;
+      }
+      .plain {
+        border-top: 1px dashed var(--rule);
+        margin-top: 12px;
+        padding-top: 10px;
+        font-size: 16px;
+        color: var(--ink-soft);
+        font-style: italic;
+      }
+      .plain span {
+        font-family: "IBM Plex Mono", monospace;
+        font-style: normal;
+        font-size: 10.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-right: 8px;
+      }
+      .lowconf {
+        font-style: italic;
+        color: var(--ink-soft);
+        text-align: center;
+        font-size: 16px;
+        padding: 4px 0 14px;
+      }
+      .shareline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 10px 0 2px;
+      }
+      .sharebtn {
+        background: #fffdf6;
+        border: 1px solid var(--rule);
+        color: var(--crimson);
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 9px 18px;
+        transition: all 0.15s;
+      }
+      .sharebtn:hover {
+        border-color: var(--crimson);
+      }
+      .resnote {
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        color: #8a8266;
+        padding: 8px 0 0;
+      }
+      .result {
+        background: #fffdf6;
+        border: 1px solid var(--rule);
+        border-left: 5px solid var(--crimson);
+        padding: 20px 24px;
+        margin-bottom: 18px;
+        animation: rise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+        animation-delay: calc(var(--i) * 90ms);
+      }
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .result .meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .cite {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--crimson);
+      }
+      .cite .yr {
+        color: var(--gold);
+      }
+      .score {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .bar {
+        width: 64px;
+        height: 5px;
+        background: var(--paper-deep);
+        border: 1px solid var(--rule);
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        background: var(--gold);
+      }
+      .passage {
+        font-size: 18px;
+      }
+      .passage::first-letter {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+      }
+      .noresult {
+        text-align: center;
+        font-style: italic;
+        color: var(--ink-soft);
+        padding: 20px;
+      }
 
-async function ask(q){
-  if (!embedder || !q.trim()) return;
-  btn.disabled = true; btn.textContent = '…';
-  const out = await embedder(q, { pooling: 'mean', normalize: true });
-  const qv = out.data;
+      /* ---------- sections ---------- */
+      .divider {
+        text-align: center;
+        color: var(--gold);
+        letter-spacing: 0.6em;
+        font-size: 14px;
+        padding: 38px 0 6px;
+      }
+      section h2 {
+        font-family: "Fraunces", serif;
+        font-weight: 900;
+        font-size: 34px;
+        text-align: center;
+        margin: 14px 0 8px;
+      }
+      section .kicker {
+        text-align: center;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--crimson);
+      }
+      .lede {
+        text-align: center;
+        color: var(--ink-soft);
+        font-style: italic;
+        max-width: 540px;
+        margin: 6px auto 30px;
+      }
 
-  results.innerHTML = '';
+      /* world section — sits between masthead and search */
+      .world {
+        text-align: center;
+        padding-top: 34px;
+      }
+      .world h2 {
+        font-size: 28px;
+        margin: 12px 0 4px;
+      }
+      .world .lede2 {
+        max-width: 540px;
+        margin: 8px auto 0;
+        color: var(--ink-soft);
+        font-size: 16.5px;
+        font-style: italic;
+      }
+      .world a {
+        color: var(--crimson);
+      }
+      .flags {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+        gap: 10px;
+        margin: 22px 0 0;
+      }
+      /* two even rows of six once there is room */
+      @media (min-width: 640px) {
+        .flags {
+          grid-template-columns: repeat(6, 1fr);
+        }
+      }
+      .flagbtn {
+        background: #fffdf6;
+        border: 1px solid var(--rule);
+        padding: 10px 4px 8px;
+        cursor: pointer;
+        text-align: center;
+        font-family: "Newsreader", serif;
+        color: var(--ink);
+        transition: all 0.15s;
+      }
+      .flagbtn img {
+        width: 38px;
+        height: auto;
+        border: 1px solid var(--rule);
+        display: block;
+        margin: 0 auto;
+        filter: sepia(0.45) saturate(0.6);
+        transition: filter 0.15s;
+      }
+      .flagbtn:hover img,
+      .flagbtn.active img {
+        filter: none;
+      }
+      .flagbtn:hover,
+      .flagbtn.active {
+        border-color: var(--crimson);
+      }
+      .flagbtn.active {
+        box-shadow: 3px 3px 0 rgba(147, 33, 31, 0.2);
+      }
+      .flagbtn .fname {
+        display: block;
+        font-size: 13px;
+        margin-top: 6px;
+      }
+      .flagbtn .fyear {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10.5px;
+        color: #7d5a0e;
+      }
+      .flagcard {
+        display: none;
+        border: 2px solid var(--ink);
+        border-left: 6px solid var(--crimson);
+        background: #fffdf6;
+        padding: 20px 24px;
+        margin-top: 18px;
+        text-align: left;
+        box-shadow: 5px 5px 0 rgba(28, 41, 66, 0.14);
+      }
+      .flagcard.open {
+        display: block;
+        animation: rise 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+      }
+      .flagcard h3 {
+        font-family: "Fraunces", serif;
+        font-weight: 900;
+        font-size: 22px;
+        margin-bottom: 2px;
+      }
+      .flagcard .fc-year {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .flagcard p {
+        font-size: 17px;
+        color: var(--ink-soft);
+      }
+      .flagcard .fc-src {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11.5px;
+        letter-spacing: 0.04em;
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--rule);
+      }
+      .flagcard .fc-src a {
+        color: var(--crimson);
+      }
+      .flagcard .fc-src {
+        line-height: 1.7;
+      }
+      .worldanchor {
+        max-width: 560px;
+        margin: 20px auto 0;
+        font-size: 14px;
+        color: var(--ink-soft);
+        font-style: italic;
+      }
+      .worldanchor a {
+        color: var(--crimson);
+      }
 
-  // If the question is close to one we have a curated answer for, lead with it
-  const bestA = index.answers
-    .map(a => ({ a, s: dot(qv, a.vector) }))
-    .sort((x, y) => y.s - x.s)[0];
-  const curated = bestA && bestA.s >= ANSWER_THRESHOLD ? bestA.a : null;
+      /* footer */
+      footer {
+        border-top: 4px double var(--rule);
+        margin-top: 52px;
+        padding-top: 30px;
+        text-align: center;
+      }
+      footer a {
+        color: var(--crimson);
+      }
+      footer .motto {
+        font-style: italic;
+        color: var(--gold);
+        font-size: 18px;
+      }
+      footer .colophon {
+        font-size: 15px;
+        color: var(--ink-soft);
+        margin-top: 12px;
+      }
 
-  let hits = index.chunks
-    .map(c => ({ c, s: dot(qv, c.vector) }))
-    .sort((a, b) => b.s - a.s)
-    .slice(0, 5)
-    .filter(h => h.s > 0.22);
+      @media (max-width: 560px) {
+        body {
+          font-size: 17px;
+        }
+        .arch-num {
+          flex-basis: 48px;
+          font-size: 22px;
+        }
+        .searchbox button {
+          padding: 0 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bunting"></div>
+    <div class="sheet">
+      <header>
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="#9a7014"
+              stroke-width="2"
+            />
+            <circle
+              cx="60"
+              cy="60"
+              r="49"
+              fill="none"
+              stroke="#9a7014"
+              stroke-width="1"
+              stroke-dasharray="2 3"
+            />
+            <g fill="#9a7014">
+              <path
+                id="star"
+                d="M60 12l1.8 4.4 4.7.3-3.6 3 1.1 4.6L60 21.8l-4 2.5 1.1-4.6-3.6-3 4.7-.3z"
+              />
+              <use href="#star" transform="rotate(72 60 60)" />
+              <use href="#star" transform="rotate(144 60 60)" />
+              <use href="#star" transform="rotate(216 60 60)" />
+              <use href="#star" transform="rotate(288 60 60)" />
+            </g>
+            <text
+              x="60"
+              y="72"
+              text-anchor="middle"
+              font-family="Fraunces,serif"
+              font-weight="900"
+              font-size="34"
+              fill="#93211f"
+            >
+              250
+            </text>
+            <text
+              x="60"
+              y="88"
+              text-anchor="middle"
+              font-family="IBM Plex Mono,monospace"
+              font-size="7.5"
+              letter-spacing="2"
+              fill="#1c2942"
+            >
+              1776 &#8226; 2026
+            </text>
+          </svg>
+        </div>
+        <div class="dateline">
+          The Semiquincentennial Edition &mdash; July 4, 2026
+        </div>
+        <h1>Ask the<br />Declaration</h1>
+        <p class="subtitle">
+          Two hundred fifty years later, the founding documents still answer
+          questions. Ask them one.
+        </p>
+        <div class="stars">&#10022; &#10022; &#10022;</div>
+      </header>
 
-  if (curated) {
-    const sa = document.createElement('article');
-    sa.className = 'shortanswer';
-    sa.innerHTML = `<div class="sa-kicker">The Short Answer <span>&#10022; curated, in modern words &mdash; the founders' own words follow below</span></div><p>${curated.answer}</p>`;
-    results.appendChild(sa);
-    // Pin the passages the curated answer cites, then fill with semantic hits
-    const pinned = curated.chunkIds
-      .map(id => index.chunks.find(c => c.id === id))
-      .filter(Boolean)
-      .map(c => ({ c, s: null }));
-    const pinnedIds = new Set(curated.chunkIds);
-    hits = pinned.concat(hits.filter(h => !pinnedIds.has(h.c.id))).slice(0, 5);
-  }
+      <section class="world" id="world">
+        <div class="kicker">For the Rest of the World</div>
+        <h2>The Template the World Forked</h2>
+        <p class="lede2">
+          The U.S. Constitution is the oldest written national constitution
+          still in operation. Most of the world's founding documents borrowed
+          from it, argued with it, or improved on it. Tap a flag to see the
+          lineage.
+        </p>
+        <div class="flags" id="flags"></div>
+        <div class="flagcard" id="flagcard"></div>
+        <p class="worldanchor">
+          Each card cites the document and the scholarship documenting the
+          influence.<br />
+          The definitive study: David Armitage,
+          <a
+            href="https://www.hup.harvard.edu/books/9780674030329"
+            target="_blank"
+            rel="noopener"
+            ><em>The Declaration of Independence: A Global History</em></a
+          >
+          (Harvard Univ. Press), tracing 100+ declarations descended from 1776.
+        </p>
+      </section>
 
-  if (!curated && !hits.length) {
-    results.innerHTML = '<p class="noresult">The founders are silent on this one. Try rephrasing, or ask about rights, powers, or grievances.</p>';
-  }
-  // Low-confidence guardrail: weak matches are framed as loosely related, not answers
-  if (!curated && hits.length && hits[0].s < 0.32) {
-    const lc = document.createElement('p');
-    lc.className = 'lowconf';
-    lc.textContent = 'The founders did not address this directly. The most loosely related passages:';
-    results.appendChild(lc);
-  }
-  hits.forEach((h, i) => {
-    const el = document.createElement('article');
-    el.className = 'result';
-    el.style.setProperty('--i', i + (curated ? 1 : 0));
-    const rel = h.s === null
-      ? ''
-      : `<span class="score"><span class="bar"><i style="width:${Math.min(100, h.s * 130)}%"></i></span></span>`;
-    el.innerHTML = `
+      <div class="divider">&#10022; &#10022; &#10022;</div>
+
+      <section class="ask">
+        <label for="q"
+          >What would you like to ask America's first authors?</label
+        >
+        <div class="searchbox">
+          <input
+            id="q"
+            type="text"
+            placeholder="e.g., Can the government search my house?"
+            autocomplete="off"
+          />
+          <button id="go" disabled>Ask</button>
+        </div>
+        <div class="status" id="status">
+          <span class="dot"></span
+          ><span id="statusText"
+            >Loading the model in your browser (first visit only, cached
+            after)&hellip;</span
+          >
+        </div>
+        <div class="trust">
+          No servers. No API keys. Your question never leaves your browser.
+          <a href="how.html">How this works &rarr;</a>
+        </div>
+        <div class="chips" id="chips">
+          <button class="chip">
+            Why did the colonies separate from Britain?
+          </button>
+          <button class="chip">Can the government search my house?</button>
+          <button class="chip">How do you amend the Constitution?</button>
+          <button class="chip">What did Madison say about factions?</button>
+          <button class="chip">Who commands the army?</button>
+          <button class="chip">What protects free speech?</button>
+        </div>
+      </section>
+
+      <section id="results" aria-live="polite"></section>
+
+      <div class="divider">&#10022; &#10022; &#10022;</div>
+
+      <p
+        class="lede2"
+        style="text-align: center; max-width: 560px; margin: 0 auto"
+      >
+        The lesson inside these documents has no nationality: name your
+        assumptions, sign your work, ship the v1, and build in the power to
+        amend.
+      </p>
+
+      <!-- <p class="lede2" style="text-align:center;max-width:560px;margin:14px auto 0">Read <a href="review.html">the Declaration reviewed as a product spec</a>, or see <a href="how.html">how a site with no servers answers in the founders' words</a>.</p> -->
+
+      <footer>
+        <p class="motto">Happy 250th, America. Ship your v1.</p>
+        <p class="colophon">
+          <a href="how.html">Under the Hood</a> &#10022;
+          <a href="review.html">The Review</a> &#10022;
+          <a href="about.html">About this project &amp; author</a>
+        </p>
+      </footer>
+    </div>
+
+    <script type="module">
+      // Loaded after first paint so the 1 MB module never competes with initial render
+      let pipeline, env;
+
+      const $ = (s) => document.querySelector(s);
+      const statusEl = $("#status"),
+        statusText = $("#statusText");
+      const input = $("#q"),
+        btn = $("#go"),
+        results = $("#results");
+
+      let index = null,
+        embedder = null;
+
+      async function init() {
+        try {
+          if (document.readyState !== "complete")
+            await new Promise((r) =>
+              addEventListener("load", r, { once: true }),
+            );
+          ({ pipeline, env } =
+            await import("https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"));
+          env.allowLocalModels = false;
+          env.backends.onnx.wasm.proxy = true; // run ONNX in a worker so model init never blocks scrolling
+          const cached =
+            "caches" in window &&
+            (await caches.has("transformers-cache").catch(() => false));
+          console.info(
+            `Model source: ${cached ? "Local Cache (Cache API, zero network)" : "Network (Hugging Face CDN, cached for next visit)"}`,
+          );
+          const [idx, emb] = await Promise.all([
+            fetch("data/index.json").then((r) => r.json()),
+            pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", {
+              progress_callback: (p) => {
+                if (
+                  p.status === "progress" &&
+                  p.file &&
+                  p.file.endsWith(".onnx")
+                ) {
+                  statusText.textContent = `Downloading model… ${Math.round(p.progress)}% (first visit only)`;
+                }
+              },
+            }),
+          ]);
+          index = idx;
+          embedder = emb;
+          statusEl.classList.add("ready");
+          statusText.textContent = `Ready — ${index.chunks.length} passages indexed · 384-dim vectors · running entirely in your browser`;
+          btn.disabled = false;
+          // Deep link: shared URLs carry the question and auto-run it
+          const shared = new URLSearchParams(location.search).get("q");
+          if (shared) {
+            input.value = shared;
+            ask(shared);
+          }
+        } catch (e) {
+          statusText.textContent =
+            "The model failed to load. Refresh to try again.";
+          console.error(e);
+        }
+      }
+      init();
+
+      const dot = (a, b) => {
+        let s = 0;
+        for (let i = 0; i < a.length; i++) s += a[i] * b[i];
+        return s;
+      };
+
+      const ANSWER_THRESHOLD = 0.6; // paraphrases score 0.63+, off-topic stays under 0.2
+
+      async function ask(q) {
+        if (!embedder || !q.trim()) return;
+        btn.disabled = true;
+        btn.textContent = "…";
+        const out = await embedder(q, { pooling: "mean", normalize: true });
+        const qv = out.data;
+
+        results.innerHTML = "";
+
+        // If the question is close to one we have a curated answer for, lead with it
+        const bestA = index.answers
+          .map((a) => ({ a, s: dot(qv, a.vector) }))
+          .sort((x, y) => y.s - x.s)[0];
+        const curated = bestA && bestA.s >= ANSWER_THRESHOLD ? bestA.a : null;
+
+        let hits = index.chunks
+          .map((c) => ({ c, s: dot(qv, c.vector) }))
+          .sort((a, b) => b.s - a.s)
+          .slice(0, 5)
+          .filter((h) => h.s > 0.22);
+
+        if (curated) {
+          const sa = document.createElement("article");
+          sa.className = "shortanswer";
+          sa.innerHTML = `<div class="sa-kicker">The Short Answer <span>&#10022; curated, in modern words &mdash; the founders' own words follow below</span></div><p>${curated.answer}</p>`;
+          results.appendChild(sa);
+          // Pin the passages the curated answer cites, then fill with semantic hits
+          const pinned = curated.chunkIds
+            .map((id) => index.chunks.find((c) => c.id === id))
+            .filter(Boolean)
+            .map((c) => ({ c, s: null }));
+          const pinnedIds = new Set(curated.chunkIds);
+          hits = pinned
+            .concat(hits.filter((h) => !pinnedIds.has(h.c.id)))
+            .slice(0, 5);
+        }
+
+        if (!curated && !hits.length) {
+          results.innerHTML =
+            '<p class="noresult">The founders are silent on this one. Try rephrasing, or ask about rights, powers, or grievances.</p>';
+        }
+        // Low-confidence guardrail: weak matches are framed as loosely related, not answers
+        if (!curated && hits.length && hits[0].s < 0.32) {
+          const lc = document.createElement("p");
+          lc.className = "lowconf";
+          lc.textContent =
+            "The founders did not address this directly. The most loosely related passages:";
+          results.appendChild(lc);
+        }
+        hits.forEach((h, i) => {
+          const el = document.createElement("article");
+          el.className = "result";
+          el.style.setProperty("--i", i + (curated ? 1 : 0));
+          const rel =
+            h.s === null
+              ? ""
+              : `<span class="score"><span class="bar"><i style="width:${Math.min(100, h.s * 130)}%"></i></span></span>`;
+          el.innerHTML = `
       <div class="meta">
         <span class="cite">${h.c.source} &mdash; ${h.c.section} <span class="yr">&#10022; ${h.c.year}</span></span>
         ${rel}
       </div>
       <p class="passage">${h.c.text}</p>
-      ${h.c.plain ? `<p class="plain"><span>In plain words</span>${h.c.plain}</p>` : ''}`;
-    results.appendChild(el);
-  });
-  if (curated || hits.length) {
-    const share = document.createElement('div');
-    share.className = 'shareline';
-    share.innerHTML = '<button class="sharebtn">Share this answer</button>';
-    share.querySelector('button').addEventListener('click', async (ev) => {
-      const url = `${location.origin}${location.pathname}?q=${encodeURIComponent(q)}`;
-      const b = ev.currentTarget;
-      if (navigator.share) {
-        navigator.share({ title: 'Ask the Declaration', text: `"${q}" — answered by the founding documents:`, url }).catch(() => {});
-      } else {
-        await navigator.clipboard.writeText(url).catch(() => {});
-        b.textContent = 'Link copied';
-        setTimeout(() => { b.textContent = 'Share this answer'; }, 2000);
+      ${h.c.plain ? `<p class="plain"><span>In plain words</span>${h.c.plain}</p>` : ""}`;
+          results.appendChild(el);
+        });
+        if (curated || hits.length) {
+          const share = document.createElement("div");
+          share.className = "shareline";
+          share.innerHTML =
+            '<button class="sharebtn">Share this answer</button>';
+          share
+            .querySelector("button")
+            .addEventListener("click", async (ev) => {
+              const url = `${location.origin}${location.pathname}?q=${encodeURIComponent(q)}`;
+              const b = ev.currentTarget;
+              if (navigator.share) {
+                navigator
+                  .share({
+                    title: "Ask the Declaration",
+                    text: `"${q}" — answered by the founding documents:`,
+                    url,
+                  })
+                  .catch(() => {});
+              } else {
+                await navigator.clipboard.writeText(url).catch(() => {});
+                b.textContent = "Link copied";
+                setTimeout(() => {
+                  b.textContent = "Share this answer";
+                }, 2000);
+              }
+            });
+          results.appendChild(share);
+
+          const note = document.createElement("p");
+          note.className = "resnote";
+          note.textContent =
+            "Quotations from historical documents, retrieved by similarity. Not endorsements.";
+          results.appendChild(note);
+        }
+        btn.disabled = false;
+        btn.textContent = "Ask";
+        results.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
-    });
-    results.appendChild(share);
 
-    const note = document.createElement('p');
-    note.className = 'resnote';
-    note.textContent = 'Quotations from historical documents, retrieved by similarity. Not endorsements.';
-    results.appendChild(note);
-  }
-  btn.disabled = false; btn.textContent = 'Ask';
-  results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
+      btn.addEventListener("click", () => ask(input.value));
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") ask(input.value);
+      });
+      document.querySelectorAll(".chip").forEach((ch) =>
+        ch.addEventListener("click", () => {
+          input.value = ch.textContent;
+          ask(ch.textContent);
+        }),
+      );
 
-btn.addEventListener('click', () => ask(input.value));
-input.addEventListener('keydown', (e) => { if (e.key === 'Enter') ask(input.value); });
-document.querySelectorAll('.chip').forEach(ch =>
-  ch.addEventListener('click', () => { input.value = ch.textContent; ask(ch.textContent); })
-);
+      // ---------- easter eggs ----------
+      console.log(
+        "%cWe hold these truths to be self-evident: %cyou opened the console.",
+        "font-weight:bold;color:#93211f;font-size:14px",
+        "color:#1c2942;font-size:14px",
+      );
+      console.log(
+        "%cNo servers, no API keys, nothing back here but static files. The whole build is open: https://github.com/swapniltamse/ask-the-declaration",
+        "color:#3d4a66",
+      );
 
-// ---------- easter eggs ----------
-console.log(
-  '%cWe hold these truths to be self-evident: %cyou opened the console.',
-  'font-weight:bold;color:#93211f;font-size:14px',
-  'color:#1c2942;font-size:14px'
-);
-console.log(
-  '%cNo servers, no API keys, nothing back here but static files. The whole build is open: https://github.com/swapniltamse/ask-the-declaration',
-  'color:#3d4a66'
-);
+      const reduceMotion = matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Konami code: fireworks in the site palette + one lap of the seal
+      const KONAMI = [
+        "arrowup",
+        "arrowup",
+        "arrowdown",
+        "arrowdown",
+        "arrowleft",
+        "arrowright",
+        "arrowleft",
+        "arrowright",
+        "b",
+        "a",
+      ];
+      let kpos = 0;
+      document.addEventListener("keydown", (e) => {
+        const k = e.key.toLowerCase();
+        kpos = k === KONAMI[kpos] ? kpos + 1 : k === KONAMI[0] ? 1 : 0;
+        if (kpos === KONAMI.length) {
+          kpos = 0;
+          fireworks();
+        }
+      });
+      function fireworks() {
+        if (reduceMotion || document.querySelector(".fx")) return;
+        const seal = document.querySelector(".seal");
+        seal.classList.add("spin");
+        setTimeout(() => seal.classList.remove("spin"), 1600);
+        const cv = document.createElement("canvas");
+        cv.className = "fx";
+        cv.width = innerWidth;
+        cv.height = innerHeight;
+        document.body.appendChild(cv);
+        const ctx = cv.getContext("2d");
+        const colors = ["#9a7014", "#93211f", "#1c2942", "#c9a227"];
+        const parts = [];
+        for (let burst = 0; burst < 5; burst++) {
+          const bx = innerWidth * (0.2 + Math.random() * 0.6);
+          const by = innerHeight * (0.15 + Math.random() * 0.3);
+          for (let i = 0; i < 60; i++) {
+            const a = Math.random() * Math.PI * 2,
+              v = 1.5 + Math.random() * 3.5;
+            parts.push({
+              x: bx,
+              y: by,
+              vx: Math.cos(a) * v,
+              vy: Math.sin(a) * v,
+              life: 60 + Math.random() * 40,
+              c: colors[i % colors.length],
+              delay: burst * 14,
+            });
+          }
+        }
+        let t = 0;
+        (function tick() {
+          t++;
+          ctx.clearRect(0, 0, cv.width, cv.height);
+          let alive = false;
+          for (const p of parts) {
+            if (t < p.delay) {
+              alive = true;
+              continue;
+            }
+            if (p.life <= 0) continue;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 0.05;
+            p.life--;
+            alive = true;
+            ctx.globalAlpha = Math.max(0, p.life / 100);
+            ctx.fillStyle = p.c;
+            ctx.fillRect(p.x, p.y, 2.5, 2.5);
+          }
+          if (alive) requestAnimationFrame(tick);
+          else cv.remove();
+        })();
+      }
 
-// Konami code: fireworks in the site palette + one lap of the seal
-const KONAMI = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
-let kpos = 0;
-document.addEventListener('keydown', (e) => {
-  const k = e.key.toLowerCase();
-  kpos = (k === KONAMI[kpos]) ? kpos + 1 : (k === KONAMI[0] ? 1 : 0);
-  if (kpos === KONAMI.length) { kpos = 0; fireworks(); }
-});
-function fireworks(){
-  if (reduceMotion || document.querySelector('.fx')) return;
-  const seal = document.querySelector('.seal');
-  seal.classList.add('spin');
-  setTimeout(() => seal.classList.remove('spin'), 1600);
-  const cv = document.createElement('canvas');
-  cv.className = 'fx';
-  cv.width = innerWidth; cv.height = innerHeight;
-  document.body.appendChild(cv);
-  const ctx = cv.getContext('2d');
-  const colors = ['#9a7014', '#93211f', '#1c2942', '#c9a227'];
-  const parts = [];
-  for (let burst = 0; burst < 5; burst++) {
-    const bx = innerWidth * (0.2 + Math.random() * 0.6);
-    const by = innerHeight * (0.15 + Math.random() * 0.3);
-    for (let i = 0; i < 60; i++) {
-      const a = Math.random() * Math.PI * 2, v = 1.5 + Math.random() * 3.5;
-      parts.push({ x: bx, y: by, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
-        life: 60 + Math.random() * 40, c: colors[i % colors.length], delay: burst * 14 });
-    }
-  }
-  let t = 0;
-  (function tick(){
-    t++;
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    let alive = false;
-    for (const p of parts) {
-      if (t < p.delay) { alive = true; continue; }
-      if (p.life <= 0) continue;
-      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life--;
-      alive = true;
-      ctx.globalAlpha = Math.max(0, p.life / 100);
-      ctx.fillStyle = p.c;
-      ctx.fillRect(p.x, p.y, 2.5, 2.5);
-    }
-    if (alive) requestAnimationFrame(tick); else cv.remove();
-  })();
-}
+      // July 4th only: gold stars drift over the masthead
+      const today = new Date();
+      if (!reduceMotion && today.getMonth() === 6 && today.getDate() === 4) {
+        const header = document.querySelector("header");
+        for (let i = 0; i < 22; i++) {
+          const s = document.createElement("span");
+          s.className = "star-fall";
+          s.textContent = "✦";
+          s.style.left = Math.random() * 100 + "%";
+          s.style.animationDelay = Math.random() * 4.5 + "s";
+          s.style.fontSize = 9 + Math.random() * 9 + "px";
+          header.appendChild(s);
+        }
+        setTimeout(
+          () =>
+            document.querySelectorAll(".star-fall").forEach((s) => s.remove()),
+          12000,
+        );
+      }
 
-// July 4th only: gold stars drift over the masthead
-const today = new Date();
-if (!reduceMotion && today.getMonth() === 6 && today.getDate() === 4) {
-  const header = document.querySelector('header');
-  for (let i = 0; i < 22; i++) {
-    const s = document.createElement('span');
-    s.className = 'star-fall';
-    s.textContent = '✦';
-    s.style.left = Math.random() * 100 + '%';
-    s.style.animationDelay = (Math.random() * 4.5) + 's';
-    s.style.fontSize = (9 + Math.random() * 9) + 'px';
-    header.appendChild(s);
-  }
-  setTimeout(() => document.querySelectorAll('.star-fall').forEach((s) => s.remove()), 12000);
-}
-
-// ---------- The Template the World Forked ----------
-const WORLD = [
-  { code: 'fr', name: 'France', year: 1789, text: "Weeks after the Bastille fell, Lafayette drafted the Declaration of the Rights of Man while consulting Thomas Jefferson, then the American minister in Paris. Jefferson's handwritten notes on Lafayette's draft survive in the U.S. National Archives.",
-    src: { label: 'Declaration of the Rights of Man, Avalon Project (Yale)', url: 'https://avalon.law.yale.edu/18th_century/rightsof.asp' },
-    proof: { label: "Lafayette's draft with Jefferson's edits, Founders Online (U.S. National Archives)", url: 'https://founders.archives.gov/documents/Jefferson/01-15-02-0223' } },
-  { code: 'pl', name: 'Poland', year: 1791, text: "The Constitution of May 3 was Europe's first written national constitution and the world's second. King Stanisław August said it was 'founded principally on those of England and the United States of America.'",
-    src: { label: 'Constitution of 3 May 1791', url: 'https://en.wikipedia.org/wiki/Constitution_of_3_May_1791' },
-    proof: { label: "'Two Firsts: A Comparative Study of the American and the Polish Constitutions' (Catholic Univ. law scholarship)", url: 'https://scholarship.law.edu/scholar/495/' } },
-  { code: 'ht', name: 'Haiti', year: 1804, text: "The world's first Black republic declared independence after the only successful slave revolution in history. Historians call it the second declaration of its kind on Earth; the first was signed in Philadelphia.",
-    src: { label: 'Haitian Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Haitian_Declaration_of_Independence' },
-    proof: { label: "Duke University: the rediscovered 1804 original, 'only the second declaration of its kind'", url: 'https://today.duke.edu/2010/03/haiti_discovery.html' } },
-  { code: 've', name: 'Venezuela', year: 1811, text: "Latin America's first declaration of independence copied the American format down to its list of grievances, and Venezuela's first constitution borrowed the federal design as well.",
-    src: { label: 'Venezuelan Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Venezuelan_Declaration_of_Independence' },
-    proof: { label: "Gilder Lehrman Institute: Venezuela's 1811 declaration and US republicanism", url: 'https://www.gilderlehrman.org/history-resources/essays/venezuelas-first-declaration-independence-and-us-republicanism' } },
-  { code: 'mx', name: 'Mexico', year: 1824, text: "Mexico's first federal constitution had two parents: the U.S. federal structure and Spain's 1812 Cádiz constitution. Scholars still argue over the mix, which is itself evidence the American template was in the room.",
-    src: { label: '1824 Constitution of Mexico', url: 'https://en.wikipedia.org/wiki/1824_Constitution_of_Mexico' },
-    proof: { label: 'Tarlton Law Library (Univ. of Texas): the 1824 federal constitution and its models', url: 'https://tarlton.law.utexas.edu/constitutions/federal-mexican-1824-en' } },
-  { code: 'lr', name: 'Liberia', year: 1847, text: "Founded by freed African Americans, Liberia declared independence with a document that deliberately echoes 1776, including its own list of grievances, and adopted a constitution built on the American model.",
-    src: { label: 'Constitution of Liberia', url: 'https://en.wikipedia.org/wiki/Constitution_of_Liberia' },
-    proof: { label: "Library of Congress: Liberia's declaration 'is modeled after our July 4, 1776 document'", url: 'https://blogs.loc.gov/international-collections/2016/07/liberia-africa-oldest-independent-and-democratic-republic-celebrates-its-169th-independence-anniversary/' } },
-  { code: 'ar', name: 'Argentina', year: 1853, text: "Juan Bautista Alberdi's blueprint for the Argentine constitution drew openly on the American model: federalism, a supreme court, and a presidential system, adapted to Argentine reality.",
-    src: { label: 'Argentine Constitution of 1853', url: 'https://en.wikipedia.org/wiki/Argentine_Constitution_of_1853' },
-    proof: { label: "Miller, 'The Authority of a Foreign Talisman,' American Univ. Law Review (1997)", url: 'https://digitalcommons.wcl.american.edu/aulr/vol46/iss5/3/' } },
-  { code: 'ph', name: 'Philippines', year: 1899, text: "The Malolos Constitution created Asia's first republic. The 1935 constitution went further: U.S. law required a 'republican form of government' subject to the American president's approval, and the drafters modeled it on the U.S. Constitution.",
-    src: { label: 'Malolos Constitution', url: 'https://en.wikipedia.org/wiki/Malolos_Constitution' },
-    proof: { label: 'Philippine Independence (Tydings-McDuffie) Act of 1934, full text', url: 'https://en.wikisource.org/wiki/Philippine_Independence_Act' } },
-  { code: 'vn', name: 'Vietnam', year: 1945, text: "Ho Chi Minh opened Vietnam's declaration of independence by quoting Jefferson word for word: 'All men are created equal.' He asked American OSS officers in Hanoi for the exact text beforehand.",
-    src: { label: 'Declaration of Independence of the DRV, 1945 (full text)', url: 'https://www.marxists.org/reference/archive/ho-chi-minh/works/1945/declaration-independence.htm' },
-    proof: { label: 'Council on Foreign Relations: how Ho Chi Minh came to quote Jefferson', url: 'https://www.cfr.org/articles/remembering-ho-chi-minhs-1945-declaration-vietnams-independence' } },
-  { code: 'jp', name: 'Japan', year: 1947, text: "Japan's postwar constitution placed sovereignty in the people and added an extensive bill of rights. The February 1946 draft was written in English by General MacArthur's staff before being negotiated with the Japanese government; the archives hold both versions.",
-    src: { label: 'The Constitution of Japan (official English text)', url: 'https://www.shugiin.go.jp/internet/itdb_english.nsf/html/statics/english/constitution_e.htm' },
-    proof: { label: "National Diet Library of Japan: the GHQ draft of February 13, 1946", url: 'https://www.ndl.go.jp/constitution/e/shiryo/03/076shoshi.html' } },
-  { code: 'de', name: 'Germany', year: 1949, text: "The Basic Law was drafted under Allied occupation and approved by the American, British, and French military governors. Its federalism and powerful constitutional court were shaped in dialogue with the American model, with German roots scholars still weigh.",
-    src: { label: 'Basic Law for the Federal Republic of Germany (official English translation)', url: 'https://www.gesetze-im-internet.de/englisch_gg/' },
-    proof: { label: "Kommers, 'The Basic Law: A Fifty Year Assessment' (Notre Dame Law scholarship)", url: 'https://scholarship.law.nd.edu/cgi/viewcontent.cgi?httpsredir=1&article=1824&context=law_faculty_scholarship' } },
-  { code: 'in', name: 'India', year: 1950, text: "The world's longest constitution. Its fundamental rights chapter and judicial review owe a visible debt to the US Bill of Rights, which Dr. Ambedkar's drafting committee studied closely, alongside models from a dozen other nations.",
-    src: { label: 'Constitution of India (Legislative Department, Govt. of India)', url: 'https://legislative.gov.in/constitution-of-india/' },
-    proof: { label: "'The Bill of Rights, Due Process and Federalism in India,' Minnesota Law Review", url: 'https://scholarship.law.umn.edu/context/mlr/article/3546/viewcontent/uc.pdf' } },
-];
-const flagsEl = document.getElementById('flags');
-const flagcard = document.getElementById('flagcard');
-WORLD.forEach((w, i) => {
-  const b = document.createElement('button');
-  b.className = 'flagbtn';
-  b.innerHTML = `<img src="https://flagcdn.com/w80/${w.code}.png" srcset="https://flagcdn.com/w160/${w.code}.png 2x" alt="Flag of ${w.name}" loading="lazy" width="46" height="31">
+      // ---------- The Template the World Forked ----------
+      const WORLD = [
+        {
+          code: "fr",
+          name: "France",
+          year: 1789,
+          text: "Weeks after the Bastille fell, Lafayette drafted the Declaration of the Rights of Man while consulting Thomas Jefferson, then the American minister in Paris. Jefferson's handwritten notes on Lafayette's draft survive in the U.S. National Archives.",
+          src: {
+            label: "Declaration of the Rights of Man, Avalon Project (Yale)",
+            url: "https://avalon.law.yale.edu/18th_century/rightsof.asp",
+          },
+          proof: {
+            label:
+              "Lafayette's draft with Jefferson's edits, Founders Online (U.S. National Archives)",
+            url: "https://founders.archives.gov/documents/Jefferson/01-15-02-0223",
+          },
+        },
+        {
+          code: "pl",
+          name: "Poland",
+          year: 1791,
+          text: "The Constitution of May 3 was Europe's first written national constitution and the world's second. King Stanisław August said it was 'founded principally on those of England and the United States of America.'",
+          src: {
+            label: "Constitution of 3 May 1791",
+            url: "https://en.wikipedia.org/wiki/Constitution_of_3_May_1791",
+          },
+          proof: {
+            label:
+              "'Two Firsts: A Comparative Study of the American and the Polish Constitutions' (Catholic Univ. law scholarship)",
+            url: "https://scholarship.law.edu/scholar/495/",
+          },
+        },
+        {
+          code: "ht",
+          name: "Haiti",
+          year: 1804,
+          text: "The world's first Black republic declared independence after the only successful slave revolution in history. Historians call it the second declaration of its kind on Earth; the first was signed in Philadelphia.",
+          src: {
+            label: "Haitian Declaration of Independence",
+            url: "https://en.wikipedia.org/wiki/Haitian_Declaration_of_Independence",
+          },
+          proof: {
+            label:
+              "Duke University: the rediscovered 1804 original, 'only the second declaration of its kind'",
+            url: "https://today.duke.edu/2010/03/haiti_discovery.html",
+          },
+        },
+        {
+          code: "ve",
+          name: "Venezuela",
+          year: 1811,
+          text: "Latin America's first declaration of independence copied the American format down to its list of grievances, and Venezuela's first constitution borrowed the federal design as well.",
+          src: {
+            label: "Venezuelan Declaration of Independence",
+            url: "https://en.wikipedia.org/wiki/Venezuelan_Declaration_of_Independence",
+          },
+          proof: {
+            label:
+              "Gilder Lehrman Institute: Venezuela's 1811 declaration and US republicanism",
+            url: "https://www.gilderlehrman.org/history-resources/essays/venezuelas-first-declaration-independence-and-us-republicanism",
+          },
+        },
+        {
+          code: "mx",
+          name: "Mexico",
+          year: 1824,
+          text: "Mexico's first federal constitution had two parents: the U.S. federal structure and Spain's 1812 Cádiz constitution. Scholars still argue over the mix, which is itself evidence the American template was in the room.",
+          src: {
+            label: "1824 Constitution of Mexico",
+            url: "https://en.wikipedia.org/wiki/1824_Constitution_of_Mexico",
+          },
+          proof: {
+            label:
+              "Tarlton Law Library (Univ. of Texas): the 1824 federal constitution and its models",
+            url: "https://tarlton.law.utexas.edu/constitutions/federal-mexican-1824-en",
+          },
+        },
+        {
+          code: "lr",
+          name: "Liberia",
+          year: 1847,
+          text: "Founded by freed African Americans, Liberia declared independence with a document that deliberately echoes 1776, including its own list of grievances, and adopted a constitution built on the American model.",
+          src: {
+            label: "Constitution of Liberia",
+            url: "https://en.wikipedia.org/wiki/Constitution_of_Liberia",
+          },
+          proof: {
+            label:
+              "Library of Congress: Liberia's declaration 'is modeled after our July 4, 1776 document'",
+            url: "https://blogs.loc.gov/international-collections/2016/07/liberia-africa-oldest-independent-and-democratic-republic-celebrates-its-169th-independence-anniversary/",
+          },
+        },
+        {
+          code: "ar",
+          name: "Argentina",
+          year: 1853,
+          text: "Juan Bautista Alberdi's blueprint for the Argentine constitution drew openly on the American model: federalism, a supreme court, and a presidential system, adapted to Argentine reality.",
+          src: {
+            label: "Argentine Constitution of 1853",
+            url: "https://en.wikipedia.org/wiki/Argentine_Constitution_of_1853",
+          },
+          proof: {
+            label:
+              "Miller, 'The Authority of a Foreign Talisman,' American Univ. Law Review (1997)",
+            url: "https://digitalcommons.wcl.american.edu/aulr/vol46/iss5/3/",
+          },
+        },
+        {
+          code: "ph",
+          name: "Philippines",
+          year: 1899,
+          text: "The Malolos Constitution created Asia's first republic. The 1935 constitution went further: U.S. law required a 'republican form of government' subject to the American president's approval, and the drafters modeled it on the U.S. Constitution.",
+          src: {
+            label: "Malolos Constitution",
+            url: "https://en.wikipedia.org/wiki/Malolos_Constitution",
+          },
+          proof: {
+            label:
+              "Philippine Independence (Tydings-McDuffie) Act of 1934, full text",
+            url: "https://en.wikisource.org/wiki/Philippine_Independence_Act",
+          },
+        },
+        {
+          code: "vn",
+          name: "Vietnam",
+          year: 1945,
+          text: "Ho Chi Minh opened Vietnam's declaration of independence by quoting Jefferson word for word: 'All men are created equal.' He asked American OSS officers in Hanoi for the exact text beforehand.",
+          src: {
+            label: "Declaration of Independence of the DRV, 1945 (full text)",
+            url: "https://www.marxists.org/reference/archive/ho-chi-minh/works/1945/declaration-independence.htm",
+          },
+          proof: {
+            label:
+              "Council on Foreign Relations: how Ho Chi Minh came to quote Jefferson",
+            url: "https://www.cfr.org/articles/remembering-ho-chi-minhs-1945-declaration-vietnams-independence",
+          },
+        },
+        {
+          code: "jp",
+          name: "Japan",
+          year: 1947,
+          text: "Japan's postwar constitution placed sovereignty in the people and added an extensive bill of rights. The February 1946 draft was written in English by General MacArthur's staff before being negotiated with the Japanese government; the archives hold both versions.",
+          src: {
+            label: "The Constitution of Japan (official English text)",
+            url: "https://www.shugiin.go.jp/internet/itdb_english.nsf/html/statics/english/constitution_e.htm",
+          },
+          proof: {
+            label:
+              "National Diet Library of Japan: the GHQ draft of February 13, 1946",
+            url: "https://www.ndl.go.jp/constitution/e/shiryo/03/076shoshi.html",
+          },
+        },
+        {
+          code: "de",
+          name: "Germany",
+          year: 1949,
+          text: "The Basic Law was drafted under Allied occupation and approved by the American, British, and French military governors. Its federalism and powerful constitutional court were shaped in dialogue with the American model, with German roots scholars still weigh.",
+          src: {
+            label:
+              "Basic Law for the Federal Republic of Germany (official English translation)",
+            url: "https://www.gesetze-im-internet.de/englisch_gg/",
+          },
+          proof: {
+            label:
+              "Kommers, 'The Basic Law: A Fifty Year Assessment' (Notre Dame Law scholarship)",
+            url: "https://scholarship.law.nd.edu/cgi/viewcontent.cgi?httpsredir=1&article=1824&context=law_faculty_scholarship",
+          },
+        },
+        {
+          code: "in",
+          name: "India",
+          year: 1950,
+          text: "The world's longest constitution. Its fundamental rights chapter and judicial review owe a visible debt to the US Bill of Rights, which Dr. Ambedkar's drafting committee studied closely, alongside models from a dozen other nations.",
+          src: {
+            label:
+              "Constitution of India (Legislative Department, Govt. of India)",
+            url: "https://legislative.gov.in/constitution-of-india/",
+          },
+          proof: {
+            label:
+              "'The Bill of Rights, Due Process and Federalism in India,' Minnesota Law Review",
+            url: "https://scholarship.law.umn.edu/context/mlr/article/3546/viewcontent/uc.pdf",
+          },
+        },
+      ];
+      const flagsEl = document.getElementById("flags");
+      const flagcard = document.getElementById("flagcard");
+      WORLD.forEach((w, i) => {
+        const b = document.createElement("button");
+        b.className = "flagbtn";
+        b.innerHTML = `<img src="https://flagcdn.com/w80/${w.code}.png" srcset="https://flagcdn.com/w160/${w.code}.png 2x" alt="Flag of ${w.name}" loading="lazy" width="46" height="31">
     <span class="fname">${w.name}</span><span class="fyear">${w.year}</span>`;
-  b.addEventListener('click', () => {
-    const already = b.classList.contains('active');
-    document.querySelectorAll('.flagbtn').forEach(x => x.classList.remove('active'));
-    if (already) { flagcard.classList.remove('open'); return; }
-    b.classList.add('active');
-    flagcard.innerHTML = `<h3>${w.name}</h3><div class="fc-year">${w.year}</div><p>${w.text}</p>
+        b.addEventListener("click", () => {
+          const already = b.classList.contains("active");
+          document
+            .querySelectorAll(".flagbtn")
+            .forEach((x) => x.classList.remove("active"));
+          if (already) {
+            flagcard.classList.remove("open");
+            return;
+          }
+          b.classList.add("active");
+          flagcard.innerHTML = `<h3>${w.name}</h3><div class="fc-year">${w.year}</div><p>${w.text}</p>
       <p class="fc-src">Document: <a href="${w.src.url}" target="_blank" rel="noopener">${w.src.label}</a><br>
       Evidence: <a href="${w.proof.url}" target="_blank" rel="noopener">${w.proof.label}</a></p>`;
-    flagcard.classList.remove('open');
-    void flagcard.offsetWidth;
-    flagcard.classList.add('open');
-  });
-  flagsEl.appendChild(b);
-});
-</script>
-</body>
+          flagcard.classList.remove("open");
+          void flagcard.offsetWidth;
+          flagcard.classList.add("open");
+        });
+        flagsEl.appendChild(b);
+      });
+    </script>
+  </body>
 </html>
