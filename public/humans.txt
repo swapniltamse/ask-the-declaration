@@ -1,0 +1,20 @@
+/* TEAM */
+Builder: Swapnil Tamse
+Role: Engineering leader, AI and AI security
+Location: New York
+Contact: linkedin.com/in/swapniltamse
+
+/* SITE */
+Built: July 2026, for America's 250th birthday
+Stack: static HTML, Transformers.js, all-MiniLM-L6-v2, zero servers
+Source: github.com/swapniltamse/ask-the-declaration
+Texts: Project Gutenberg editions, public domain
+
+/* THE PLEDGE */
+"And for the support of this Declaration, with a firm reliance on the
+protection of Divine Providence, we mutually pledge to each other our
+Lives, our Fortunes, and our sacred Honor."
+ - 56 signers, July 4, 1776
+
+You found humans.txt. The founders would have liked you.
+Happy 250th. Ship your v1.

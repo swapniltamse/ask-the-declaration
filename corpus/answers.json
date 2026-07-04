@@ -68,5 +68,20 @@
     "question": "What powers do the states keep?",
     "answer": "Everything not handed to the federal government. The Tenth Amendment makes the default explicit: powers not delegated to Washington, and not denied to the states, belong to the states or the people. The Ninth adds that listing some rights never erases the unlisted ones.",
     "chunkIds": [66, 65, 42]
+  },
+  {
+    "question": "What would the founders think of sprint planning?",
+    "answer": "They lived it. Grievance 4 complains of meetings called at places 'unusual, uncomfortable, and distant' for the sole purpose of fatiguing people into compliance. The founders would recognize your quarterly planning offsite immediately.",
+    "chunkIds": [5, 29]
+  },
+  {
+    "question": "Are you an AI chatbot?",
+    "answer": "Only the search is. There is no text generation here: every quoted word was written by 1791, by people with quills, and the plain-words notes were written by a human in 2026. Nothing on this page can hallucinate. It can only cite.",
+    "chunkIds": []
+  },
+  {
+    "question": "Is a hot dog a sandwich?",
+    "answer": "The founding documents are silent on the sandwich question. Under the Tenth Amendment, powers not delegated to the federal government are reserved to the states, or to the people. Your kitchen, your call.",
+    "chunkIds": [66]
   }
 ]

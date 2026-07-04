@@ -15,13 +15,17 @@ const check = (name, ok, detail) => {
   const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new" });
   const page = await browser.newPage();
   page.on("pageerror", (e) => check("no page errors", false, e.message));
+  const consoleLogs = [];
+  page.on("console", (m) => consoleLogs.push(m.text()));
   await page.goto(URL, { waitUntil: "domcontentloaded" });
 
   await page.waitForSelector(".status.ready", { timeout: 180000 });
   console.log("MODEL READY:", await page.$eval("#statusText", (e) => e.textContent));
 
   // 1. Chip question triggers a curated short answer with pinned citations
-  await page.click(".chip"); // first chip: "Why did the colonies separate from Britain?"
+  // DOM click: flag images lazy-loading above cause layout shift that makes
+  // coordinate-based clicks land on the wrong chip
+  await page.$eval(".chip", (el) => el.click()); // first chip: colonies question
   await page.waitForSelector(".result", { timeout: 30000 });
   const hasShortAnswer = (await page.$(".shortanswer")) !== null;
   check("chip shows The Short Answer box", hasShortAnswer);
@@ -79,6 +83,27 @@ const check = (name, ok, detail) => {
     return !!(world && ask && world.compareDocumentPosition(ask) & Node.DOCUMENT_POSITION_FOLLOWING);
   });
   check("world flags section precedes the search box", worldFirst);
+
+  // 8. Easter eggs
+  check("console declaration egg", consoleLogs.some((t) => /self-evident/.test(t)));
+  await runQuery("is a hot dog a sandwich");
+  const hotdog = await page.$eval(".shortanswer p", (e) => e.textContent).catch(() => "");
+  check("hot dog joke answer", /kitchen, your call/.test(hotdog), hotdog.slice(0, 50));
+  await page.$eval("#q", (e) => e.blur());
+  for (const k of ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","KeyB","KeyA"]) {
+    await page.keyboard.press(k);
+  }
+  await page.waitForSelector("canvas.fx", { timeout: 3000 })
+    .then(() => check("konami fireworks", true))
+    .catch(() => check("konami fireworks", false));
+
+  // 9. 404 page (Vercel serves 404.html; python http.server does not)
+  if (/vercel\.app/.test(URL)) {
+    const resp = await page.goto(URL.replace(/index\.html$/, "no-such-page"), { waitUntil: "domcontentloaded" });
+    const notFoundText = await page.evaluate(() => document.body.textContent);
+    check("404 page styled", resp.status() === 404 && /Grievance 28/.test(notFoundText), `status ${resp.status()}`);
+    await page.goBack({ waitUntil: "domcontentloaded" });
+  }
 
   // 7. Under the Hood page loads with the pipeline and economics sections
   const howUrl = URL.replace(/index\.html$/, "how.html").replace(/\/$/, "/how.html");

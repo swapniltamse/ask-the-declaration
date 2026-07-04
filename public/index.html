@@ -24,6 +24,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+::selection{background:var(--gold);color:#fffdf6}
 body{
   background:var(--paper);
   color:var(--ink);
@@ -57,6 +58,19 @@ h1 .amp{color:var(--crimson);font-style:italic;font-weight:400}
 @keyframes sealIn{from{transform:scale(.4) rotate(-14deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
 .seal svg{width:100%;height:100%}
 .stars{color:var(--gold);letter-spacing:.6em;font-size:14px;margin-top:22px}
+header{overflow:hidden}
+.seal.spin{animation:sealSpin 1.5s cubic-bezier(.3,.8,.3,1)}
+@keyframes sealSpin{to{transform:rotate(360deg)}}
+.fx{position:fixed;inset:0;pointer-events:none;z-index:99}
+.star-fall{
+  position:absolute;top:-16px;color:var(--gold);pointer-events:none;opacity:0;
+  animation:starFall 6s linear forwards;
+}
+@keyframes starFall{
+  0%{transform:translateY(0) rotate(0);opacity:0}
+  8%{opacity:.85}
+  100%{transform:translateY(340px) rotate(120deg);opacity:0}
+}
 
 /* ---------- search ---------- */
 .ask{padding:46px 0 8px}
@@ -389,6 +403,82 @@ input.addEventListener('keydown', (e) => { if (e.key === 'Enter') ask(input.valu
 document.querySelectorAll('.chip').forEach(ch =>
   ch.addEventListener('click', () => { input.value = ch.textContent; ask(ch.textContent); })
 );
+
+// ---------- easter eggs ----------
+console.log(
+  '%cWe hold these truths to be self-evident: %cyou opened the console.',
+  'font-weight:bold;color:#93211f;font-size:14px',
+  'color:#1c2942;font-size:14px'
+);
+console.log(
+  '%cNo servers, no API keys, nothing back here but static files. The whole build is open: https://github.com/swapniltamse/ask-the-declaration',
+  'color:#3d4a66'
+);
+
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Konami code: fireworks in the site palette + one lap of the seal
+const KONAMI = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+let kpos = 0;
+document.addEventListener('keydown', (e) => {
+  const k = e.key.toLowerCase();
+  kpos = (k === KONAMI[kpos]) ? kpos + 1 : (k === KONAMI[0] ? 1 : 0);
+  if (kpos === KONAMI.length) { kpos = 0; fireworks(); }
+});
+function fireworks(){
+  if (reduceMotion || document.querySelector('.fx')) return;
+  const seal = document.querySelector('.seal');
+  seal.classList.add('spin');
+  setTimeout(() => seal.classList.remove('spin'), 1600);
+  const cv = document.createElement('canvas');
+  cv.className = 'fx';
+  cv.width = innerWidth; cv.height = innerHeight;
+  document.body.appendChild(cv);
+  const ctx = cv.getContext('2d');
+  const colors = ['#9a7014', '#93211f', '#1c2942', '#c9a227'];
+  const parts = [];
+  for (let burst = 0; burst < 5; burst++) {
+    const bx = innerWidth * (0.2 + Math.random() * 0.6);
+    const by = innerHeight * (0.15 + Math.random() * 0.3);
+    for (let i = 0; i < 60; i++) {
+      const a = Math.random() * Math.PI * 2, v = 1.5 + Math.random() * 3.5;
+      parts.push({ x: bx, y: by, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
+        life: 60 + Math.random() * 40, c: colors[i % colors.length], delay: burst * 14 });
+    }
+  }
+  let t = 0;
+  (function tick(){
+    t++;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    let alive = false;
+    for (const p of parts) {
+      if (t < p.delay) { alive = true; continue; }
+      if (p.life <= 0) continue;
+      p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life--;
+      alive = true;
+      ctx.globalAlpha = Math.max(0, p.life / 100);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(p.x, p.y, 2.5, 2.5);
+    }
+    if (alive) requestAnimationFrame(tick); else cv.remove();
+  })();
+}
+
+// July 4th only: gold stars drift over the masthead
+const today = new Date();
+if (!reduceMotion && today.getMonth() === 6 && today.getDate() === 4) {
+  const header = document.querySelector('header');
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement('span');
+    s.className = 'star-fall';
+    s.textContent = '✦';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 4.5) + 's';
+    s.style.fontSize = (9 + Math.random() * 9) + 'px';
+    header.appendChild(s);
+  }
+  setTimeout(() => document.querySelectorAll('.star-fall').forEach((s) => s.remove()), 12000);
+}
 
 // ---------- The Template the World Forked ----------
 const WORLD = [
