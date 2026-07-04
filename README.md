@@ -60,6 +60,26 @@ The one real cost is a ~25 MB model download on a visitor's first search, cached
 **When to use this pattern:** small, public, read-heavy corpora. Docs sites, legal texts, manuals, FAQs.
 **When not to:** private data (the whole index ships to every visitor), large corpora, or when users need generated prose.
 
+## Surviving the hug of death
+
+A viral spike kills most demos one of two ways: the API bill or the bandwidth cap. This site was designed so neither can happen.
+
+**The heavy bytes never touch the origin.**
+
+| Asset | Size | Served by |
+|---|---|---|
+| Model weights (quantized ONNX + tokenizer) | ~23 MB | huggingface.co CDN |
+| Transformers.js + ONNX WASM runtime | ~11 MB | cdn.jsdelivr.net |
+| Flag images | ~150 KB | flagcdn.com |
+| Fonts | ~100 KB | fonts.gstatic.com |
+| HTML, search index, OG image | 651 KB total | Vercel origin |
+
+A fully cold visitor costs the origin about 600 KB, so Vercel's 100 GB free tier covers roughly 170,000 cold visits a month. A Hacker News front page plus a strong LinkedIn day is typically 30 to 80 thousand.
+
+**Two cache layers cut the real number far below worst case.** Transformers.js stores the model in the browser's Cache API (`transformers-cache`), so returning visitors download zero model bytes. `vercel.json` adds stale-while-revalidate headers on the search index and social card, so repeat visits mostly resolve inside the visitor's own browser.
+
+**There is no backend to overload.** Every query is a dot product computed on the visitor's own device, so each new visitor brings the compute they need with them. No API keys to leak, no rate limits to hit, no per-query bill that grows with the audience. Virality is the success case here, not the failure mode.
+
 ## What is curated vs computed
 
 The AI does retrieval and question-matching only. The plain-words explainers (all 91) and the short answers (all 14) were written by a person at build time (`corpus/explainers.json`, `corpus/answers.json`). The founders' words are quoted exactly from public domain Project Gutenberg editions. Each layer is labeled in the UI so you always know who is talking: 1776 or 2026.
