@@ -28,10 +28,9 @@ const check = (name, ok, detail) => {
   const firstCite = await page.$eval(".result .cite", (e) => e.textContent.trim());
   check("pinned passage first (Preamble)", /Preamble/.test(firstCite), firstCite);
 
-  // 2. Results carry plain-words explainers + the lineage nudge
+  // 2. Results carry plain-words explainers
   const plainCount = await page.$$eval(".result .plain", (els) => els.length);
   check("plain-words explainers render", plainCount >= 3, `${plainCount} of 5`);
-  check("lineage nudge after results", (await page.$("#results .worldnudge")) !== null);
 
   // Helper: clear stale results, run a fresh query, wait for new results
   const runQuery = async (text) => {
@@ -73,21 +72,13 @@ const check = (name, ok, detail) => {
   check("arch section moved off home page", (await page.$("#how")) === null);
   check("trust strip links to how.html", (await page.$('.trust a[href="how.html"]')) !== null);
 
-  // 6b. Responsive: ribbon on narrow screens, sticky rail on wide screens
-  const ribbonCount = await page.$$eval(".ribbon button", (els) => els.length);
-  check("mobile flag ribbon has 12 flags", ribbonCount === 12, `${ribbonCount}`);
-  const ribbonVisibleNarrow = await page.$eval(".ribbon", (e) => getComputedStyle(e).display !== "none");
-  check("ribbon visible on narrow viewport", ribbonVisibleNarrow);
-  await page.setViewport({ width: 1280, height: 900 });
-  const wide = await page.evaluate(() => ({
-    grid: getComputedStyle(document.querySelector(".layout")).display,
-    ribbon: getComputedStyle(document.querySelector(".ribbon")).display,
-    railHasWorld: !!document.querySelector(".rail #world"),
-  }));
-  check("desktop two-column grid active", wide.grid === "grid", wide.grid);
-  check("ribbon hidden on desktop", wide.ribbon === "none");
-  check("world section lives in the rail", wide.railHasWorld);
-  await page.setViewport({ width: 800, height: 600 });
+  // 6b. World section sits above the search box
+  const worldFirst = await page.evaluate(() => {
+    const world = document.getElementById("world");
+    const ask = document.querySelector(".ask");
+    return !!(world && ask && world.compareDocumentPosition(ask) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  check("world flags section precedes the search box", worldFirst);
 
   // 7. Under the Hood page loads with the pipeline and economics sections
   const howUrl = URL.replace(/index\.html$/, "how.html").replace(/\/$/, "/how.html");
