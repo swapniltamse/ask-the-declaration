@@ -356,8 +356,6 @@ async function init(){
     if (shared) {
       input.value = shared;
       ask(shared);
-    } else {
-      input.focus();
     }
   } catch (e) {
     statusText.textContent = 'The model failed to load. Refresh to try again.';
