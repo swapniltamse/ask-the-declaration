@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Best Product Spec Ever Shipped — A Review of the Declaration of Independence</title>
+<meta name="description" content="The Declaration of Independence, reviewed the way a principal engineer reviews a product spec. Vision, requirements, risks, sign-off, and a 250-year changelog.">
+<meta property="og:title" content="The Best Product Spec Ever Shipped">
+<meta property="og:description" content="I reviewed the Declaration of Independence the way I review product specs at work. It holds up better than most documents I have seen this year.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efdf;
+  --paper-deep:#efe6cf;
+  --ink:#1c2942;
+  --ink-soft:#3d4a66;
+  --crimson:#93211f;
+  --gold:#9a7014;
+  --rule:#c9bb98;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;
+  background-image:radial-gradient(ellipse 90% 60% at 50% -10%, rgba(154,112,20,.07), transparent 60%);
+}
+.bunting{height:6px;background:linear-gradient(90deg,var(--ink) 0 33.3%,var(--paper-deep) 33.3% 66.6%,var(--crimson) 66.6% 100%)}
+.sheet{max-width:720px;margin:0 auto;padding:0 24px 80px}
+.back{
+  display:inline-block;margin:26px 0 0;font-family:'IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson);text-decoration:none;
+}
+.back:hover{text-decoration:underline}
+header{text-align:center;padding:26px 0 30px;border-bottom:4px double var(--rule)}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--crimson)}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,6.5vw,56px);line-height:1.04;margin:16px 0 12px}
+.standfirst{font-style:italic;color:var(--ink-soft);max-width:540px;margin:0 auto}
+.stamp{
+  display:inline-block;margin-top:22px;padding:8px 18px;border:2.5px solid var(--crimson);color:var(--crimson);
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  transform:rotate(-2.5deg);
+}
+article{padding-top:8px}
+article > p{margin:22px 0}
+article > p:first-of-type::first-letter{
+  font-family:'Fraunces',serif;font-weight:900;font-size:64px;float:left;
+  line-height:.82;padding:6px 10px 0 0;color:var(--crimson);
+}
+h2{
+  font-family:'Fraunces',serif;font-weight:900;font-size:27px;margin:44px 0 4px;
+}
+h2 .no{color:var(--gold);font-style:italic;font-weight:400;margin-right:8px}
+.verdict-line{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--crimson);margin-bottom:14px}
+blockquote{
+  border-left:5px solid var(--gold);background:#fffdf6;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);
+  padding:16px 22px;margin:20px 0;font-style:italic;font-size:18px;
+}
+blockquote cite{
+  display:block;margin-top:10px;font-style:normal;font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);
+}
+.margin-note{
+  background:var(--paper-deep);border-left:5px solid var(--crimson);padding:14px 20px;margin:20px 0;
+  font-size:17px;color:var(--ink-soft);
+}
+.margin-note b{color:var(--ink)}
+.margin-note .tag{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--crimson);display:block;margin-bottom:5px;
+}
+.changelog{border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14);margin:26px 0}
+.changelog .row{display:flex;border-bottom:1px solid var(--rule)}
+.changelog .row:last-child{border-bottom:0}
+.changelog .v{
+  flex:0 0 96px;padding:12px 0;text-align:center;border-right:1px solid var(--rule);
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--gold);
+}
+.changelog .d{padding:12px 18px;font-size:16.5px}
+.divider{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:14px;padding:34px 0 0}
+.principle{
+  text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:26px;line-height:1.35;
+  max-width:560px;margin:36px auto;color:var(--ink);
+}
+.principle b{color:var(--crimson);font-style:normal}
+footer{border-top:4px double var(--rule);margin-top:54px;padding-top:30px;text-align:center}
+footer .sig{font-family:'Fraunces',serif;font-size:22px;font-weight:600}
+footer .role{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:6px 0 14px}
+footer a{color:var(--crimson)}
+.btn{
+  display:inline-block;background:var(--crimson);color:#f7f1e1;text-decoration:none;margin-top:16px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  padding:13px 26px;transition:background .15s;
+}
+.btn:hover{background:#b02a27}
+@media (max-width:560px){body{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="bunting"></div>
+<div class="sheet">
+<a class="back" href="index.html">&larr; Ask the Declaration</a>
+
+<header>
+  <div class="kicker">A Document Review &mdash; 250 Years Late</div>
+  <h1>The Best Product Spec Ever Shipped</h1>
+  <p class="standfirst">The Declaration of Independence, reviewed the way I review product specs at work. Submitted July 4, 1776. Reviewer notes follow.</p>
+  <div class="stamp">Status: Still in Production</div>
+</header>
+
+<article>
+<p>Every reviewer has a checklist. Mine asks four things of any spec: a vision worth building, a problem stated from the user's side, assumptions named out loud, and a plan for being wrong. I gave the Declaration of Independence the same treatment I give design docs, with AI as my co-reviewer over the full text. Here is the review, filed with two and a half centuries of hindsight and a great deal of admiration.</p>
+
+<h2><span class="no">&sect;1</span> The Vision Statement</h2>
+<div class="verdict-line">Verdict: exceptional</div>
+<blockquote>
+  When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another&hellip; a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.
+  <cite>Declaration of Independence, Opening &#10022; 1776</cite>
+</blockquote>
+<div class="margin-note">
+  <span class="tag">Reviewer note</span>
+  The document answers <b>"why should this exist"</b> before proposing a single mechanism. And notice who it is addressed to: not the king, but "the opinions of mankind." The authors knew their launch audience was the world, and wrote for the widest possible review. Most specs never figure out who they are for.
+</div>
+
+<h2><span class="no">&sect;2</span> The Requirements: 27 Grievances</h2>
+<div class="verdict-line">Verdict: a masterclass in problem statements</div>
+<blockquote>
+  He has refused his Assent to Laws, the most wholesome and necessary for the public good.
+  <cite>Declaration of Independence, Grievance 1 &#10022; 1776</cite>
+</blockquote>
+<div class="margin-note">
+  <span class="tag">Reviewer note</span>
+  Twenty-seven grievances, each <b>specific, attributable, and written from the user's point of view</b>. No vague complaints about "tyranny in general." Each one names an actor, an action, and an impact. This is a prioritized defect list against the incumbent system, and it is cleaner than most bug reports I read in a given sprint. The authors understood that you earn the right to propose a solution by first proving you understand the problem.
+</div>
+
+<h2><span class="no">&sect;3</span> The Assumptions</h2>
+<div class="verdict-line">Verdict: the boldest ever shipped</div>
+<blockquote>
+  We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty, and the pursuit of Happiness.
+  <cite>Declaration of Independence, Preamble &#10022; 1776</cite>
+</blockquote>
+<div class="margin-note">
+  <span class="tag">Reviewer note</span>
+  Great specs name their assumptions instead of hiding them. This one declares its axioms in the second paragraph, unhedged, where every reader can see them. No pilot program. No A/B test. <b>"Self-evident" is the strongest assumption label ever written</b>, and the entire product rests on it. Senior work is knowing which assumptions you will not compromise on, and saying so early.
+</div>
+
+<h2><span class="no">&sect;4</span> The Sign-Off</h2>
+<div class="verdict-line">Verdict: total stakeholder commitment</div>
+<blockquote>
+  And for the support of this Declaration, with a firm reliance on the protection of Divine Providence, we mutually pledge to each other our Lives, our Fortunes, and our sacred Honor.
+  <cite>Declaration of Independence, Conclusion &#10022; 1776</cite>
+</blockquote>
+<div class="margin-note">
+  <span class="tag">Reviewer note</span>
+  Fifty-six stakeholders signed the launch knowing the rollback plan was a noose. I have seen approvals stall for weeks over far smaller exposure. When the signers have real skin in the game, the document stops being a proposal and becomes a commitment. <b>Accountability was the launch criteria.</b>
+</div>
+
+<h2><span class="no">&sect;5</span> The Part That Stays With Me: The Changelog</h2>
+<div class="verdict-line">Verdict: the deepest product insight of 1787</div>
+<p>Here is what the framers did <em>not</em> claim: that the spec was finished. The Constitution followed eleven years later, and its most underrated feature is Article V, the amendment process. They shipped a v1 under impossible pressure and designed the capacity to iterate directly into the product.</p>
+<div class="changelog">
+  <div class="row"><div class="v">v1.0 &#8226; 1776</div><div class="d">The Declaration. Vision, requirements, and sign-off. The launch announcement.</div></div>
+  <div class="row"><div class="v">v2.0 &#8226; 1787</div><div class="d">The Constitution. The architecture: three services, separated concerns, mutual checks.</div></div>
+  <div class="row"><div class="v">v2.1 &#8226; 1791</div><div class="d">The Bill of Rights. The first patch release: ten amendments, shipped fast, driven by user feedback from the ratification debates.</div></div>
+  <div class="row"><div class="v">v2.14 &#8226; 1865</div><div class="d">The Thirteenth Amendment. The changelog doing its most important work: fixing what v1 got gravely wrong.</div></div>
+  <div class="row"><div class="v">v2.19 &#8226; 1920</div><div class="d">The Nineteenth Amendment. "All men are created equal" continues to be re-scoped toward what it always should have meant.</div></div>
+  <div class="row"><div class="v">v2.27 &#8226; 1992</div><div class="d">Twenty-seven amendments in, the system is still in production. Two hundred fifty years of uptime.</div></div>
+</div>
+<div class="margin-note">
+  <span class="tag">Reviewer note</span>
+  The founding documents made promises v1 did not keep, and the honest reading celebrates the mechanism, not the myth. The amendment process is how a nation files bugs against itself and ships the fix. <b>The genius was never perfection. It was building in the ability to amend.</b>
+</div>
+
+<div class="divider">&#10022; &#10022; &#10022;</div>
+
+<p class="principle">The most American thing about the founding documents is not what they got right. <b>It is that they shipped with a changelog.</b></p>
+
+<p>I have watched teams do the opposite: polish a document for months, defend every line, treat feedback as an attack. Those projects rarely survive contact with production. The framers, under existential pressure, chose the other path. They declared their assumptions, signed with their lives, and left the door open for the people who came after them to make it better.</p>
+
+<p>Two hundred fifty years later, that is the review summary I keep coming back to. Approved. Shipped. Still iterating.</p>
+
+<footer>
+  <p style="font-style:italic;color:var(--gold);font-size:18px">Happy 250th, America. Ship your v1.</p>
+  <p style="font-size:15px;color:var(--ink-soft);margin-top:12px"><a href="how.html">Under the Hood</a> &#10022; <a href="about.html">About this project &amp; author</a></p>
+  <a class="btn" href="index.html">Ask the Documents Yourself</a>
+</footer>
+</article>
+</div>
+</body>
+</html>

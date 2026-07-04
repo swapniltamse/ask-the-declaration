@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Under the Hood — Ask the Declaration</title>
+<meta name="description" content="How Ask the Declaration works: structure-aware chunking, in-browser embeddings, and why the whole thing costs $0 per query at any scale.">
+<meta property="og:title" content="Under the Hood — Ask the Declaration">
+<meta property="og:description" content="Structure-aware chunking, in-browser embeddings, no servers, no API keys. Why this architecture costs $0 per query at any scale.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efdf;
+  --paper-deep:#efe6cf;
+  --ink:#1c2942;
+  --ink-soft:#3d4a66;
+  --crimson:#93211f;
+  --gold:#9a7014;
+  --rule:#c9bb98;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;
+  background-image:radial-gradient(ellipse 90% 60% at 50% -10%, rgba(154,112,20,.07), transparent 60%);
+}
+.bunting{height:6px;background:linear-gradient(90deg,var(--ink) 0 33.3%,var(--paper-deep) 33.3% 66.6%,var(--crimson) 66.6% 100%)}
+.sheet{max-width:720px;margin:0 auto;padding:0 24px 80px}
+.back{
+  display:inline-block;margin:26px 0 0;font-family:'IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson);text-decoration:none;
+}
+.back:hover{text-decoration:underline}
+header{text-align:center;padding:26px 0 30px;border-bottom:4px double var(--rule)}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--crimson)}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,6.5vw,52px);line-height:1.04;margin:16px 0 12px}
+.standfirst{font-style:italic;color:var(--ink-soft);max-width:520px;margin:0 auto}
+article p{margin:22px 0}
+h2{font-family:'Fraunces',serif;font-weight:900;font-size:26px;margin:44px 0 10px}
+h2 .no{color:var(--gold);font-style:italic;font-weight:400;margin-right:8px}
+a{color:var(--crimson)}
+code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper-deep);padding:1px 6px;border:1px solid var(--rule)}
+.arch{border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14);margin:26px 0}
+.arch-row{display:flex;gap:0;border-bottom:1px solid var(--rule)}
+.arch-row:last-child{border-bottom:0}
+.arch-num{
+  flex:0 0 64px;display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-weight:900;font-size:30px;color:var(--gold);
+  border-right:1px solid var(--rule);
+}
+.arch-body{padding:16px 20px}
+.arch-body h3{font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.arch-body p{font-size:16.5px;color:var(--ink-soft);margin:0}
+.compare{border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14);margin:26px 0;width:100%;border-collapse:collapse}
+.compare th{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 16px;border-bottom:2px solid var(--ink);text-align:left;
+}
+.compare th:last-child{color:var(--crimson)}
+.compare td{padding:11px 16px;border-bottom:1px solid var(--rule);font-size:16px;color:var(--ink-soft);vertical-align:top}
+.compare tr:last-child td{border-bottom:0}
+.compare td:first-child{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink);white-space:nowrap}
+.note{
+  background:var(--paper-deep);border-left:5px solid var(--gold);padding:16px 22px;margin:22px 0;
+  color:var(--ink-soft);
+}
+.note b{color:var(--ink)}
+.principle{
+  text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:24px;line-height:1.35;
+  max-width:540px;margin:36px auto;color:var(--ink);
+}
+.principle b{color:var(--crimson);font-style:normal}
+.divider{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:14px;padding:34px 0 0}
+footer{border-top:4px double var(--rule);margin-top:54px;padding-top:28px;text-align:center}
+footer .motto{font-style:italic;color:var(--gold);font-size:17px}
+footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
+.btn{
+  display:inline-block;background:var(--crimson);color:#f7f1e1;text-decoration:none;margin-top:18px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  padding:13px 26px;transition:background .15s;
+}
+.btn:hover{background:#b02a27}
+@media (max-width:560px){body{font-size:17px}.arch-num{flex-basis:48px;font-size:22px}}
+</style>
+</head>
+<body>
+<div class="bunting"></div>
+<div class="sheet">
+<a class="back" href="index.html">&larr; Ask the Declaration</a>
+
+<header>
+  <div class="kicker">Under the Hood</div>
+  <h1>How This Works</h1>
+  <p class="standfirst">A complete retrieval pipeline with no servers, no API keys, and no tracking. Your question never leaves your browser. Here is the full engineering story.</p>
+</header>
+
+<article>
+
+<h2><span class="no">&sect;1</span> The Pipeline</h2>
+<div class="arch">
+  <div class="arch-row">
+    <div class="arch-num">1</div>
+    <div class="arch-body">
+      <h3>Chunk</h3>
+      <p>The Declaration, the Constitution, the Bill of Rights, and Federalist Nos. 10, 51 &amp; 78 are parsed into <strong>91 citation-ready passages</strong> along the documents' own structure (more on why below).</p>
+    </div>
+  </div>
+  <div class="arch-row">
+    <div class="arch-num">2</div>
+    <div class="arch-body">
+      <h3>Embed</h3>
+      <p>Each passage is encoded offline into a 384-dimension vector with <code>all-MiniLM-L6-v2</code> (mean pooling, L2-normalized). The whole searchable index ships as one static file under half a megabyte. No vector database at this scale, and that is a feature, not a shortcut.</p>
+    </div>
+  </div>
+  <div class="arch-row">
+    <div class="arch-num">3</div>
+    <div class="arch-body">
+      <h3>Search</h3>
+      <p>Your question is embedded <em>in this browser tab</em> by the same model, running as quantized ONNX via Transformers.js. Because all vectors are normalized, cosine similarity reduces to a dot product: 91 &times; 384 multiplications, done in under a millisecond. The same query embedding is also matched against a set of curated questions; when it lands close to one, you get a human-written short answer above the passages.</p>
+    </div>
+  </div>
+  <div class="arch-row">
+    <div class="arch-num">4</div>
+    <div class="arch-body">
+      <h3>Cite</h3>
+      <p>The top passages are returned with their source, section, and year. No generation step means no hallucination: every quoted word was written in 1776, 1787, 1788, or 1791.</p>
+    </div>
+  </div>
+</div>
+
+<h2><span class="no">&sect;2</span> Why 91 Passages, Not 500-Token Windows</h2>
+<p>The default way to chunk documents for retrieval is mechanical: slice the text into fixed windows of a few hundred tokens, with some overlap so nothing falls between the cracks. It works, and it is also why so many retrieval systems cite "chunk 47" and hand you a passage that starts mid-sentence.</p>
+<p>These documents deserve better, and they make it easy. The founding documents carry their own semantic boundaries: each grievance in the Declaration is one complete complaint against the king. Each section of the Constitution is one power or one limit. Each amendment is one right. Chunk along those seams and every unit of retrieval is a complete thought with a name a human already understands.</p>
+<p>That is why a result here says <em>Article I, Section 8</em> or <em>Grievance 17</em> instead of a byte offset. A journalist can quote it. A teacher can assign it. A lawyer would recognize the citation. The retrieval system speaks the same language as the document it searches.</p>
+<div class="note"><b>The transferable rule:</b> before reaching for a token splitter, ask what the document's own atomic unit is. Contracts have clauses. API docs have endpoints. Runbooks have steps. Structure-aware chunking costs one afternoon of parsing and pays out every single query.</div>
+
+<h2><span class="no">&sect;3</span> The Economics of Zero</h2>
+<p>First, precision: this is not a "local LLM." It is a local <em>embedding model</em>, about 25&nbsp;MB of quantized ONNX, running in your browser tab. There is no text generation anywhere in the system, which is why it cannot hallucinate and why the numbers below look the way they do.</p>
+<table class="compare">
+  <tr><th>Cost line</th><th>Typical hosted RAG</th><th>This site</th></tr>
+  <tr><td>Query embedding</td><td>API call, metered per token</td><td>$0 &mdash; computed in your browser</td></tr>
+  <tr><td>Vector search</td><td>Hosted vector DB, monthly fee</td><td>$0 &mdash; a dot product over a static file</td></tr>
+  <tr><td>Answer generation</td><td>LLM call, cents per query</td><td>$0 &mdash; curated text, written once</td></tr>
+  <tr><td>Keys &amp; rate limits</td><td>Keys to protect, quotas to hit</td><td>None exist</td></tr>
+  <tr><td>Cost if it goes viral</td><td>Scales with every visitor</td><td>Flat. CDN serves static files</td></tr>
+</table>
+<p>The only real cost is the one-time model download on a visitor's first search, cached by the browser afterward. That is the honest tradeoff, and for a public demo it is the right one: a demo that costs money per query dies the day it goes viral. This one cannot, because its marginal cost per query is zero at ten visitors and zero at ten million.</p>
+
+<h2><span class="no">&sect;4</span> When to Use This Pattern, and When Not To</h2>
+<p><strong>Use it</strong> for small, public, read-heavy corpora: documentation sites, legal and policy texts, product manuals, FAQ knowledge bases. Anywhere under a few thousand chunks where the content is not secret and the questions repeat.</p>
+<p><strong>Do not use it</strong> for private data (the whole index ships to every visitor), for large corpora (the index download outgrows its welcome), or when users need generated prose rather than retrieved passages. Engineering maturity is matching the architecture to the problem, not to the hype cycle.</p>
+
+<h2><span class="no">&sect;5</span> What Is Curated vs. Computed</h2>
+<p>Honesty about the seams: the AI here does retrieval and question-matching, nothing else. The plain-words explainers under each passage, and the short answers for common questions, were written by a person at build time and shipped as static text. The founders' words are quoted exactly from the public domain Project Gutenberg editions. Each layer is labeled in the interface, so you always know who is talking: 1776, or 2026.</p>
+
+<div class="divider">&#10022; &#10022; &#10022;</div>
+
+<p class="principle">Retrieval that citizens can quote, at a cost that virality cannot kill. <b>The architecture is the product decision.</b></p>
+
+<footer>
+  <p class="motto">Happy 250th, America. Ship your v1.</p>
+  <p class="colophon"><a href="review.html">The Review</a> &#10022; <a href="about.html">About this project &amp; author</a></p>
+  <a class="btn" href="index.html">Ask the Documents</a>
+</footer>
+</article>
+</div>
+</body>
+</html>

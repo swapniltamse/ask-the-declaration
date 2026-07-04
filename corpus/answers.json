@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Why did the colonies separate from Britain?",
+    "answer": "Years of specific abuses: taxes without consent, dissolved legislatures, occupying armies, and denied jury trials, with every peaceful petition answered by more injury. The Declaration's argument is that government exists only by consent of the governed, and when it destroys the rights it was built to protect, the people may replace it.",
+    "chunkIds": [1, 29, 31]
+  },
+  {
+    "question": "Can the government search my house?",
+    "answer": "Not without cause. The Fourth Amendment requires searches to be reasonable and warrants to be backed by probable cause, sworn under oath, and specific about the place to be searched and the things to be seized. Blanket searches were one of the abuses the founders lived through.",
+    "chunkIds": [60, 61]
+  },
+  {
+    "question": "How do you amend the Constitution?",
+    "answer": "Article V is the changelog process: two-thirds of both houses of Congress (or a convention called by two-thirds of the states) proposes an amendment, and three-quarters of the states must ratify it. It has happened 27 times in 250 years, deliberately hard but never impossible.",
+    "chunkIds": [54, 56]
+  },
+  {
+    "question": "What did Madison say about factions?",
+    "answer": "That you cannot remove the causes of faction without destroying liberty itself, so a well-designed system controls their effects instead. His fix: a large republic with elected representatives, where so many competing interests exist that no single majority can easily unite to oppress the rest.",
+    "chunkIds": [68, 72, 75]
+  },
+  {
+    "question": "Who commands the army?",
+    "answer": "A civilian: the President is commander in chief, but Congress holds the power to declare war and fund the military. The split is deliberate. Two of the grievances against the king were peacetime standing armies and a military placed above civil power.",
+    "chunkIds": [44, 40, 13]
+  },
+  {
+    "question": "What protects free speech?",
+    "answer": "The First Amendment, which packs five freedoms into one sentence: religion, speech, press, peaceful assembly, and petitioning the government. It binds the government ('Congress shall make no law'), not the citizen.",
+    "chunkIds": [57, 65]
+  },
+  {
+    "question": "Are all people created equal?",
+    "answer": "That is the Declaration's most famous claim, and the country's longest-running bug report. The 1776 text promised more than 1776 practice delivered; the amendment process spent the next two centuries closing the gap, from abolishing slavery to extending the vote.",
+    "chunkIds": [1, 54]
+  },
+  {
+    "question": "What about freedom of religion?",
+    "answer": "Doubly protected: the First Amendment forbids an official state religion and protects free exercise of any faith, and Article VI bans religious tests for public office. Your beliefs are not the government's business, in either direction.",
+    "chunkIds": [57, 55]
+  },
+  {
+    "question": "Who has the power to tax me?",
+    "answer": "Congress, your elected representatives, and money bills must start in the House, the chamber closest to the people. That design answers the grievance that ignited the revolution: taxation imposed by a body in which the colonists had no vote.",
+    "chunkIds": [40, 39, 18]
+  },
+  {
+    "question": "What are my rights if I am accused of a crime?",
+    "answer": "A stack of them: grand jury for serious charges, no double jeopardy, no forced self-incrimination, due process (Fifth), a speedy public trial with an impartial jury and a lawyer (Sixth), and no cruel or excessive punishment (Eighth). The founders wrote these after watching sham trials protect the powerful.",
+    "chunkIds": [61, 62, 64]
+  },
+  {
+    "question": "Why are judges independent?",
+    "answer": "So no politician can punish them for a ruling. Judges serve for life during good behavior with salaries that cannot be cut, because, as Hamilton argued, courts with no army and no budget need independence to hold the other branches inside the Constitution.",
+    "chunkIds": [47, 82, 83]
+  },
+  {
+    "question": "Why does the Constitution exist?",
+    "answer": "The Preamble answers directly: to form a more perfect union, establish justice, ensure domestic peace, provide for defense, promote general welfare, and secure liberty for future generations. And the source of authority is the first three words: we the people, not a king.",
+    "chunkIds": [32, 1]
+  },
+  {
+    "question": "Can I protest the government?",
+    "answer": "Yes, it is built in. The First Amendment protects peaceful assembly and petitioning the government for a redress of grievances. The founders protected protest because they had done it: the Declaration itself lists petition after petition that the king ignored.",
+    "chunkIds": [57, 29]
+  },
+  {
+    "question": "What powers do the states keep?",
+    "answer": "Everything not handed to the federal government. The Tenth Amendment makes the default explicit: powers not delegated to Washington, and not denied to the states, belong to the states or the people. The Ninth adds that listing some rights never erases the unlisted ones.",
+    "chunkIds": [66, 65, 42]
+  }
+]

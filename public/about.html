@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About This Project — Ask the Declaration</title>
+<meta name="description" content="Why this site exists, who built it, and answers to common questions.">
+<meta property="og:title" content="About — Ask the Declaration">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23f5efdf' stroke='%239a7014'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='serif' font-weight='bold' font-size='12' fill='%2393211f'%3E250%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efdf;
+  --paper-deep:#efe6cf;
+  --ink:#1c2942;
+  --ink-soft:#3d4a66;
+  --crimson:#93211f;
+  --gold:#9a7014;
+  --rule:#c9bb98;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Newsreader',Georgia,serif;font-size:19px;line-height:1.6;
+  background-image:radial-gradient(ellipse 90% 60% at 50% -10%, rgba(154,112,20,.07), transparent 60%);
+}
+.bunting{height:6px;background:linear-gradient(90deg,var(--ink) 0 33.3%,var(--paper-deep) 33.3% 66.6%,var(--crimson) 66.6% 100%)}
+.sheet{max-width:680px;margin:0 auto;padding:0 24px 80px}
+.back{
+  display:inline-block;margin:26px 0 0;font-family:'IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--crimson);text-decoration:none;
+}
+.back:hover{text-decoration:underline}
+header{text-align:center;padding:26px 0 30px;border-bottom:4px double var(--rule)}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--crimson)}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(34px,6.5vw,52px);line-height:1.04;margin:16px 0 12px}
+.standfirst{font-style:italic;color:var(--ink-soft);max-width:500px;margin:0 auto}
+article p{margin:22px 0}
+h2{font-family:'Fraunces',serif;font-weight:900;font-size:26px;margin:44px 0 10px}
+.note{
+  background:var(--paper-deep);border-left:5px solid var(--gold);padding:16px 22px;margin:22px 0;
+  font-style:italic;color:var(--ink-soft);
+}
+.faq dt{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-top:26px}
+.faq dd{margin:8px 0 0;color:var(--ink-soft)}
+.faq dd code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper-deep);padding:1px 6px;border:1px solid var(--rule)}
+a{color:var(--crimson)}
+.divider{text-align:center;color:var(--gold);letter-spacing:.6em;font-size:14px;padding:34px 0 0}
+footer{border-top:4px double var(--rule);margin-top:54px;padding-top:28px;text-align:center}
+footer .motto{font-style:italic;color:var(--gold);font-size:17px}
+.btn{
+  display:inline-block;background:var(--crimson);color:#f7f1e1;text-decoration:none;margin-top:18px;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  padding:13px 26px;transition:background .15s;
+}
+.btn:hover{background:#b02a27}
+@media (max-width:560px){body{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="bunting"></div>
+<div class="sheet">
+<a class="back" href="index.html">&larr; Ask the Declaration</a>
+
+<header>
+  <div class="kicker">The Fine Print</div>
+  <h1>About This Project</h1>
+  <p class="standfirst">Why this exists, who made it, and answers to the questions people actually ask.</p>
+</header>
+
+<article>
+
+<h2>Why this exists</h2>
+<p>July 4, 2026 is the 250th birthday of the United States. This site is a birthday card: a way to put the founding documents in front of people not as museum pieces, but as living text you can question and get answered, word for word, with citations.</p>
+<p>It is also a small argument about craft. The documents this site searches were shipped as an imperfect v1 under existential pressure, with the power to amend designed in. Twenty-seven amendments later, the system is still in production. That idea deserved more than a paragraph. It deserved something you could use.</p>
+
+<h2>If you are not American</h2>
+<p>Fair question: why should a 250-year-old American document matter in Mumbai, Lagos, or S&atilde;o Paulo?</p>
+<p>Because it is the template. The U.S. Constitution is the oldest written national constitution still in operation, and nearly every constitution written since has borrowed from it, argued with it, or improved on it. India's framers studied it closely; the fundamental rights chapter of the Indian Constitution owes a visible debt to the Bill of Rights. When you search these documents, you are reading source code that has been forked by most of the world.</p>
+<p>And the deeper lesson has no nationality: state your assumptions out loud, put your name on the work, ship the v1, and build in the power to amend. That pattern holds in any country, any institution, and any codebase. The flag section on the home page traces twelve of those lineages, from Paris in 1789 to New Delhi in 1950.</p>
+
+<h2>Who built it</h2>
+<p>Swapnil Tamse. Engineering leader in AI and AI security, based in New York, with fifteen-plus years building systems for financial services. This site is a working demonstration of how I like to build: real retrieval, honest tradeoffs, no servers where none are needed, and design decisions stated in public.</p>
+<p>If you want to talk about AI engineering, retrieval systems, or working together, my door is <a href="https://www.linkedin.com/in/swapniltamse/" target="_blank" rel="noopener">LinkedIn</a>. Code and other projects live on <a href="https://github.com/swapniltamse" target="_blank" rel="noopener">GitHub</a>.</p>
+
+<h2>Questions people ask</h2>
+<dl class="faq">
+  <dt>Is my question stored or tracked?</dt>
+  <dd>No. Your question is embedded into a vector inside your own browser tab and compared against the index locally. It never leaves your device. There are no analytics on this site.</dd>
+
+  <dt>Why does the first search take a moment?</dt>
+  <dd>Your browser downloads the embedding model (about 25&nbsp;MB) once, then caches it. After that, searches run in under a millisecond. That one-time download is the honest price of a site with no servers and no API keys.</dd>
+
+  <dt>Why doesn't it generate answers like a chatbot?</dt>
+  <dd>By design. A generation step can misquote; a retrieval step cannot. Every word you read here was written in 1776, 1787, 1788, or 1791. A future version may add generated summaries with citations, but the founders' own words ship first.</dd>
+
+  <dt>What exactly is in the index?</dt>
+  <dd>The Declaration of Independence, the U.S. Constitution (the original seven articles), the Bill of Rights, and Federalist Nos. 10, 51, and 78, parsed into 91 passages along the documents' own structure. Texts are the public domain Project Gutenberg editions. Stack: <code>all-MiniLM-L6-v2</code> embeddings, Transformers.js in the browser, static hosting. The full engineering story is on the <a href="how.html">Under the Hood</a> page.</dd>
+
+  <dt>I found a bug or want the full Federalist Papers.</dt>
+  <dd>The framers took amendments; so do I. Send it via <a href="https://www.linkedin.com/in/swapniltamse/" target="_blank" rel="noopener">LinkedIn</a>.</dd>
+</dl>
+
+<div class="divider">&#10022; &#10022; &#10022;</div>
+
+<footer>
+  <p class="motto">Happy 250th, America. Ship your v1.</p>
+  <a class="btn" href="index.html">Ask the Documents</a>
+</footer>
+</article>
+</div>
+</body>
+</html>
