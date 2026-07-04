@@ -206,6 +206,8 @@ section .kicker{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));
   gap:10px;margin:22px 0 0;
 }
+/* two even rows of six once there is room */
+@media (min-width:640px){.flags{grid-template-columns:repeat(6,1fr)}}
 .flagbtn{
   background:#fffdf6;border:1px solid var(--rule);padding:10px 4px 8px;
   cursor:pointer;text-align:center;font-family:'Newsreader',serif;color:var(--ink);
