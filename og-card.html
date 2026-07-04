@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Newsreader:ital,opsz@1,6..72&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  width:1200px;height:630px;overflow:hidden;position:relative;
+  background:#f5efdf;color:#1c2942;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background-image:radial-gradient(ellipse 90% 70% at 50% -10%, rgba(154,112,20,.10), transparent 60%);
+}
+.bunting{position:absolute;top:0;left:0;right:0;height:14px;background:linear-gradient(90deg,#1c2942 0 33.3%,#efe6cf 33.3% 66.6%,#93211f 66.6% 100%)}
+.bunting2{position:absolute;bottom:0;left:0;right:0;height:14px;background:linear-gradient(90deg,#93211f 0 33.3%,#efe6cf 33.3% 66.6%,#1c2942 66.6% 100%)}
+.seal{width:130px;height:130px;margin-bottom:10px}
+.dateline{font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.3em;text-transform:uppercase;color:#93211f;margin-bottom:6px}
+h1{font-family:'Fraunces',serif;font-weight:900;font-size:104px;line-height:1;letter-spacing:-.01em}
+.sub{font-family:'Newsreader',serif;font-style:italic;font-size:30px;color:#3d4a66;margin-top:18px}
+.stats{font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:.1em;color:#9a7014;margin-top:30px}
+.url{position:absolute;bottom:36px;font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:.08em;color:#93211f}
+</style>
+</head>
+<body>
+<div class="bunting"></div>
+<svg class="seal" viewBox="0 0 120 120">
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#9a7014" stroke-width="2"/>
+  <circle cx="60" cy="60" r="49" fill="none" stroke="#9a7014" stroke-width="1" stroke-dasharray="2 3"/>
+  <g fill="#9a7014">
+    <path id="star" d="M60 12l1.8 4.4 4.7.3-3.6 3 1.1 4.6L60 21.8l-4 2.5 1.1-4.6-3.6-3 4.7-.3z"/>
+    <use href="#star" transform="rotate(72 60 60)"/>
+    <use href="#star" transform="rotate(144 60 60)"/>
+    <use href="#star" transform="rotate(216 60 60)"/>
+    <use href="#star" transform="rotate(288 60 60)"/>
+  </g>
+  <text x="60" y="72" text-anchor="middle" font-family="Fraunces,serif" font-weight="900" font-size="34" fill="#93211f">250</text>
+  <text x="60" y="88" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7.5" letter-spacing="2" fill="#1c2942">1776 &#8226; 2026</text>
+</svg>
+<div class="dateline">The Semiquincentennial Edition</div>
+<h1>Ask the Declaration</h1>
+<p class="sub">The founding documents still answer questions. Ask them one.</p>
+<p class="stats">NO SERVERS &#10022; NO API KEYS &#10022; EVERY ANSWER CITED</p>
+<div class="url">ask-the-declaration.vercel.app</div>
+<div class="bunting2"></div>
+</body>
+</html>

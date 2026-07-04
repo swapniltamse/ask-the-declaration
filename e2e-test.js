@@ -84,6 +84,18 @@ const check = (name, ok, detail) => {
   });
   check("world flags section precedes the search box", worldFirst);
 
+  // 7b. Share + guardrails
+  await runQuery("What protects free speech?");
+  check("share button after results", (await page.$("#results .sharebtn")) !== null);
+  check("non-endorsement note after results", (await page.$("#results .resnote")) !== null);
+
+  // 7c. Deep link ?q= auto-runs the query
+  await page.goto(URL + "?q=" + encodeURIComponent("How do you amend the Constitution?"), { waitUntil: "domcontentloaded" });
+  await page.waitForSelector(".status.ready", { timeout: 120000 });
+  await page.waitForSelector("#results .result", { timeout: 30000 });
+  const deepCite = await page.$eval("#results .cite", (e) => e.textContent);
+  check("deep link auto-runs shared query", /Article V/.test(deepCite), deepCite.trim());
+
   // 8. Easter eggs
   check("console declaration egg", consoleLogs.some((t) => /self-evident/.test(t)));
   await runQuery("is a hot dog a sandwich");
