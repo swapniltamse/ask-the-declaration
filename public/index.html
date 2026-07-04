@@ -1106,21 +1106,27 @@
 
         const sources = [...new Set(hits.map(h => h.c.source))];
         const multiSource = sources.length > 1 && hits.length > 1;
+        const canSynthesize = !curated && hits.length >= 2 && hits[0].s >= 0.28;
 
-        if (multiSource) {
+        if (canSynthesize || multiSource) {
           // Synthesis placeholder — fills in async while user reads passages
           const synCard = document.createElement("article");
           synCard.className = "synthesis loading";
-          synCard.innerHTML = `<div class="synthesis-kicker">Founders' Synthesis <span style="font-weight:normal;text-transform:none;letter-spacing:0">&#10022; generating…</span></div><p style="opacity:0.5;font-style:italic">Reasoning across ${sources.length} founding documents…</p>`;
+          const docLabel = multiSource ? `${sources.length} founding documents` : sources[0];
+          synCard.innerHTML = `<div class="synthesis-kicker">Founders' Synthesis <span style="font-weight:normal;text-transform:none;letter-spacing:0">&#10022; generating…</span></div><p style="opacity:0.5;font-style:italic">Reasoning across ${docLabel}…</p>`;
           results.appendChild(synCard);
-          // Passages grouped by source document
-          sources.forEach(src => {
-            const label = document.createElement("div");
-            label.className = "source-group-label";
-            label.textContent = src;
-            results.appendChild(label);
-            hits.filter(h => h.c.source === src).forEach((h, i) => results.appendChild(makeResultEl(h, i)));
-          });
+          // Grouped by source if multi-source, flat otherwise
+          if (multiSource) {
+            sources.forEach(src => {
+              const label = document.createElement("div");
+              label.className = "source-group-label";
+              label.textContent = src;
+              results.appendChild(label);
+              hits.filter(h => h.c.source === src).forEach((h, i) => results.appendChild(makeResultEl(h, i)));
+            });
+          } else {
+            hits.forEach((h, i) => results.appendChild(makeResultEl(h, i + (curated ? 1 : 0))));
+          }
           // Fill synthesis card when generator resolves
           generateSynthesis(q, hits).then(text => {
             if (text) {
@@ -1132,7 +1138,7 @@
           });
           loadGenerator(); // warm for next query
         } else {
-          // Single-source: flat rendering, no synthesis
+          // Curated answer present or single weak hit — flat rendering, no synthesis
           hits.forEach((h, i) => results.appendChild(makeResultEl(h, i + (curated ? 1 : 0))));
         }
 
