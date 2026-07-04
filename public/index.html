@@ -237,6 +237,12 @@ section .kicker{
   margin-top:12px;padding-top:10px;border-top:1px dashed var(--rule);
 }
 .flagcard .fc-src a{color:var(--crimson)}
+.flagcard .fc-src{line-height:1.7}
+.worldanchor{
+  max-width:560px;margin:20px auto 0;font-size:14px;color:var(--ink-soft);
+  font-style:italic;
+}
+.worldanchor a{color:var(--crimson)}
 
 /* footer */
 footer{border-top:4px double var(--rule);margin-top:52px;padding-top:30px;text-align:center}
@@ -283,6 +289,7 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
   <p class="lede2">The U.S. Constitution is the oldest written national constitution still in operation. Most of the world's founding documents borrowed from it, argued with it, or improved on it. Tap a flag to see the lineage.</p>
   <div class="flags" id="flags"></div>
   <div class="flagcard" id="flagcard"></div>
+  <p class="worldanchor">Each card cites the document and the scholarship documenting the influence. The definitive study: David Armitage, <a href="https://www.hup.harvard.edu/books/9780674030329" target="_blank" rel="noopener"><em>The Declaration of Independence: A Global History</em></a> (Harvard Univ. Press), tracing 100+ declarations descended from 1776.</p>
 </section>
 
 <div class="divider">&#10022; &#10022; &#10022;</div>
@@ -542,30 +549,42 @@ if (!reduceMotion && today.getMonth() === 6 && today.getDate() === 4) {
 
 // ---------- The Template the World Forked ----------
 const WORLD = [
-  { code: 'fr', name: 'France', year: 1789, text: "Weeks after the Bastille fell, Lafayette drafted the Declaration of the Rights of Man while consulting Thomas Jefferson, then the American minister in Paris. 'Men are born and remain free and equal in rights' is the American premise, restated in French.",
-    src: { label: 'Declaration of the Rights of Man, Avalon Project (Yale)', url: 'https://avalon.law.yale.edu/18th_century/rightsof.asp' } },
-  { code: 'pl', name: 'Poland', year: 1791, text: "The Constitution of May 3 was Europe's first written national constitution and the world's second, adopted four years after the American one by reformers who had watched the American experiment closely.",
-    src: { label: 'Constitution of 3 May 1791', url: 'https://en.wikipedia.org/wiki/Constitution_of_3_May_1791' } },
-  { code: 'ht', name: 'Haiti', year: 1804, text: "The world's first Black republic declared independence after the only successful slave revolution in history, taking 'all men are created equal' more literally than the country that wrote it yet did.",
-    src: { label: 'Haitian Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Haitian_Declaration_of_Independence' } },
-  { code: 've', name: 'Venezuela', year: 1811, text: "Latin America's first declaration of independence was consciously modeled on the American one, and Venezuela's first constitution copied the federal design as well.",
-    src: { label: 'Venezuelan Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Venezuelan_Declaration_of_Independence' } },
-  { code: 'mx', name: 'Mexico', year: 1824, text: "Mexico's first federal constitution borrowed the American structure, a president, a bicameral congress, and sovereign states, and blended it with Mexico's own legal tradition.",
-    src: { label: '1824 Constitution of Mexico', url: 'https://en.wikipedia.org/wiki/1824_Constitution_of_Mexico' } },
-  { code: 'lr', name: 'Liberia', year: 1847, text: "Founded by freed African Americans, Liberia declared independence with a document that deliberately echoes 1776 and adopted a constitution built on the American model.",
-    src: { label: 'Constitution of Liberia', url: 'https://en.wikipedia.org/wiki/Constitution_of_Liberia' } },
+  { code: 'fr', name: 'France', year: 1789, text: "Weeks after the Bastille fell, Lafayette drafted the Declaration of the Rights of Man while consulting Thomas Jefferson, then the American minister in Paris. Jefferson's handwritten notes on Lafayette's draft survive in the U.S. National Archives.",
+    src: { label: 'Declaration of the Rights of Man, Avalon Project (Yale)', url: 'https://avalon.law.yale.edu/18th_century/rightsof.asp' },
+    proof: { label: "Lafayette's draft with Jefferson's edits, Founders Online (U.S. National Archives)", url: 'https://founders.archives.gov/documents/Jefferson/01-15-02-0223' } },
+  { code: 'pl', name: 'Poland', year: 1791, text: "The Constitution of May 3 was Europe's first written national constitution and the world's second. King Stanisław August said it was 'founded principally on those of England and the United States of America.'",
+    src: { label: 'Constitution of 3 May 1791', url: 'https://en.wikipedia.org/wiki/Constitution_of_3_May_1791' },
+    proof: { label: "'Two Firsts: A Comparative Study of the American and the Polish Constitutions' (Catholic Univ. law scholarship)", url: 'https://scholarship.law.edu/scholar/495/' } },
+  { code: 'ht', name: 'Haiti', year: 1804, text: "The world's first Black republic declared independence after the only successful slave revolution in history. Historians call it the second declaration of its kind on Earth; the first was signed in Philadelphia.",
+    src: { label: 'Haitian Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Haitian_Declaration_of_Independence' },
+    proof: { label: "Duke University: the rediscovered 1804 original, 'only the second declaration of its kind'", url: 'https://today.duke.edu/2010/03/haiti_discovery.html' } },
+  { code: 've', name: 'Venezuela', year: 1811, text: "Latin America's first declaration of independence copied the American format down to its list of grievances, and Venezuela's first constitution borrowed the federal design as well.",
+    src: { label: 'Venezuelan Declaration of Independence', url: 'https://en.wikipedia.org/wiki/Venezuelan_Declaration_of_Independence' },
+    proof: { label: "Gilder Lehrman Institute: Venezuela's 1811 declaration and US republicanism", url: 'https://www.gilderlehrman.org/history-resources/essays/venezuelas-first-declaration-independence-and-us-republicanism' } },
+  { code: 'mx', name: 'Mexico', year: 1824, text: "Mexico's first federal constitution had two parents: the U.S. federal structure and Spain's 1812 Cádiz constitution. Scholars still argue over the mix, which is itself evidence the American template was in the room.",
+    src: { label: '1824 Constitution of Mexico', url: 'https://en.wikipedia.org/wiki/1824_Constitution_of_Mexico' },
+    proof: { label: 'Tarlton Law Library (Univ. of Texas): the 1824 federal constitution and its models', url: 'https://tarlton.law.utexas.edu/constitutions/federal-mexican-1824-en' } },
+  { code: 'lr', name: 'Liberia', year: 1847, text: "Founded by freed African Americans, Liberia declared independence with a document that deliberately echoes 1776, including its own list of grievances, and adopted a constitution built on the American model.",
+    src: { label: 'Constitution of Liberia', url: 'https://en.wikipedia.org/wiki/Constitution_of_Liberia' },
+    proof: { label: "Library of Congress: Liberia's declaration 'is modeled after our July 4, 1776 document'", url: 'https://blogs.loc.gov/international-collections/2016/07/liberia-africa-oldest-independent-and-democratic-republic-celebrates-its-169th-independence-anniversary/' } },
   { code: 'ar', name: 'Argentina', year: 1853, text: "Juan Bautista Alberdi's blueprint for the Argentine constitution drew openly on the American model: federalism, a supreme court, and a presidential system, adapted to Argentine reality.",
-    src: { label: 'Argentine Constitution of 1853', url: 'https://en.wikipedia.org/wiki/Argentine_Constitution_of_1853' } },
-  { code: 'ph', name: 'Philippines', year: 1899, text: "The Malolos Constitution created Asia's first republic. The Philippines' 1935 constitution went further, drafted deliberately on the American pattern with a bill of rights that tracks it nearly line by line.",
-    src: { label: 'Malolos Constitution', url: 'https://en.wikipedia.org/wiki/Malolos_Constitution' } },
-  { code: 'vn', name: 'Vietnam', year: 1945, text: "Ho Chi Minh opened Vietnam's declaration of independence by quoting Jefferson word for word: 'All men are created equal.' The template crossed even the lines of the Cold War.",
-    src: { label: 'Declaration of Independence of the DRV, 1945 (full text)', url: 'https://www.marxists.org/reference/archive/ho-chi-minh/works/1945/declaration-independence.htm' } },
-  { code: 'jp', name: 'Japan', year: 1947, text: "Japan's postwar constitution placed sovereignty in the people, added an extensive bill of rights, and established judicial review on the American pattern. It has never been amended, a different kind of record.",
-    src: { label: 'The Constitution of Japan (official English text)', url: 'https://www.shugiin.go.jp/internet/itdb_english.nsf/html/statics/english/constitution_e.htm' } },
-  { code: 'de', name: 'Germany', year: 1949, text: "The Basic Law's federal structure and its powerful constitutional court with judicial review were shaped in close dialogue with the American model, then improved on it in ways scholars still debate.",
-    src: { label: 'Basic Law for the Federal Republic of Germany (official English translation)', url: 'https://www.gesetze-im-internet.de/englisch_gg/' } },
+    src: { label: 'Argentine Constitution of 1853', url: 'https://en.wikipedia.org/wiki/Argentine_Constitution_of_1853' },
+    proof: { label: "Miller, 'The Authority of a Foreign Talisman,' American Univ. Law Review (1997)", url: 'https://digitalcommons.wcl.american.edu/aulr/vol46/iss5/3/' } },
+  { code: 'ph', name: 'Philippines', year: 1899, text: "The Malolos Constitution created Asia's first republic. The 1935 constitution went further: U.S. law required a 'republican form of government' subject to the American president's approval, and the drafters modeled it on the U.S. Constitution.",
+    src: { label: 'Malolos Constitution', url: 'https://en.wikipedia.org/wiki/Malolos_Constitution' },
+    proof: { label: 'Philippine Independence (Tydings-McDuffie) Act of 1934, full text', url: 'https://en.wikisource.org/wiki/Philippine_Independence_Act' } },
+  { code: 'vn', name: 'Vietnam', year: 1945, text: "Ho Chi Minh opened Vietnam's declaration of independence by quoting Jefferson word for word: 'All men are created equal.' He asked American OSS officers in Hanoi for the exact text beforehand.",
+    src: { label: 'Declaration of Independence of the DRV, 1945 (full text)', url: 'https://www.marxists.org/reference/archive/ho-chi-minh/works/1945/declaration-independence.htm' },
+    proof: { label: 'Council on Foreign Relations: how Ho Chi Minh came to quote Jefferson', url: 'https://www.cfr.org/articles/remembering-ho-chi-minhs-1945-declaration-vietnams-independence' } },
+  { code: 'jp', name: 'Japan', year: 1947, text: "Japan's postwar constitution placed sovereignty in the people and added an extensive bill of rights. The February 1946 draft was written in English by General MacArthur's staff before being negotiated with the Japanese government; the archives hold both versions.",
+    src: { label: 'The Constitution of Japan (official English text)', url: 'https://www.shugiin.go.jp/internet/itdb_english.nsf/html/statics/english/constitution_e.htm' },
+    proof: { label: "National Diet Library of Japan: the GHQ draft of February 13, 1946", url: 'https://www.ndl.go.jp/constitution/e/shiryo/03/076shoshi.html' } },
+  { code: 'de', name: 'Germany', year: 1949, text: "The Basic Law was drafted under Allied occupation and approved by the American, British, and French military governors. Its federalism and powerful constitutional court were shaped in dialogue with the American model, with German roots scholars still weigh.",
+    src: { label: 'Basic Law for the Federal Republic of Germany (official English translation)', url: 'https://www.gesetze-im-internet.de/englisch_gg/' },
+    proof: { label: "Kommers, 'The Basic Law: A Fifty Year Assessment' (Notre Dame Law scholarship)", url: 'https://scholarship.law.nd.edu/cgi/viewcontent.cgi?httpsredir=1&article=1824&context=law_faculty_scholarship' } },
   { code: 'in', name: 'India', year: 1950, text: "The world's longest constitution. Its fundamental rights chapter and judicial review owe a visible debt to the US Bill of Rights, which Dr. Ambedkar's drafting committee studied closely, alongside models from a dozen other nations.",
-    src: { label: 'Constitution of India (Legislative Department, Govt. of India)', url: 'https://legislative.gov.in/constitution-of-india/' } },
+    src: { label: 'Constitution of India (Legislative Department, Govt. of India)', url: 'https://legislative.gov.in/constitution-of-india/' },
+    proof: { label: "'The Bill of Rights, Due Process and Federalism in India,' Minnesota Law Review", url: 'https://scholarship.law.umn.edu/context/mlr/article/3546/viewcontent/uc.pdf' } },
 ];
 const flagsEl = document.getElementById('flags');
 const flagcard = document.getElementById('flagcard');
@@ -580,7 +599,8 @@ WORLD.forEach((w, i) => {
     if (already) { flagcard.classList.remove('open'); return; }
     b.classList.add('active');
     flagcard.innerHTML = `<h3>${w.name}</h3><div class="fc-year">${w.year}</div><p>${w.text}</p>
-      <p class="fc-src">Source: <a href="${w.src.url}" target="_blank" rel="noopener">${w.src.label}</a></p>`;
+      <p class="fc-src">Document: <a href="${w.src.url}" target="_blank" rel="noopener">${w.src.label}</a><br>
+      Evidence: <a href="${w.proof.url}" target="_blank" rel="noopener">${w.proof.label}</a></p>`;
     flagcard.classList.remove('open');
     void flagcard.offsetWidth;
     flagcard.classList.add('open');

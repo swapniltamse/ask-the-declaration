@@ -67,10 +67,12 @@ const check = (name, ok, detail) => {
   await page.waitForSelector(".flagcard.open", { timeout: 5000 });
   const cardText = await page.$eval(".flagcard", (e) => e.textContent);
   check("India card opens with content", /Ambedkar/.test(cardText));
-  const srcLink = await page
-    .$eval(".flagcard .fc-src a", (e) => e.href)
-    .catch(() => "");
-  check("flag card shows Source citation link", /legislative\.gov\.in/.test(srcLink), srcLink);
+  const cardLinks = await page
+    .$$eval(".flagcard .fc-src a", (els) => els.map((e) => e.href))
+    .catch(() => []);
+  check("flag card shows document link", cardLinks.some((h) => /legislative\.gov\.in/.test(h)), cardLinks[0]);
+  check("flag card shows influence evidence link", cardLinks.some((h) => /scholarship\.law\.umn\.edu/.test(h)), cardLinks[1]);
+  check("Armitage anchor citation present", (await page.$('.worldanchor a[href*="hup.harvard.edu"]')) !== null);
 
   // 6. Home page is clean: no arch section; trust strip links to how.html
   check("arch section moved off home page", (await page.$("#how")) === null);
