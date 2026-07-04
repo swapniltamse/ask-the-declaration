@@ -4,3 +4,6 @@ shots/
 lh-*.json
 psi-*.json
 lh-mobile*.json
+
+.vercel
+.env*
