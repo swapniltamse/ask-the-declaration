@@ -2,7 +2,7 @@
 
 Semantic search over America's founding documents, built for the country's 250th birthday.
 
-**Live site: https://ask-the-declaration.vercel.app**
+**Live site: https://askthedeclaration.com**
 
 Ask a question in plain English and get the founders' own words back, with exact citations like *Article I, Section 8* or *Grievance 17*. Every passage carries a plain-English explainer, common questions get a curated short answer in modern words, and a flag map traces how twelve countries forked the American template, from France in 1789 to India in 1950.
 
@@ -39,7 +39,7 @@ public/data/index.json  ──────────►   top passages + citat
 3. **Search.** The browser loads the same model as quantized ONNX via Transformers.js and embeds your question locally. All vectors are normalized, so cosine similarity is just a dot product: 91 x 384 multiplications, under a millisecond.
 4. **Answer.** The query vector is also compared against 14 curated questions. Close match (cosine 0.60 or higher) shows a human-written short answer above the passages. No match falls back to passages only. There is no generation step anywhere, which means nothing can be hallucinated.
 
-The full write-up is on the site: [Under the Hood](https://ask-the-declaration.vercel.app/how.html).
+The full write-up is on the site: [Under the Hood](https://askthedeclaration.com/how.html).
 
 ## Why the chunking matters
 
@@ -78,7 +78,7 @@ Run the end-to-end tests (needs Chrome installed):
 
 ```bash
 node e2e-test.js                                        # against localhost:8317
-node e2e-test.js https://ask-the-declaration.vercel.app/index.html  # against prod
+node e2e-test.js https://askthedeclaration.com/index.html  # against prod
 ```
 
 11 checks cover the short-answer box, pinned citations, explainer rendering, curated-answer thresholds, fallback behavior, and the flags section.
@@ -110,7 +110,7 @@ Document texts are the public domain Project Gutenberg editions ([#1](https://ww
 ## Author
 
 Swapnil Tamse, engineering leader in AI and AI security, New York.
-[LinkedIn](https://www.linkedin.com/in/swapniltamse/) | [Site](https://ask-the-declaration.vercel.app/about.html)
+[LinkedIn](https://www.linkedin.com/in/swapniltamse/) | [Site](https://askthedeclaration.com/about.html)
 
 Happy 250th, America. Ship your v1.
 
