@@ -868,6 +868,20 @@
       footer .colophon { color: rgba(255,255,255,0.65); }
       .site-share-btn { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); }
       .site-share-btn:hover { color: #fff; border-color: #fff; }
+      .footer-seal-medallion {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        border: 2px solid rgba(154,110,20,0.65);
+        box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 4px 16px rgba(0,0,0,0.45);
+        overflow: hidden;
+        margin: 0 auto 18px;
+      }
+      .footer-great-seal {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
 
       /* ---------- patriotic details ---------- */
       /*
@@ -1125,6 +1139,9 @@
       </div>
 
       <footer>
+        <div class="footer-seal-medallion">
+          <img src="assets/great-seal.svg" class="footer-great-seal" alt="Great Seal of the United States" width="84" height="84" loading="lazy">
+        </div>
         <p class="motto">Happy 250th, America. Ship your v1.</p>
         <p class="seal-mottoes">Annuit Coeptis &middot; Novus Ordo Seclorum</p>
         <p class="colophon">
