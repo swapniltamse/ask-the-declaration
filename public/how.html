@@ -53,12 +53,12 @@ h2{font-family:'Fraunces',serif;font-weight:900;font-size:26px;margin:44px 0 10p
 h2 .no{color:var(--gold);font-style:italic;font-weight:400;margin-right:8px}
 a{color:var(--crimson)}
 code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper-deep);padding:1px 6px;border:1px solid var(--rule)}
-/* --- pipeline demo --- */
+/* --- pipeline diagram (static grid) --- */
 .demo-wrap{margin:26px 0 32px}
 .demo-box{
-  border:2px dashed var(--ink);padding:22px 24px 16px;
+  border:2px dashed var(--ink);padding:24px 20px 20px;
   position:relative;background:#fffdf6;
-  box-shadow:5px 5px 0 rgba(28,41,66,.08);min-height:180px;
+  box-shadow:5px 5px 0 rgba(28,41,66,.08);
 }
 .demo-badge{
   position:absolute;top:-13px;left:20px;
@@ -69,55 +69,49 @@ code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper
 .demo-privacy{
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--crimson);text-align:center;margin-bottom:16px;
+  color:var(--crimson);text-align:center;margin-bottom:20px;
 }
-.demo-step{display:none;animation:stepIn .45s ease both}
-.demo-step.active{display:block}
-@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.step-lbl{
+.step-row{margin-bottom:18px}
+.step-row-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--rule);
 }
-.q-box{
-  font-family:'Fraunces',serif;font-size:22px;font-weight:900;
-  color:var(--ink);padding:14px 18px;background:var(--paper-deep);
-  border-left:4px solid var(--crimson);line-height:1.25;
+.step-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.q-cell{
+  font-family:'Fraunces',serif;font-size:15px;font-weight:900;
+  color:var(--ink);padding:11px 13px;background:var(--paper-deep);
+  border-left:3px solid var(--crimson);line-height:1.35;
 }
-.vec-box{
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+.vec-cell{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
   color:var(--ink-soft);background:var(--paper-deep);
-  padding:14px 16px;line-height:1.9;letter-spacing:.03em;word-break:break-all;
+  padding:10px 12px;line-height:1.85;word-break:break-all;
 }
-.vec-box b{color:var(--crimson)}
-.vec-note{font-size:15px;color:var(--ink-soft);font-style:italic;margin-top:10px}
-.match-row{display:flex;align-items:center;gap:12px;margin:8px 0}
+.vec-cell b{color:var(--crimson)}
+.match-cell{padding:2px 0}
+.match-row{display:flex;align-items:center;gap:7px;margin:5px 0}
 .match-lbl{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  letter-spacing:.04em;flex:0 0 130px;color:var(--ink);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  flex:0 0 110px;color:var(--ink);
 }
-.match-track{flex:1;height:14px;background:var(--paper-deep);border:1px solid var(--rule)}
-.match-fill{height:100%;background:var(--rule);transition:width .9s cubic-bezier(.2,.8,.3,1);width:0}
+.match-track{flex:1;height:11px;background:var(--paper-deep);border:1px solid var(--rule)}
+.match-fill{height:100%;background:var(--rule)}
 .match-fill.top{background:var(--crimson)}
 .match-pct{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  flex:0 0 36px;text-align:right;color:var(--ink-soft);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  flex:0 0 28px;text-align:right;color:var(--ink-soft);
 }
 .match-pct.top{color:var(--crimson);font-weight:700}
 .result-cite{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--crimson);margin-bottom:6px;
 }
 .result-text{
-  font-family:'Newsreader',serif;font-size:17px;font-style:italic;
-  color:var(--ink);padding:14px 18px;background:var(--paper-deep);
-  border-left:4px solid var(--crimson);line-height:1.55;
+  font-family:'Newsreader',serif;font-size:14px;font-style:italic;
+  color:var(--ink);padding:10px 12px;background:var(--paper-deep);
+  border-left:3px solid var(--crimson);line-height:1.5;
 }
-.demo-progress{display:flex;gap:8px;justify-content:center;margin-top:16px}
-.demo-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--rule);transition:background .3s;
-}
-.demo-dot.on{background:var(--crimson)}
 .demo-footer{
   font-family:'IBM Plex Mono',monospace;font-size:9.5px;
   letter-spacing:.1em;text-transform:uppercase;
@@ -136,6 +130,10 @@ code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper
   color:var(--ink-soft);background:var(--paper-deep);opacity:.45;
 }
 .blocked-server::before{content:'✕';color:var(--crimson);font-size:12px;font-weight:700}
+@media(max-width:600px){
+  .step-cols{grid-template-columns:1fr}
+  .match-lbl{flex-basis:90px}
+}
 .compare{border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14);margin:26px 0;width:100%;border-collapse:collapse}
 .compare th{
   font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
@@ -188,36 +186,100 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
     <div class="demo-badge">Your Browser &mdash; Privacy Boundary</div>
     <p class="demo-privacy">Your question never crosses this line</p>
 
-    <div class="demo-step" id="ds-q">
-      <div class="step-lbl">Step 1 &mdash; You type a question</div>
-      <div class="q-box" id="ds-q-text"></div>
+    <div class="step-row">
+      <div class="step-row-label">Step 1 &mdash; You ask</div>
+      <div class="step-cols">
+        <div class="q-cell">What protects free speech?</div>
+        <div class="q-cell">Can the government search my house?</div>
+        <div class="q-cell">What abolished slavery?</div>
+      </div>
     </div>
 
-    <div class="demo-step" id="ds-e">
-      <div class="step-lbl">Step 2 &mdash; Browser converts it to 384 numbers (all-MiniLM-L6-v2)</div>
-      <div class="vec-box" id="ds-vec"></div>
-      <p class="vec-note">Each number captures a dimension of meaning. Similar questions produce similar vectors.</p>
+    <div class="step-row">
+      <div class="step-row-label">Step 2 &mdash; Browser converts to 384 numbers (all-MiniLM-L6-v2)</div>
+      <div class="step-cols">
+        <div class="vec-cell">[ <b>0.23</b>, &minus;0.41, <b>0.87</b>, 0.12, &minus;0.53, <b>0.71</b>, 0.09, &minus;0.34 &hellip; 376 more ]</div>
+        <div class="vec-cell">[ &minus;<b>0.18</b>, <b>0.62</b>, &minus;0.33, <b>0.89</b>, 0.14, &minus;0.47, <b>0.55</b>, 0.21 &hellip; 376 more ]</div>
+        <div class="vec-cell">[ <b>0.44</b>, 0.31, &minus;<b>0.67</b>, 0.19, <b>0.82</b>, &minus;0.25, <b>0.38</b>, &minus;0.11 &hellip; 376 more ]</div>
+      </div>
     </div>
 
-    <div class="demo-step" id="ds-m">
-      <div class="step-lbl">Step 3 &mdash; Dot product vs 108 passages (&lt;&nbsp;1ms)</div>
-      <div id="ds-matches"></div>
+    <div class="step-row">
+      <div class="step-row-label">Step 3 &mdash; Dot product vs 108 passages (&lt;&nbsp;1ms)</div>
+      <div class="step-cols">
+        <div class="match-cell">
+          <div class="match-row">
+            <div class="match-lbl">Amendment I</div>
+            <div class="match-track"><div class="match-fill top" style="width:91%"></div></div>
+            <div class="match-pct top">91%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Amendment XIV</div>
+            <div class="match-track"><div class="match-fill" style="width:44%"></div></div>
+            <div class="match-pct">44%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Article I, &sect;8</div>
+            <div class="match-track"><div class="match-fill" style="width:28%"></div></div>
+            <div class="match-pct">28%</div>
+          </div>
+        </div>
+        <div class="match-cell">
+          <div class="match-row">
+            <div class="match-lbl">Amendment IV</div>
+            <div class="match-track"><div class="match-fill top" style="width:88%"></div></div>
+            <div class="match-pct top">88%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Amendment III</div>
+            <div class="match-track"><div class="match-fill" style="width:51%"></div></div>
+            <div class="match-pct">51%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Amendment V</div>
+            <div class="match-track"><div class="match-fill" style="width:39%"></div></div>
+            <div class="match-pct">39%</div>
+          </div>
+        </div>
+        <div class="match-cell">
+          <div class="match-row">
+            <div class="match-lbl">Amendment XIII</div>
+            <div class="match-track"><div class="match-fill top" style="width:95%"></div></div>
+            <div class="match-pct top">95%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Declaration &sect;2</div>
+            <div class="match-track"><div class="match-fill" style="width:34%"></div></div>
+            <div class="match-pct">34%</div>
+          </div>
+          <div class="match-row">
+            <div class="match-lbl">Amendment XIV</div>
+            <div class="match-track"><div class="match-fill" style="width:29%"></div></div>
+            <div class="match-pct">29%</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="demo-step" id="ds-r">
-      <div class="step-lbl">Step 4 &mdash; Founders answer in their own words</div>
-      <div class="result-cite" id="ds-cite"></div>
-      <div class="result-text" id="ds-text"></div>
-    </div>
-
-    <div class="demo-progress">
-      <div class="demo-dot on" id="dd0"></div>
-      <div class="demo-dot" id="dd1"></div>
-      <div class="demo-dot" id="dd2"></div>
-      <div class="demo-dot" id="dd3"></div>
+    <div class="step-row">
+      <div class="step-row-label">Step 4 &mdash; Founders answer in their own words</div>
+      <div class="step-cols">
+        <div>
+          <div class="result-cite">Amendment I &middot; 1791</div>
+          <div class="result-text">&ldquo;Congress shall make no law &hellip; abridging the freedom of speech, or of the press.&rdquo;</div>
+        </div>
+        <div>
+          <div class="result-cite">Amendment IV &middot; 1791</div>
+          <div class="result-text">&ldquo;The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated.&rdquo;</div>
+        </div>
+        <div>
+          <div class="result-cite">Amendment XIII &middot; 1865</div>
+          <div class="result-text">&ldquo;Neither slavery nor involuntary servitude &hellip; shall exist within the United States.&rdquo;</div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="demo-footer">No data was sent to any server during this demo</div>
+  <div class="demo-footer">No data was sent to any server. Your questions never left this browser.</div>
   <div class="blocked-label">No outbound API calls</div>
   <div class="blocked-row">
     <div class="blocked-server">OpenAI API</div>
@@ -265,88 +327,6 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 </article>
 </div>
 <script>
-(function(){
-  var DEMOS=[
-    {
-      q:'What protects free speech?',
-      vec:'[ <b>0.23</b>, &minus;0.41, <b>0.87</b>, 0.12, &minus;0.53, <b>0.71</b>, 0.09, &minus;0.34, <b>0.66</b>, &minus;0.18, 0.45, <b>0.92</b>, &hellip; 372 more ]',
-      matches:[
-        {lbl:'Amendment I',pct:91,top:true},
-        {lbl:'Amendment XIV',pct:44,top:false},
-        {lbl:'Article I, &sect;8',pct:28,top:false}
-      ],
-      cite:'Amendment I · 1791',
-      text:'“Congress shall make no law … abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble.”'
-    },
-    {
-      q:'Can the government search my house?',
-      vec:'[ &minus;<b>0.18</b>, <b>0.62</b>, &minus;0.33, <b>0.89</b>, 0.14, &minus;0.47, <b>0.55</b>, 0.21, &minus;<b>0.78</b>, 0.36, 0.09, &minus;0.61, &hellip; 372 more ]',
-      matches:[
-        {lbl:'Amendment IV',pct:88,top:true},
-        {lbl:'Amendment III',pct:51,top:false},
-        {lbl:'Amendment V',pct:39,top:false}
-      ],
-      cite:'Amendment IV · 1791',
-      text:'“The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated.”'
-    },
-    {
-      q:'What abolished slavery?',
-      vec:'[ <b>0.44</b>, 0.31, &minus;<b>0.67</b>, 0.19, <b>0.82</b>, &minus;0.25, <b>0.38</b>, &minus;0.11, 0.59, &minus;0.43, <b>0.77</b>, 0.22, &hellip; 372 more ]',
-      matches:[
-        {lbl:'Amendment XIII',pct:95,top:true},
-        {lbl:'Declaration §2',pct:34,top:false},
-        {lbl:'Amendment XIV',pct:29,top:false}
-      ],
-      cite:'Amendment XIII · 1865',
-      text:'“Neither slavery nor involuntary servitude … shall exist within the United States, or any place subject to their jurisdiction.”'
-    }
-  ];
-  var STEPS=['ds-q','ds-e','ds-m','ds-r'];
-  var DURS=[2800,2500,2800,3800];
-  var di=0,si=0;
-
-  function show(demo,step){
-    STEPS.forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('active');});
-    for(var i=0;i<4;i++){var d=document.getElementById('dd'+i);if(d)d.classList.toggle('on',i===si);}
-    var el=document.getElementById(step);
-    if(!el)return;
-    if(step==='ds-q'){
-      document.getElementById('ds-q-text').textContent=demo.q;
-    }else if(step==='ds-e'){
-      document.getElementById('ds-vec').innerHTML=demo.vec;
-    }else if(step==='ds-m'){
-      var c=document.getElementById('ds-matches');
-      c.innerHTML='';
-      demo.matches.forEach(function(m){
-        var row=document.createElement('div');
-        row.className='match-row';
-        row.innerHTML='<div class="match-lbl">'+m.lbl+'</div>'
-          +'<div class="match-track"><div class="match-fill'+(m.top?' top':'')+'" style="width:0" data-w="'+m.pct+'"></div></div>'
-          +'<div class="match-pct'+(m.top?' top':'')+'">'+m.pct+'%</div>';
-        c.appendChild(row);
-      });
-      setTimeout(function(){c.querySelectorAll('.match-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});},60);
-    }else if(step==='ds-r'){
-      document.getElementById('ds-cite').textContent=demo.cite;
-      document.getElementById('ds-text').textContent=demo.text;
-    }
-    el.classList.add('active');
-  }
-
-  function next(){
-    show(DEMOS[di],STEPS[si]);
-    var dur=DURS[si];
-    si++;
-    if(si>=STEPS.length){si=0;di=(di+1)%DEMOS.length;}
-    setTimeout(next,dur);
-  }
-
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',function(){setTimeout(next,600);});
-  }else{
-    setTimeout(next,600);
-  }
-})();
 console.log('%cYou read the architecture page AND opened the console. %cThe repo is yours: https://github.com/swapniltamse/ask-the-declaration','font-weight:bold;color:#93211f','color:#3d4a66');
 </script>
 <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
