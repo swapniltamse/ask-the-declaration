@@ -91,7 +91,7 @@
       }
       header {
         text-align: center;
-        padding: 28px 0 18px;
+        padding: 16px 0 14px;
         border-bottom: 4px double var(--rule);
         position: relative;
       }
@@ -149,6 +149,23 @@
         font-size: 14px;
         margin-top: 22px;
       }
+      /* eagle + quill */
+      .header-eagle {
+        width: 96px;
+        height: auto;
+        display: block;
+        margin: 10px auto 4px;
+        color: rgba(255,255,255,0.72);
+        animation: sealIn 1.2s cubic-bezier(0.2,1.4,0.4,1) both 0.2s;
+      }
+      .search-quill {
+        width: 15px;
+        height: auto;
+        vertical-align: -3px;
+        margin-right: 9px;
+        color: var(--gold);
+      }
+
       .masthead-rule {
         display: flex;
         align-items: center;
@@ -731,7 +748,7 @@
 
       /* ---------- dramatic red-white-blue ---------- */
       .bunting {
-        height: 22px;
+        height: 32px;
         background: linear-gradient(90deg, #002868 0 33.3%, #ffffff 33.3% 66.6%, #b22234 66.6% 100%);
         animation: bunting-wave 3.5s ease-in-out infinite alternate;
       }
@@ -936,6 +953,33 @@
           Two hundred fifty years later, the founding documents still answer
           questions. Ask them one.
         </p>
+        <svg class="header-eagle" viewBox="0 0 110 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- left wing upper -->
+          <path d="M40 36 C30 28 16 22 2 26 C16 24 32 30 40 40" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <!-- left wing lower -->
+          <path d="M40 40 C26 37 12 39 2 44 C16 41 32 42 40 47" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- left feather tips -->
+          <path d="M6 28 L2 34 M14 24 L11 30 M22 22 L20 28" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+          <!-- right wing upper -->
+          <path d="M70 36 C80 28 94 22 108 26 C94 24 78 30 70 40" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          <!-- right wing lower -->
+          <path d="M70 40 C84 37 98 39 108 44 C94 41 78 42 70 47" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- right feather tips -->
+          <path d="M104 28 L108 34 M96 24 L99 30 M88 22 L90 28" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+          <!-- body -->
+          <ellipse cx="55" cy="46" rx="10" ry="13" stroke="currentColor" stroke-width="1.3"/>
+          <!-- head looking right -->
+          <circle cx="66" cy="28" r="9" stroke="currentColor" stroke-width="1.3"/>
+          <!-- hooked beak -->
+          <path d="M74 26 C78 27 79 30 76 32 L74 31" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- eye -->
+          <circle cx="68" cy="27" r="1.6" fill="currentColor"/>
+          <!-- neck -->
+          <path d="M60 37 C59 41 58 43 57 46" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M66 37 C66 41 64 43 63 46" stroke="currentColor" stroke-width="1.2"/>
+          <!-- tail feathers -->
+          <path d="M47 59 L43 68 M51 60 L49 69 M55 60 L55 70 M59 60 L61 69 M63 59 L67 68" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+        </svg>
         <div class="stars">&#10022; &#10022; &#10022; &#10022; &#10022;</div>
         <div class="scroll-cue" aria-hidden="true">scroll to ask<span>&#8964;</span></div>
       </header>
@@ -972,8 +1016,7 @@
       </div>
 
       <section class="ask">
-        <label for="q"
-          >What would you like to ask America's first authors?</label
+        <label for="q"><svg class="search-quill" viewBox="0 0 18 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9 41 C5 28 1 14 3 4 C5 0 13 0 15 4 C17 14 13 28 9 41Z" stroke="currentColor" stroke-width="1.1" fill="rgba(154,110,20,0.1)"/><line x1="9" y1="41" x2="9" y2="6" stroke="currentColor" stroke-width="0.9"/><path d="M8 35 C6 31 3 27 1 23 M8 29 C6 25 4 21 3 17 M8 23 C7 19 5 15 4 12" stroke="currentColor" stroke-width="0.7" stroke-linecap="round"/><path d="M10 35 C12 31 15 27 17 23 M10 29 C12 25 14 21 15 17 M10 23 C11 19 13 15 14 12" stroke="currentColor" stroke-width="0.7" stroke-linecap="round"/><path d="M9 41 L7 46 L9 44 L11 46 Z" fill="currentColor"/></svg>What would you like to ask America's first authors?</label
         >
         <div class="searchbox">
           <input
