@@ -41,13 +41,13 @@
     /></noscript>
     <style>
       :root {
-        --paper: #ffffff;
-        --paper-deep: #e8ecf5;
+        --paper: #f6efd8;
+        --paper-deep: #ecdfc3;
         --ink: #002868;
         --ink-soft: #2a4a8a;
         --crimson: #b22234;
-        --gold: #b22234;
-        --rule: #8899cc;
+        --gold: #9a6e14;
+        --rule: #b8a882;
       }
       * {
         margin: 0;
@@ -62,22 +62,16 @@
         color: #fffdf6;
       }
       body {
-        background: var(--paper);
+        background-color: var(--paper);
         color: var(--ink);
         font-family: "Newsreader", Georgia, serif;
         font-size: 19px;
         line-height: 1.55;
         background-image:
-          radial-gradient(
-            ellipse 90% 60% at 50% -10%,
-            rgba(0, 40, 104, 0.05),
-            transparent 60%
-          ),
-          repeating-linear-gradient(
-            0deg,
-            transparent 0 2px,
-            rgba(28, 41, 66, 0.012) 2px 4px
-          );
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E"),
+          radial-gradient(ellipse 80% 50% at 50% 0%, rgba(154,110,20,0.07), transparent 70%),
+          radial-gradient(ellipse 50% 40% at 15% 85%, rgba(154,110,20,0.05), transparent 60%),
+          radial-gradient(ellipse 40% 30% at 85% 75%, rgba(154,110,20,0.04), transparent 60%);
       }
       .sheet {
         max-width: 800px;
@@ -129,8 +123,8 @@
         font-style: italic;
       }
       .seal {
-        width: 100px;
-        height: 100px;
+        width: 160px;
+        height: 160px;
         margin: 18px auto 6px;
         position: relative;
         animation: sealIn 1.2s cubic-bezier(0.2, 1.4, 0.4, 1) both 0.3s;
@@ -154,6 +148,26 @@
         letter-spacing: 0.6em;
         font-size: 14px;
         margin-top: 22px;
+      }
+      .masthead-rule {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 16px auto 14px;
+        max-width: 360px;
+      }
+      .masthead-rule-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(255,255,255,0.28);
+      }
+      .masthead-rule-ornament {
+        font-family: "Fraunces", serif;
+        font-size: 20px;
+        color: rgba(255,255,255,0.55);
+        letter-spacing: 0.4em;
+        padding-left: 0.4em;
+        flex-shrink: 0;
       }
       header {
         overflow: hidden;
@@ -449,7 +463,13 @@
       }
       .passage::first-letter {
         font-family: "Fraunces", serif;
-        font-weight: 600;
+        font-weight: 900;
+        font-size: 3em;
+        line-height: 0.78;
+        float: left;
+        margin-right: 5px;
+        margin-top: 4px;
+        color: var(--crimson);
       }
       .noresult {
         text-align: center;
@@ -460,11 +480,24 @@
 
       /* ---------- sections ---------- */
       .divider {
-        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 40px 0 8px;
         color: var(--gold);
-        letter-spacing: 0.6em;
-        font-size: 14px;
-        padding: 38px 0 6px;
+      }
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--rule) 30%, var(--rule) 70%, transparent);
+      }
+      .divider-ornament {
+        font-family: "Fraunces", serif;
+        font-size: 18px;
+        letter-spacing: 0.5em;
+        padding-left: 0.5em;
+        flex-shrink: 0;
+        color: var(--gold);
       }
       section h2 {
         font-family: "Fraunces", serif;
@@ -802,10 +835,10 @@
       }
       .shimmer { animation: shimmer-rwb 2s ease-in-out; }
 
-      .searchbox { background: #ffffff; box-shadow: 5px 5px 0 rgba(0,40,104,0.18); }
-      .result { background: #ffffff; }
-      .sharebtn { background: #ffffff; }
-      .chip:hover { background: #ffffff; }
+      .searchbox { background: #fffdf6; box-shadow: 5px 5px 0 rgba(0,40,104,0.18); }
+      .result { background: #fffdf6; }
+      .sharebtn { background: #fffdf6; }
+      .chip:hover { background: #fffdf6; }
       footer {
         background: #002868;
         border-top: 6px solid #b22234;
@@ -890,6 +923,11 @@
             </text>
           </svg>
         </div>
+        <div class="masthead-rule" aria-hidden="true">
+          <span class="masthead-rule-line"></span>
+          <span class="masthead-rule-ornament">❧ ✦ ❧</span>
+          <span class="masthead-rule-line"></span>
+        </div>
         <div class="dateline">
           The Semiquincentennial Edition &mdash; July 4, 2026
         </div>
@@ -898,7 +936,7 @@
           Two hundred fifty years later, the founding documents still answer
           questions. Ask them one.
         </p>
-        <div class="stars">&#10022; &#10022; &#10022;</div>
+        <div class="stars">&#10022; &#10022; &#10022; &#10022; &#10022;</div>
         <div class="scroll-cue" aria-hidden="true">scroll to ask<span>&#8964;</span></div>
       </header>
 
@@ -927,7 +965,11 @@
         </p>
       </section>
 
-      <div class="divider">&#10022; &#10022; &#10022;</div>
+      <div class="divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-ornament">❧ ✦ ❧</span>
+        <span class="divider-line"></span>
+      </div>
 
       <section class="ask">
         <label for="q"
@@ -967,7 +1009,11 @@
 
       <section id="results" aria-live="polite"></section>
 
-      <div class="divider">&#10022; &#10022; &#10022;</div>
+      <div class="divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-ornament">❧ ✦ ❧</span>
+        <span class="divider-line"></span>
+      </div>
 
       <p
         class="lede2"
