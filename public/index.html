@@ -97,7 +97,7 @@
       }
       header {
         text-align: center;
-        padding: 44px 0 30px;
+        padding: 28px 0 18px;
         border-bottom: 4px double var(--rule);
         position: relative;
       }
@@ -129,9 +129,9 @@
         font-style: italic;
       }
       .seal {
-        width: 150px;
-        height: 150px;
-        margin: 26px auto 8px;
+        width: 100px;
+        height: 100px;
+        margin: 18px auto 6px;
         position: relative;
         animation: sealIn 1.2s cubic-bezier(0.2, 1.4, 0.4, 1) both 0.3s;
       }
@@ -725,6 +725,32 @@
       header .stars { color: #b22234; }
 
       /* seal tooltip */
+      /* scroll cue */
+      .scroll-cue {
+        margin-top: 14px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+        animation: cueFloat 2s ease-in-out infinite;
+        cursor: default;
+      }
+      .scroll-cue span {
+        display: block;
+        font-size: 18px;
+        margin-top: 2px;
+        animation: cueBounce 2s ease-in-out infinite;
+      }
+      @keyframes cueFloat {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 0.85; }
+      }
+      @keyframes cueBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(5px); }
+      }
+
       .seal { cursor: pointer; }
       .seal::after {
         content: 'E Pluribus Unum';
@@ -849,6 +875,7 @@
           questions. Ask them one.
         </p>
         <div class="stars">&#10022; &#10022; &#10022;</div>
+        <div class="scroll-cue" aria-hidden="true">scroll to ask<span>&#8964;</span></div>
       </header>
 
       <section class="world" id="world">
