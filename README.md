@@ -4,7 +4,7 @@ Semantic search over America's founding documents, built for the country's 250th
 
 **Live site: https://askthedeclaration.com**
 
-Ask a question in plain English and get the founders' own words back, with exact citations like *Article I, Section 8* or *Grievance 17*. Every passage carries a plain-English explainer, common questions get a curated short answer in modern words, and a flag map traces how twelve countries forked the American template, from France in 1789 to India in 1950.
+Ask a question in plain English and get the founders' own words back, with exact citations like *Article I, Section 8* or *Grievance 17*. Every passage carries a plain-English explainer, common questions get a curated short answer in modern words, and a flag map traces how twelve countries forked the American template, from France in 1789 to India in 1950. When multiple passages match, a small browser-side model synthesizes a grounded answer from the retrieved text.
 
 The whole thing runs with **no servers, no API keys, and no tracking**. Your question never leaves your browser.
 
@@ -22,22 +22,22 @@ build time (Node)                      runtime (your browser)
 Gutenberg texts                        your question
       │                                      │
 build-corpus.js                        Transformers.js
-  parse into 91                        all-MiniLM-L6-v2 (quantized ONNX)
+  parse into 108                       all-MiniLM-L6-v2 (quantized ONNX)
   structure-aware chunks                     │
       │                                query vector (384-dim)
 build-embeddings.js                          │
-  all-MiniLM-L6-v2                     dot product vs 91 chunk vectors
-  384-dim vectors                      dot product vs 14 curated questions
+  all-MiniLM-L6-v2                     dot product vs 108 chunk vectors
+  384-dim vectors                      dot product vs 27 curated questions
       │                                      │
 public/data/index.json  ──────────►   top passages + citations
   (one static file)                    + plain-words explainers
                                        + curated short answer (if matched)
 ```
 
-1. **Chunk.** The Declaration, the Constitution, the Bill of Rights, and Federalist Nos. 10, 51 and 78 are parsed into 91 passages along the documents' own structure. Each grievance is one complaint, each article section one power, each amendment one right. That is why results cite "Amendment IV" instead of "chunk 47".
+1. **Chunk.** The Declaration, the Constitution, all 27 Amendments, and Federalist Nos. 10, 51 and 78 are parsed into 108 passages along the documents' own structure. Each grievance is one complaint, each article section one power, each amendment one right. That is why results cite "Amendment XIII" instead of "chunk 47".
 2. **Embed.** Each passage is encoded offline into a 384-dimension vector with `all-MiniLM-L6-v2` (mean pooling, L2-normalized) and shipped as one static JSON file.
-3. **Search.** The browser loads the same model as quantized ONNX via Transformers.js and embeds your question locally. All vectors are normalized, so cosine similarity is just a dot product: 91 x 384 multiplications, under a millisecond.
-4. **Answer.** The query vector is also compared against 14 curated questions. Close match (cosine 0.60 or higher) shows a human-written short answer above the passages. No match falls back to passages only. There is no generation step anywhere, which means nothing can be hallucinated.
+3. **Search.** The browser loads the same model as quantized ONNX via Transformers.js and embeds your question locally. All vectors are normalized, so cosine similarity is just a dot product: 108 x 384 multiplications, under a millisecond.
+4. **Answer.** The query vector is also compared against 27 curated questions. Close match (cosine 0.60 or higher) shows a human-written short answer above the passages. When multiple passages match a non-curated query, a small browser-side generative model synthesizes a grounded answer from the retrieved text. Retrieved passages are exact quotations — nothing can be hallucinated.
 
 The full write-up is on the site: [Under the Hood](https://askthedeclaration.com/how.html).
 
@@ -51,7 +51,7 @@ Fixed-size token windows are the default in most RAG tutorials, and they are why
 |---|---|---|
 | Query embedding | API call, metered | $0, computed in the browser |
 | Vector search | Hosted vector DB | $0, dot product over a static file |
-| Answer generation | LLM call per query | $0, curated text written once |
+| Answer generation | LLM call per query | $0, curated text + browser-side synthesis |
 | Keys and rate limits | Keys to protect, quotas to hit | None exist |
 | Cost if it goes viral | Scales with every visitor | Flat, CDN serves static files |
 
@@ -82,7 +82,7 @@ A fully cold visitor costs the origin about 600 KB, so Vercel's 100 GB free tier
 
 ## What is curated vs computed
 
-The AI does retrieval and question-matching only. The plain-words explainers (all 91) and the short answers (all 14) were written by a person at build time (`corpus/explainers.json`, `corpus/answers.json`). The founders' words are quoted exactly from public domain Project Gutenberg editions. Each layer is labeled in the UI so you always know who is talking: 1776 or 2026.
+The AI does retrieval and question-matching only. The plain-words explainers (all 108) and the short answers (all 27) were written by a person at build time (`corpus/explainers.json`, `corpus/answers.json`). The founders' words are quoted exactly from public domain Project Gutenberg editions. Each layer is labeled in the UI so you always know who is talking: 1776 or 2026.
 
 ## Run it locally
 
@@ -109,8 +109,8 @@ node e2e-test.js https://askthedeclaration.com/index.html  # against prod
 corpus/
   declaration.txt, constitution.txt,     Project Gutenberg source texts
   billofrights.txt, federalist.txt
-  explainers.json                        91 hand-written plain-words explainers
-  answers.json                           14 curated Q&A entries
+  explainers.json                        108 hand-written plain-words explainers
+  answers.json                           27 curated Q&A entries
   chunks.json                            generated by build-corpus.js
 build-corpus.js                          structure-aware parser
 build-embeddings.js                      offline embedding, writes the search index
