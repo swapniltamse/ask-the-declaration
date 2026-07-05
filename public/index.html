@@ -616,6 +616,28 @@
         color: var(--crimson);
       }
 
+      /* hiring cta */
+      .hiring-cta {
+        text-align: center;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 12px; letter-spacing: .08em;
+        color: var(--ink-soft);
+        padding: 22px 0 20px;
+        border-top: 1px dashed var(--rule);
+        margin-top: 8px;
+      }
+      .hiring-cta a { color: var(--crimson); }
+      /* site share */
+      .site-share { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+      .site-share-btn {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+        color: var(--ink-soft); background: transparent;
+        border: 1px solid var(--rule); padding: 6px 12px;
+        text-decoration: none; cursor: pointer;
+        transition: border-color .15s, color .15s;
+      }
+      .site-share-btn:hover { color: var(--crimson); border-color: var(--crimson); }
       /* footer */
       footer {
         border-top: 4px double var(--rule);
@@ -794,6 +816,8 @@
       footer a { color: #ffffff; }
       footer .motto { color: #b22234; }
       footer .colophon { color: rgba(255,255,255,0.65); }
+      .site-share-btn { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); }
+      .site-share-btn:hover { color: #fff; border-color: #fff; }
 
       @media (max-width: 560px) {
         body {
@@ -956,6 +980,10 @@
 
       <!-- <p class="lede2" style="text-align:center;max-width:560px;margin:14px auto 0">Read <a href="review.html">the Declaration reviewed as a product spec</a>, or see <a href="how.html">how a site with no servers answers in the founders' words</a>.</p> -->
 
+      <div class="hiring-cta">
+        Built by <a href="https://www.linkedin.com/in/swapniltamse/" target="_blank" rel="noopener">Swapnil Tamse</a>, engineering leader in AI and AI security, New York. Open to senior roles. <a href="https://www.linkedin.com/in/swapniltamse/" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
+      </div>
+
       <footer>
         <p class="motto">Happy 250th, America. Ship your v1.</p>
         <p class="colophon">
@@ -963,6 +991,11 @@
           <a href="review.html">The Review</a> &#10022;
           <a href="about.html">About this project &amp; author</a>
         </p>
+        <div class="site-share">
+          <a href="https://twitter.com/intent/tweet?text=Ask%20the%20founding%20documents%20a%20question.%20The%20founders%20answer%20in%20their%20own%20words.%20No%20servers%2C%20no%20API%20keys%2C%20all%20in%20your%20browser.&url=https%3A%2F%2Faskthedeclaration.com" target="_blank" rel="noopener" class="site-share-btn">Share on X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Faskthedeclaration.com" target="_blank" rel="noopener" class="site-share-btn">Share on LinkedIn</a>
+          <button class="site-share-btn" id="copy-site-link">Copy link</button>
+        </div>
       </footer>
     </div>
 
@@ -1223,6 +1256,14 @@
           ask(ch.textContent);
         }),
       );
+
+      // ---------- site share: copy link ----------
+      document.getElementById('copy-site-link')?.addEventListener('click', function() {
+        navigator.clipboard.writeText('https://askthedeclaration.com').then(() => {
+          this.textContent = 'Copied!';
+          setTimeout(() => { this.textContent = 'Copy link'; }, 1800);
+        });
+      });
 
       // ---------- easter eggs ----------
       console.log(
