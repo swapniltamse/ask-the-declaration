@@ -53,85 +53,80 @@ h2{font-family:'Fraunces',serif;font-weight:900;font-size:26px;margin:44px 0 10p
 h2 .no{color:var(--gold);font-style:italic;font-weight:400;margin-right:8px}
 a{color:var(--crimson)}
 code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper-deep);padding:1px 6px;border:1px solid var(--rule)}
-/* --- pipeline diagram --- */
-.pipeline-diag{margin:26px 0 32px}
-.browser-box{
-  border:2px dashed var(--ink);padding:28px 20px 20px;
+/* --- pipeline demo --- */
+.demo-wrap{margin:26px 0 32px}
+.demo-box{
+  border:2px dashed var(--ink);padding:22px 24px 16px;
   position:relative;background:#fffdf6;
-  box-shadow:5px 5px 0 rgba(28,41,66,.08);
+  box-shadow:5px 5px 0 rgba(28,41,66,.08);min-height:180px;
 }
-.browser-badge{
+.demo-badge{
   position:absolute;top:-13px;left:20px;
   background:var(--ink);color:#fff;
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   letter-spacing:.22em;text-transform:uppercase;padding:3px 12px;
 }
-.privacy-label{
+.demo-privacy{
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   letter-spacing:.12em;text-transform:uppercase;
-  color:var(--crimson);text-align:center;margin-bottom:20px;
+  color:var(--crimson);text-align:center;margin-bottom:16px;
 }
-.flow-row{
-  display:flex;align-items:center;justify-content:center;
-  gap:0;margin-bottom:18px;overflow-x:auto;
+.demo-step{display:none;animation:stepIn .45s ease both}
+.demo-step.active{display:block}
+@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;
 }
-.flow-node{flex:0 0 auto;text-align:center}
-.fn-box{
-  border:2px solid var(--rule);background:var(--paper-deep);
-  padding:10px 12px;min-width:76px;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.5;
-  color:var(--ink);animation:nodePulse 4s ease-in-out infinite;
+.q-box{
+  font-family:'Fraunces',serif;font-size:22px;font-weight:900;
+  color:var(--ink);padding:14px 18px;background:var(--paper-deep);
+  border-left:4px solid var(--crimson);line-height:1.25;
 }
-.fn-icon{
-  font-size:20px;font-family:'Fraunces',serif;font-weight:900;
-  color:var(--crimson);margin-bottom:3px;
+.vec-box{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  color:var(--ink-soft);background:var(--paper-deep);
+  padding:14px 16px;line-height:1.9;letter-spacing:.03em;word-break:break-all;
 }
-.fn-sub{font-size:9px;color:var(--ink-soft);letter-spacing:.04em;margin-top:2px}
-.flow-arrow{
-  flex:0 0 44px;height:2px;background:var(--rule);
-  position:relative;overflow:visible;
+.vec-box b{color:var(--crimson)}
+.vec-note{font-size:15px;color:var(--ink-soft);font-style:italic;margin-top:10px}
+.match-row{display:flex;align-items:center;gap:12px;margin:8px 0}
+.match-lbl{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:.04em;flex:0 0 130px;color:var(--ink);
 }
-.flow-arrow::after{
-  content:'▶';position:absolute;right:-7px;top:50%;
-  transform:translateY(-50%);font-size:9px;color:var(--rule);line-height:1;
+.match-track{flex:1;height:14px;background:var(--paper-deep);border:1px solid var(--rule)}
+.match-fill{height:100%;background:var(--rule);transition:width .9s cubic-bezier(.2,.8,.3,1);width:0}
+.match-fill.top{background:var(--crimson)}
+.match-pct{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  flex:0 0 36px;text-align:right;color:var(--ink-soft);
 }
-.packet{
-  position:absolute;top:50%;
-  width:9px;height:9px;border-radius:50%;
-  background:var(--crimson);transform:translate(-50%,-50%);
-  opacity:0;animation:packetMove 4s ease-in-out infinite;
+.match-pct.top{color:var(--crimson);font-weight:700}
+.result-cite{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);margin-bottom:10px;
 }
-@keyframes packetMove{
-  0%{left:0;opacity:0}
-  2%{opacity:1}
-  18%{left:100%;opacity:1}
-  19%{opacity:0}
-  100%{left:0;opacity:0}
+.result-text{
+  font-family:'Newsreader',serif;font-size:17px;font-style:italic;
+  color:var(--ink);padding:14px 18px;background:var(--paper-deep);
+  border-left:4px solid var(--crimson);line-height:1.55;
 }
-@keyframes nodePulse{
-  0%,100%{border-color:var(--rule);box-shadow:none}
-  4%,14%{border-color:var(--crimson);box-shadow:0 0 10px rgba(147,33,31,.22)}
+.demo-progress{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.demo-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--rule);transition:background .3s;
 }
-.fn-box.n1{animation-delay:0s}
-.fn-box.n2{animation-delay:1s}
-.fn-box.n3{animation-delay:2s}
-.fn-box.n4{animation-delay:3s}
-.packet.p1{animation-delay:.5s}
-.packet.p2{animation-delay:1.5s}
-.packet.p3{animation-delay:2.5s}
-.assets-row{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+.demo-dot.on{background:var(--crimson)}
+.demo-footer{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);text-align:center;margin:10px 0 14px;
 }
-.asset-pill{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em;
-  border:1px solid var(--rule);background:var(--paper-deep);
-  padding:4px 12px;color:var(--ink-soft);
-}
-.asset-pill b{color:var(--gold)}
 .blocked-label{
   font-family:'IBM Plex Mono',monospace;font-size:10px;
   letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-soft);text-align:center;margin-top:14px;margin-bottom:6px;
+  color:var(--ink-soft);text-align:center;margin-bottom:6px;
 }
 .blocked-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .blocked-server{
@@ -141,10 +136,6 @@ code{font-family:'IBM Plex Mono',monospace;font-size:14px;background:var(--paper
   color:var(--ink-soft);background:var(--paper-deep);opacity:.45;
 }
 .blocked-server::before{content:'✕';color:var(--crimson);font-size:12px;font-weight:700}
-@media(max-width:560px){
-  .fn-box{min-width:58px;padding:8px 6px;font-size:9.5px}
-  .flow-arrow{flex-basis:28px}
-}
 .compare{border:2px solid var(--ink);background:#fffdf6;box-shadow:5px 5px 0 rgba(28,41,66,.14);margin:26px 0;width:100%;border-collapse:collapse}
 .compare th{
   font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
@@ -192,47 +183,41 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 
 <h2><span class="no">&sect;1</span> The Pipeline</h2>
 
-<div class="pipeline-diag">
-  <div class="browser-box">
-    <div class="browser-badge">Your Browser &mdash; Privacy Boundary</div>
-    <p class="privacy-label">Your question never crosses this line</p>
-    <div class="flow-row">
-      <div class="flow-node">
-        <div class="fn-box n1">
-          <div class="fn-icon">&quest;</div>
-          Your<br>Question
-        </div>
-      </div>
-      <div class="flow-arrow"><span class="packet p1"></span></div>
-      <div class="flow-node">
-        <div class="fn-box n2">
-          <div class="fn-icon">&#8857;</div>
-          Embed
-          <div class="fn-sub">MiniLM ONNX<br>384-dim</div>
-        </div>
-      </div>
-      <div class="flow-arrow"><span class="packet p2"></span></div>
-      <div class="flow-node">
-        <div class="fn-box n3">
-          <div class="fn-icon">&middot;</div>
-          Search
-          <div class="fn-sub">108 &times; 384<br>&lt; 1ms</div>
-        </div>
-      </div>
-      <div class="flow-arrow"><span class="packet p3"></span></div>
-      <div class="flow-node">
-        <div class="fn-box n4">
-          <div class="fn-icon">&#8679;</div>
-          Cite
-          <div class="fn-sub">source + year<br>exact quote</div>
-        </div>
-      </div>
+<div class="demo-wrap">
+  <div class="demo-box">
+    <div class="demo-badge">Your Browser &mdash; Privacy Boundary</div>
+    <p class="demo-privacy">Your question never crosses this line</p>
+
+    <div class="demo-step" id="ds-q">
+      <div class="step-lbl">Step 1 &mdash; You type a question</div>
+      <div class="q-box" id="ds-q-text"></div>
     </div>
-    <div class="assets-row">
-      <div class="asset-pill">&#8592; <b>index.json</b> 451 KB &mdash; static file, one download</div>
-      <div class="asset-pill">&#8592; <b>MiniLM weights</b> 23 MB &mdash; HF CDN, browser-cached</div>
+
+    <div class="demo-step" id="ds-e">
+      <div class="step-lbl">Step 2 &mdash; Browser converts it to 384 numbers (all-MiniLM-L6-v2)</div>
+      <div class="vec-box" id="ds-vec"></div>
+      <p class="vec-note">Each number captures a dimension of meaning. Similar questions produce similar vectors.</p>
+    </div>
+
+    <div class="demo-step" id="ds-m">
+      <div class="step-lbl">Step 3 &mdash; Dot product vs 108 passages (&lt;&nbsp;1ms)</div>
+      <div id="ds-matches"></div>
+    </div>
+
+    <div class="demo-step" id="ds-r">
+      <div class="step-lbl">Step 4 &mdash; Founders answer in their own words</div>
+      <div class="result-cite" id="ds-cite"></div>
+      <div class="result-text" id="ds-text"></div>
+    </div>
+
+    <div class="demo-progress">
+      <div class="demo-dot on" id="dd0"></div>
+      <div class="demo-dot" id="dd1"></div>
+      <div class="demo-dot" id="dd2"></div>
+      <div class="demo-dot" id="dd3"></div>
     </div>
   </div>
+  <div class="demo-footer">No data was sent to any server during this demo</div>
   <div class="blocked-label">No outbound API calls</div>
   <div class="blocked-row">
     <div class="blocked-server">OpenAI API</div>
@@ -240,8 +225,6 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
     <div class="blocked-server">Your Server</div>
   </div>
 </div>
-
-<p>The Declaration, Constitution, all 27 Amendments, and Federalist Nos. 10, 51 &amp; 78 are parsed into <strong>108 citation-ready passages</strong> at build time and embedded offline with <code>all-MiniLM-L6-v2</code> (384 dimensions, mean pooling, L2-normalized). The index ships as a single 451&nbsp;KB static file. In the browser, Transformers.js loads the same model as quantized ONNX and embeds your question locally. Cosine similarity over normalized vectors is a dot product — 108 &times; 384 multiplications, done in under a millisecond. The top passages are returned with source, section, and year. When multiple passages match, a small browser-side model synthesizes a grounded answer from the retrieved text. Retrieval is exact quotation — nothing can be hallucinated.</p>
 
 <h2><span class="no">&sect;2</span> Why 108 Passages, Not 500-Token Windows</h2>
 <p>The default way to chunk documents for retrieval is mechanical: slice the text into fixed windows of a few hundred tokens, with some overlap so nothing falls between the cracks. It works, and it is also why so many retrieval systems cite "chunk 47" and hand you a passage that starts mid-sentence.</p>
@@ -282,6 +265,88 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 </article>
 </div>
 <script>
+(function(){
+  var DEMOS=[
+    {
+      q:'What protects free speech?',
+      vec:'[ <b>0.23</b>, &minus;0.41, <b>0.87</b>, 0.12, &minus;0.53, <b>0.71</b>, 0.09, &minus;0.34, <b>0.66</b>, &minus;0.18, 0.45, <b>0.92</b>, &hellip; 372 more ]',
+      matches:[
+        {lbl:'Amendment I',pct:91,top:true},
+        {lbl:'Amendment XIV',pct:44,top:false},
+        {lbl:'Article I, &sect;8',pct:28,top:false}
+      ],
+      cite:'Amendment I · 1791',
+      text:'“Congress shall make no law … abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble.”'
+    },
+    {
+      q:'Can the government search my house?',
+      vec:'[ &minus;<b>0.18</b>, <b>0.62</b>, &minus;0.33, <b>0.89</b>, 0.14, &minus;0.47, <b>0.55</b>, 0.21, &minus;<b>0.78</b>, 0.36, 0.09, &minus;0.61, &hellip; 372 more ]',
+      matches:[
+        {lbl:'Amendment IV',pct:88,top:true},
+        {lbl:'Amendment III',pct:51,top:false},
+        {lbl:'Amendment V',pct:39,top:false}
+      ],
+      cite:'Amendment IV · 1791',
+      text:'“The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated.”'
+    },
+    {
+      q:'What abolished slavery?',
+      vec:'[ <b>0.44</b>, 0.31, &minus;<b>0.67</b>, 0.19, <b>0.82</b>, &minus;0.25, <b>0.38</b>, &minus;0.11, 0.59, &minus;0.43, <b>0.77</b>, 0.22, &hellip; 372 more ]',
+      matches:[
+        {lbl:'Amendment XIII',pct:95,top:true},
+        {lbl:'Declaration §2',pct:34,top:false},
+        {lbl:'Amendment XIV',pct:29,top:false}
+      ],
+      cite:'Amendment XIII · 1865',
+      text:'“Neither slavery nor involuntary servitude … shall exist within the United States, or any place subject to their jurisdiction.”'
+    }
+  ];
+  var STEPS=['ds-q','ds-e','ds-m','ds-r'];
+  var DURS=[2800,2500,2800,3800];
+  var di=0,si=0;
+
+  function show(demo,step){
+    STEPS.forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('active');});
+    for(var i=0;i<4;i++){var d=document.getElementById('dd'+i);if(d)d.classList.toggle('on',i===si);}
+    var el=document.getElementById(step);
+    if(!el)return;
+    if(step==='ds-q'){
+      document.getElementById('ds-q-text').textContent=demo.q;
+    }else if(step==='ds-e'){
+      document.getElementById('ds-vec').innerHTML=demo.vec;
+    }else if(step==='ds-m'){
+      var c=document.getElementById('ds-matches');
+      c.innerHTML='';
+      demo.matches.forEach(function(m){
+        var row=document.createElement('div');
+        row.className='match-row';
+        row.innerHTML='<div class="match-lbl">'+m.lbl+'</div>'
+          +'<div class="match-track"><div class="match-fill'+(m.top?' top':'')+'" style="width:0" data-w="'+m.pct+'"></div></div>'
+          +'<div class="match-pct'+(m.top?' top':'')+'">'+m.pct+'%</div>';
+        c.appendChild(row);
+      });
+      setTimeout(function(){c.querySelectorAll('.match-fill').forEach(function(b){b.style.width=b.dataset.w+'%';});},60);
+    }else if(step==='ds-r'){
+      document.getElementById('ds-cite').textContent=demo.cite;
+      document.getElementById('ds-text').textContent=demo.text;
+    }
+    el.classList.add('active');
+  }
+
+  function next(){
+    show(DEMOS[di],STEPS[si]);
+    var dur=DURS[si];
+    si++;
+    if(si>=STEPS.length){si=0;di=(di+1)%DEMOS.length;}
+    setTimeout(next,dur);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(next,600);});
+  }else{
+    setTimeout(next,600);
+  }
+})();
 console.log('%cYou read the architecture page AND opened the console. %cThe repo is yours: https://github.com/swapniltamse/ask-the-declaration','font-weight:bold;color:#93211f','color:#3d4a66');
 </script>
 <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
