@@ -115,7 +115,7 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
     <div class="arch-num">1</div>
     <div class="arch-body">
       <h3>Chunk</h3>
-      <p>The Declaration, the Constitution, the Bill of Rights, and Federalist Nos. 10, 51 &amp; 78 are parsed into <strong>91 citation-ready passages</strong> along the documents' own structure (more on why below).</p>
+      <p>The Declaration, the Constitution, all 27 Amendments, and Federalist Nos. 10, 51 &amp; 78 are parsed into <strong>108 citation-ready passages</strong> along the documents' own structure (more on why below).</p>
     </div>
   </div>
   <div class="arch-row">
@@ -129,19 +129,19 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
     <div class="arch-num">3</div>
     <div class="arch-body">
       <h3>Search</h3>
-      <p>Your question is embedded <em>in this browser tab</em> by the same model, running as quantized ONNX via Transformers.js. Because all vectors are normalized, cosine similarity reduces to a dot product: 91 &times; 384 multiplications, done in under a millisecond. The same query embedding is also matched against a set of curated questions; when it lands close to one, you get a human-written short answer above the passages.</p>
+      <p>Your question is embedded <em>in this browser tab</em> by the same model, running as quantized ONNX via Transformers.js. Because all vectors are normalized, cosine similarity reduces to a dot product: 108 &times; 384 multiplications, done in under a millisecond. The same query embedding is also matched against 27 curated questions; when it lands close to one, you get a human-written short answer above the passages.</p>
     </div>
   </div>
   <div class="arch-row">
     <div class="arch-num">4</div>
     <div class="arch-body">
       <h3>Cite</h3>
-      <p>The top passages are returned with their source, section, and year. No generation step means no hallucination: every quoted word was written in 1776, 1787, 1788, or 1791.</p>
+      <p>The top passages are returned with their source, section, and year. When multiple passages match, a small browser-side model synthesizes a grounded answer from the retrieved text. Retrieval is exact quotation — nothing can be hallucinated. Synthesis is labeled and traces back to the passages above it.</p>
     </div>
   </div>
 </div>
 
-<h2><span class="no">&sect;2</span> Why 91 Passages, Not 500-Token Windows</h2>
+<h2><span class="no">&sect;2</span> Why 108 Passages, Not 500-Token Windows</h2>
 <p>The default way to chunk documents for retrieval is mechanical: slice the text into fixed windows of a few hundred tokens, with some overlap so nothing falls between the cracks. It works, and it is also why so many retrieval systems cite "chunk 47" and hand you a passage that starts mid-sentence.</p>
 <p>These documents deserve better, and they make it easy. The founding documents carry their own semantic boundaries: each grievance in the Declaration is one complete complaint against the king. Each section of the Constitution is one power or one limit. Each amendment is one right. Chunk along those seams and every unit of retrieval is a complete thought with a name a human already understands.</p>
 <p>That is why a result here says <em>Article I, Section 8</em> or <em>Grievance 17</em> instead of a byte offset. A journalist can quote it. A teacher can assign it. A lawyer would recognize the citation. The retrieval system speaks the same language as the document it searches.</p>
