@@ -1218,6 +1218,7 @@
           statusEl.classList.add("ready");
           statusText.textContent = `Ready — ${index.chunks.length} passages indexed · 384-dim vectors · running entirely in your browser`;
           btn.disabled = false;
+          loadReranker(); // background-load the cross-encoder; search works before it arrives
           // Deep link: shared URLs carry the question and auto-run it
           const shared = new URLSearchParams(location.search).get("q");
           if (shared) {
@@ -1237,6 +1238,62 @@
         for (let i = 0; i < a.length; i++) s += a[i] * b[i];
         return s;
       };
+
+      // ---------- BM25 keyword signal (instant; widens the candidate pool) ----------
+      // Dense retrieval catches meaning; BM25 catches exact wording the small model misses.
+      // It does not reorder results — it only ensures exact-match passages reach the reranker.
+      const STOP = new Set("a an and are as at be but by can does do for from has have how i in is it its me my of on or shall that the this to was we what when where which who why will with you your".split(" "));
+      const tokenize = (t) => t.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 1 && !STOP.has(w));
+      let lex = null;
+      function buildLex() {
+        const docs = index.chunks.map((c) => tokenize(c.text + " " + (c.plain || "") + " " + c.section));
+        const df = new Map();
+        for (const d of docs) for (const w of new Set(d)) df.set(w, (df.get(w) || 0) + 1);
+        const avgLen = docs.reduce((s, d) => s + d.length, 0) / docs.length;
+        lex = { docs, df, avgLen, N: docs.length };
+      }
+      function bm25(q) {
+        if (!lex) buildLex();
+        const k1 = 1.2, b = 0.75, scores = new Array(lex.N).fill(0);
+        for (const t of tokenize(q)) {
+          const n = lex.df.get(t); if (!n) continue;
+          const idf = Math.log(1 + (lex.N - n + 0.5) / (n + 0.5));
+          for (let i = 0; i < lex.N; i++) {
+            const tf = lex.docs[i].filter((w) => w === t).length; if (!tf) continue;
+            scores[i] += idf * (tf * (k1 + 1)) / (tf + k1 * (1 - b + b * lex.docs[i].length / lex.avgLen));
+          }
+        }
+        return scores;
+      }
+
+      // ---------- Cross-encoder reranker (Xenova/ms-marco-MiniLM-L-6-v2, open weights) ----------
+      // A bi-encoder scores query and passage separately (fast, precomputed). The cross-encoder
+      // reads the (query, passage) pair together for true relevance. Retrieve-then-rerank buys
+      // the speed of the first and the precision of the second. Lazy, non-blocking, graceful:
+      // until it loads, results fall back to the dense-plus-BM25 order, so search never waits on it.
+      let reranker = null, rerankerLoading = false;
+      async function loadReranker() {
+        if (reranker || rerankerLoading) return;
+        rerankerLoading = true;
+        try {
+          const { AutoModelForSequenceClassification, AutoTokenizer } =
+            await import("https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2");
+          const [model, tokenizer] = await Promise.all([
+            AutoModelForSequenceClassification.from_pretrained("Xenova/ms-marco-MiniLM-L-6-v2", { quantized: true }),
+            AutoTokenizer.from_pretrained("Xenova/ms-marco-MiniLM-L-6-v2"),
+          ]);
+          reranker = { model, tokenizer };
+        } catch (e) { console.warn("Reranker unavailable, staying on dense order:", e); }
+        rerankerLoading = false;
+      }
+      async function rerank(q, candidates) {
+        if (!reranker || candidates.length < 2) return candidates;
+        const passages = candidates.map((h) => h.c.text);
+        const inputs = reranker.tokenizer(new Array(passages.length).fill(q), { text_pair: passages, padding: true, truncation: true });
+        const { logits } = await reranker.model(inputs);
+        const scores = logits.sigmoid().tolist().map((row) => row[0]);
+        return candidates.map((h, i) => ({ ...h, rerank: scores[i] })).sort((a, b) => b.rerank - a.rerank);
+      }
 
       const ANSWER_THRESHOLD = 0.6; // paraphrases score 0.63+, off-topic stays under 0.2
 
@@ -1264,11 +1321,27 @@
           .sort((x, y) => y.s - x.s)[0];
         const curated = bestA && bestA.s >= ANSWER_THRESHOLD ? bestA.a : null;
 
-        let hits = index.chunks
-          .map((c) => ({ c, s: dot(qv, c.vector) }))
+        // Hybrid retrieval: dense order is the default (the stronger ranker on this corpus);
+        // BM25 only widens the pool so exact-wording passages reach the reranker. The
+        // cross-encoder then decides the final order for precision — when it has loaded, and
+        // only when no curated answer fired (a curated hit pins its own passages below).
+        const denseRanked = index.chunks
+          .map((c) => ({ c, s: dot(qv, c.vector), bm: false }))
+          .sort((a, b) => b.s - a.s);
+        const byId = new Map(denseRanked.map((h) => [h.c.id, h]));
+        let candidates = denseRanked.slice(0, 20);
+        const poolIds = new Set(candidates.map((h) => h.c.id));
+        bm25(q)
+          .map((s, i) => ({ id: index.chunks[i].id, s }))
+          .filter((x) => x.s > 0)
           .sort((a, b) => b.s - a.s)
+          .slice(0, 10)
+          .forEach((d) => { const e = byId.get(d.id); if (e && !poolIds.has(d.id)) { e.bm = true; candidates.push(e); poolIds.add(d.id); } });
+        candidates.sort((a, b) => b.s - a.s);
+        if (reranker && !curated) candidates = await rerank(q, candidates);
+        let hits = candidates
           .slice(0, 5)
-          .filter((h) => h.s > 0.22);
+          .filter((h) => h.s > 0.22 || h.bm || h.rerank != null);
 
         if (curated) {
           const sa = document.createElement("article");
@@ -1291,7 +1364,7 @@
             '<p class="noresult">The founders are silent on this one. Try rephrasing, or ask about rights, powers, or grievances.</p>';
         }
         // Low-confidence guardrail: weak matches are framed as loosely related, not answers
-        if (!curated && hits.length && hits[0].s < 0.32) {
+        if (!curated && hits.length && (hits[0].rerank != null ? hits[0].rerank < 0.5 : hits[0].s < 0.32)) {
           const lc = document.createElement("p");
           lc.className = "lowconf";
           lc.textContent =
