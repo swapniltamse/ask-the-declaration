@@ -1,5 +1,14 @@
 // Parses Project Gutenberg plain-text editions of the founding documents
 // into citation-ready chunks for embedding. Output: corpus/chunks.json
+//
+// KNOWN GAP (2026-08-27): this parser currently emits 91 chunks and covers only the
+// Bill of Rights (Amendments I-X). The deployed corpus is 108 chunks and includes
+// Amendments XI-XXVII plus 10 extra curated answers, which were added directly to the
+// built index and never back-ported here. corpus/chunks.json and corpus/answers.json
+// were therefore reconstructed from the authoritative shipped index (see the enriched
+// build). Running this script as-is will REGRESS the corpus to 91 chunks. Reconcile the
+// raw-text parser to all 27 amendments before using it again. Until then, treat
+// corpus/chunks.json (108) as the source of truth, not this script.
 const fs = require("fs");
 const path = require("path");
 

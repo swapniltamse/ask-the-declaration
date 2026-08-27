@@ -15,7 +15,11 @@ async function main() {
   const vectors = [];
   const t0 = Date.now();
   for (const c of chunks) {
-    const out = await embed(c.text, { pooling: "mean", normalize: true });
+    // Enriched embedding: passage text plus its plain-words explainer and its citation label.
+    // Lay phrasing ("free speech") reaches the right passage even when the founding text uses
+    // period vocabulary. Isolated as a measured lift in eval/run-eval.js.
+    const enriched = `${c.text} ${c.plain || ""} ${c.section}`.trim();
+    const out = await embed(enriched, { pooling: "mean", normalize: true });
     // Round to 5 decimals: cuts index size ~40% with no retrieval impact
     vectors.push(Array.from(out.data).map((v) => Math.round(v * 1e5) / 1e5));
   }
