@@ -993,6 +993,28 @@
           grid-column: 2;
         }
       }
+      /* ---------- opt-in on-device WebGPU generation ---------- */
+      .webllm-upgrade {
+        display: inline-block;
+        margin-top: 12px;
+        background: transparent;
+        color: var(--ink-soft);
+        border: 1px dashed var(--rule);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        padding: 8px 14px;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .webllm-upgrade:hover:not(:disabled) {
+        border-color: var(--crimson);
+        color: var(--crimson);
+      }
+      .webllm-upgrade:disabled {
+        cursor: default;
+        opacity: 0.7;
+      }
     </style>
   </head>
   <body>
@@ -1242,6 +1264,42 @@
         }
       }
 
+      // ---------- Optional: richer answers via on-device WebGPU generation (Phase 2) ----------
+      // Opt-in. Offered only when the browser exposes WebGPU (navigator.gpu). Downloads a small
+      // instruct model once via WebLLM, then generates a grounded answer from the retrieved
+      // passages ONLY. Everything stays on-device; nothing is sent anywhere. When WebGPU is
+      // absent or the user does not opt in, the site behaves exactly as before (LaMini synthesis).
+      const WEBLLM_MODEL = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+      let webllmEngine = null, webllmLoading = false, webllmReady = false;
+      const hasWebGPU = () => typeof navigator !== "undefined" && "gpu" in navigator;
+      async function loadWebLLM(onProgress) {
+        if (webllmReady || webllmLoading || !hasWebGPU()) return webllmReady;
+        webllmLoading = true;
+        try {
+          const webllm = await import("https://esm.run/@mlc-ai/web-llm");
+          webllmEngine = await webllm.CreateMLCEngine(WEBLLM_MODEL, {
+            initProgressCallback: (r) => { if (onProgress) onProgress(r.text || Math.round((r.progress || 0) * 100) + "%"); },
+          });
+          webllmReady = true;
+        } catch (e) { console.warn("WebLLM unavailable:", e); webllmReady = false; }
+        webllmLoading = false;
+        return webllmReady;
+      }
+      async function generateWebLLM(q, hits) {
+        if (!webllmReady || hits.length < 1) return null;
+        const context = hits.slice(0, 3)
+          .map((h, i) => `[${i + 1}] ${h.c.source}, ${h.c.section}: ${h.c.text}`)
+          .join("\n\n");
+        const messages = [
+          { role: "system", content: "You answer questions about America's founding documents using ONLY the passages provided. Paraphrase them, cite the section in brackets, and if the passages do not address the question, say so plainly. Never add facts that are not in the passages. Keep it to 3-4 sentences." },
+          { role: "user", content: `Passages:\n${context}\n\nQuestion: ${q}` },
+        ];
+        try {
+          const reply = await webllmEngine.chat.completions.create({ messages, temperature: 0.2, max_tokens: 220 });
+          return reply.choices?.[0]?.message?.content?.trim() || null;
+        } catch (e) { console.warn("WebLLM generation failed:", e); return null; }
+      }
+
       async function init() {
         try {
           if (document.readyState !== "complete")
@@ -1483,16 +1541,50 @@
           } else {
             hits.forEach((h, i) => results.appendChild(makeResultEl(h, i + (curated ? 1 : 0))));
           }
-          // Fill synthesis card when generator resolves
-          generateSynthesis(q, hits).then(text => {
-            if (text) {
-              synCard.classList.remove("loading");
-              synCard.innerHTML = `<div class="synthesis-kicker">Founders' Synthesis</div><p>${text}</p><p class="synthesis-disclaimer">Generated in your browser from the passages above. Not human-curated — verify against the quoted text.</p>`;
-            } else {
-              synCard.remove();
-            }
-          });
-          loadGenerator(); // warm for next query
+          // Fill the synthesis card. Prefer on-device WebGPU generation when the user has
+          // enabled it; otherwise the existing lightweight synthesis. Built with safe DOM
+          // methods (textContent) so nothing generated is ever injected as HTML.
+          const makeUpgradeBtn = () => {
+            const up = document.createElement("button");
+            up.className = "webllm-upgrade";
+            up.type = "button";
+            up.textContent = "✦ Richer answer with on-device AI (downloads a model once)";
+            up.addEventListener("click", async () => {
+              up.disabled = true;
+              up.textContent = "Loading on-device model…";
+              const ok = await loadWebLLM((msg) => { up.textContent = "Loading on-device model… " + msg; });
+              if (ok) {
+                synCard.classList.add("loading");
+                const t = await generateWebLLM(q, hits);
+                if (t) renderSynthAnswer(t);
+                else up.textContent = "The on-device model could not answer; the retrieved passages are above.";
+              } else {
+                up.textContent = "On-device AI is unavailable on this device.";
+              }
+            });
+            return up;
+          };
+          const renderSynthAnswer = (text) => {
+            synCard.classList.remove("loading");
+            synCard.textContent = "";
+            const k = document.createElement("div");
+            k.className = "synthesis-kicker";
+            k.textContent = webllmReady ? "On-Device AI Answer" : "Founders' Synthesis";
+            const p = document.createElement("p");
+            p.textContent = text;
+            const d = document.createElement("p");
+            d.className = "synthesis-disclaimer";
+            d.textContent = "Generated on your device from the passages above. Not human-curated — verify against the quoted text.";
+            synCard.append(k, p, d);
+            if (hasWebGPU() && !webllmReady) synCard.appendChild(makeUpgradeBtn());
+          };
+          (async () => {
+            let text = webllmReady ? await generateWebLLM(q, hits) : null;
+            if (!text) text = await generateSynthesis(q, hits);
+            if (text) renderSynthAnswer(text);
+            else synCard.remove();
+          })();
+          loadGenerator(); // warm the lightweight synthesizer for next query
         } else {
           // Curated answer present or single weak hit — flat rendering, no synthesis
           hits.forEach((h, i) => results.appendChild(makeResultEl(h, i + (curated ? 1 : 0))));
