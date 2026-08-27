@@ -61,7 +61,11 @@ The founding corpus is intertextual: a 1776 grievance becomes a 1787 clause beco
 
 ## Your rights, by who you are
 
-`node build-personas.js` generates cite-validated `/rights/` pages that map the documents to real lives (a protester, a journalist, someone under arrest, a gun owner, an immigrant, a voter, a criminal defendant, a business owner), plus `sitemap.xml` and `robots.txt`.
+`node build-personas.js` generates cite-validated `/rights/` pages that map the documents to real lives (a protester, a journalist, someone under arrest, a gun owner, an immigrant, a voter, a criminal defendant, a business owner), plus four reader-lens pages under `/lenses/` (the Originalist, the Plain-English Reader, the Skeptic, the New Citizen) that reframe the same corpus, and `sitemap.xml` + `robots.txt`.
+
+## Optional on-device generation (WebGPU)
+
+Retrieval always leads. On a WebGPU-capable browser you can opt in to a fuller written answer, generated on-device by `Llama-3.2-1B-Instruct` via WebLLM from the retrieved passages only, labeled as generated and unverified, with graceful fallback to retrieval on unsupported devices. `node eval/groundedness.js` measures answer faithfulness (share of answer words supported by the passages); the small fallback synthesizer scores ~61%, which is the honest motivation for the WebGPU upgrade. Everything stays on-device at $0.
 
 ## Why the chunking matters
 
