@@ -1211,6 +1211,7 @@
         <p class="colophon">
           <a href="how.html">Under the Hood</a> &#10022;
           <a href="rights/">Your rights, by who you are</a> &#10022;
+          <a href="lenses/">Ways to read</a> &#10022;
           <a href="review.html">The Review</a> &#10022;
           <a href="about.html">About this project &amp; author</a>
         </p>
@@ -1335,7 +1336,7 @@
           statusEl.classList.add("ready");
           statusText.textContent = `Ready — ${index.chunks.length} passages indexed · 384-dim vectors · running entirely in your browser`;
           btn.disabled = false;
-          loadReranker(); // background-load the cross-encoder; search works before it arrives
+          scheduleReranker(); // load the cross-encoder only after the user pauses (never mid-search)
           // Deep link: shared URLs carry the question and auto-run it
           const shared = new URLSearchParams(location.search).get("q");
           if (shared) {
@@ -1403,6 +1404,16 @@
         } catch (e) { console.warn("Reranker unavailable, staying on dense order:", e); }
         rerankerLoading = false;
       }
+      // Load the reranker only after the user pauses (no search for 2.5s). Its one-time WASM
+      // compile monopolizes the shared inference worker, so loading it mid-search would block the
+      // very query embedding it is meant to improve. Deferring it keeps every query instant and
+      // lets the cross-encoder refine subsequent searches once the user is reading.
+      let rerankerIdleTimer = null;
+      function scheduleReranker() {
+        if (reranker || rerankerLoading) return;
+        clearTimeout(rerankerIdleTimer);
+        rerankerIdleTimer = setTimeout(loadReranker, 2500);
+      }
       async function rerank(q, candidates) {
         if (!reranker || candidates.length < 2) return candidates;
         const passages = candidates.map((h) => h.c.text);
@@ -1446,6 +1457,7 @@
           return;
         }
         if (!embedder || !q.trim()) return;
+        scheduleReranker(); // reset the idle timer; the reranker loads only after searching pauses
         btn.disabled = true;
         btn.textContent = "…";
         const out = await embedder(q, { pooling: "mean", normalize: true });
@@ -1476,7 +1488,16 @@
           .slice(0, 10)
           .forEach((d) => { const e = byId.get(d.id); if (e && !poolIds.has(d.id)) { e.bm = true; candidates.push(e); poolIds.add(d.id); } });
         candidates.sort((a, b) => b.s - a.s);
-        if (reranker && !curated) candidates = await rerank(q, candidates);
+        // The reranker must never block or break rendering: cap it and fall back to dense order
+        // on timeout or error. This is what "search never waits on the cross-encoder" means.
+        if (reranker && !curated) {
+          try {
+            candidates = await Promise.race([
+              rerank(q, candidates),
+              new Promise((_, rej) => setTimeout(() => rej(new Error("rerank timeout")), 8000)),
+            ]);
+          } catch (e) { console.warn("rerank skipped, keeping dense order:", e.message); }
+        }
         let hits = candidates
           .slice(0, 5)
           .filter((h) => h.s > 0.22 || h.bm || h.rerank != null);
