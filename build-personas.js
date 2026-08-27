@@ -6,6 +6,7 @@ const path = require("path");
 
 const SITE = "https://askthedeclaration.com";
 const personas = JSON.parse(fs.readFileSync(path.join(__dirname, "corpus", "personas.json"), "utf8"));
+const lenses = JSON.parse(fs.readFileSync(path.join(__dirname, "corpus", "lenses.json"), "utf8"));
 const chunks = JSON.parse(fs.readFileSync(path.join(__dirname, "corpus", "chunks.json"), "utf8"));
 
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -99,11 +100,33 @@ for (const p of personas) {
   fs.writeFileSync(path.join(__dirname, "public", "rights", "index.html"), html);
 }
 
-// sitemap.xml (top pages + rights)
-const staticUrls = ["/", "/how.html", "/about.html", "/review.html", "/rights/"];
+// reader-lens pages: /lenses/<slug>.html + /lenses/index.html. Same corpus, different frame.
+fs.mkdirSync(path.join(__dirname, "public", "lenses"), { recursive: true });
+const lensCrumb = (h) => h.replace('/rights/">Your rights, by who you are', '/lenses/">Ways to read the founding documents');
+const lensUrls = [];
+for (const l of lenses) {
+  const canonical = `${SITE}/lenses/${l.slug}.html`;
+  let html = lensCrumb(head(`Reading as ${l.title}`, l.intro.slice(0, 155), canonical));
+  html += `\n<h1>${l.emoji} ${esc(l.title)}</h1>\n<p class="intro">${esc(l.intro)}</p>\n<p class="disclaim">A way of reading, not a verdict &middot; the founding documents' own words</p>`;
+  html += `\n<p style="margin:20px 0 6px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)">Try these, in this frame of mind</p>\n<ul class="plist">`;
+  for (const q of l.questions) html += `\n<li><a href="/?q=${encodeURIComponent(q)}">${esc(q)}</a></li>`;
+  html += `\n</ul>\n<a class="askcta" href="/">Ask your own question &rarr;</a>` + foot;
+  fs.writeFileSync(path.join(__dirname, "public", "lenses", `${l.slug}.html`), html);
+  lensUrls.push(canonical);
+}
+{
+  let html = lensCrumb(head("Ways to Read the Founding Documents", "Four lenses on the same text: the Originalist, the Plain-English Reader, the Skeptic, and the New Citizen.", `${SITE}/lenses/`));
+  html += `\n<h1>Ways to Read the Founding Documents</h1>\n<p class="intro">The same sentence reads differently depending on who is reading it. Pick a frame of mind and see where it takes you.</p>\n<ul class="plist">`;
+  for (const l of lenses) html += `\n<li><a href="/lenses/${l.slug}.html">${l.emoji} ${esc(l.title)}</a></li>`;
+  html += `\n</ul>` + foot;
+  fs.writeFileSync(path.join(__dirname, "public", "lenses", "index.html"), html);
+}
+
+// sitemap.xml (top pages + rights + lenses)
+const staticUrls = ["/", "/how.html", "/about.html", "/review.html", "/rights/", "/lenses/"];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...staticUrls.map((u) => SITE + u), ...urls].map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}
+${[...staticUrls.map((u) => SITE + u), ...urls, ...lensUrls].map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}
 </urlset>
 `;
 fs.writeFileSync(path.join(__dirname, "public", "sitemap.xml"), sitemap);
@@ -111,4 +134,4 @@ fs.writeFileSync(path.join(__dirname, "public", "sitemap.xml"), sitemap);
 // robots.txt
 fs.writeFileSync(path.join(__dirname, "public", "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 
-console.log(`${personas.length} persona pages + index written, sitemap.xml (${staticUrls.length + urls.length} urls) and robots.txt updated`);
+console.log(`${personas.length} persona pages + ${lenses.length} lens pages + indexes written, sitemap.xml (${staticUrls.length + urls.length + lensUrls.length} urls) and robots.txt updated`);

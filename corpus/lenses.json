@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "originalist",
+    "title": "The Originalist",
+    "emoji": "📜",
+    "intro": "Reads each clause for what its words were understood to mean when they were ratified. The question is not what we wish it said, but what it said to the people who adopted it. Start from the text and the structure, and let the plain meaning do the work.",
+    "questions": [
+      "what does the Second Amendment say about a militia",
+      "what powers did Article I, Section 8 give Congress",
+      "how did the founders define treason",
+      "what does the Tenth Amendment reserve to the states"
+    ]
+  },
+  {
+    "slug": "plain-english",
+    "title": "The Plain-English Reader",
+    "emoji": "🗣",
+    "intro": "Wants the founders' eighteenth-century words translated into today's language without losing the meaning. Every passage on this site carries a hand-written plain-words explainer for exactly this reader. Ask in your own words; the founders answer in theirs, with a translation underneath.",
+    "questions": [
+      "what does due process of law mean",
+      "what is habeas corpus in plain words",
+      "what does the First Amendment actually protect",
+      "what is an ex post facto law"
+    ]
+  },
+  {
+    "slug": "skeptic",
+    "title": "The Skeptic",
+    "emoji": "🔍",
+    "intro": "Asks what the documents do NOT say, and where the text is silent, ambiguous, or merely aspirational. The founding documents are as revealing in their gaps as in their guarantees, and knowing the difference is its own kind of literacy.",
+    "questions": [
+      "does the Constitution mention a right to privacy",
+      "does the Constitution say separation of church and state",
+      "where does the original Constitution say the vote is a right",
+      "does the Declaration of Independence have the force of law"
+    ]
+  },
+  {
+    "slug": "new-citizen",
+    "title": "The New Citizen",
+    "emoji": "🌱",
+    "intro": "Coming to these documents for the first time, wanting the core promises and the structure before the fine print. Start with what the government may not do to you, and how the whole thing is put together.",
+    "questions": [
+      "what rights do I have as a person in America",
+      "how is the American government structured",
+      "how does someone become a citizen",
+      "what are the three branches of government"
+    ]
+  }
+]
