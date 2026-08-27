@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "protester",
+    "title": "A Protester in America",
+    "emoji": "✊",
+    "intro": "The right to gather and object to your government is not one clause but several, and it starts with the very first words of the Bill of Rights.",
+    "items": [
+      { "cite": "Amendment I", "note": "Freedom of speech, of the press, to assemble peaceably, and to petition the government for a redress of grievances. The core of the right to protest, all in one sentence." },
+      { "cite": "Amendment IV", "note": "Protection against unreasonable searches and seizures, which governs when police may stop, search, or detain you at a demonstration." },
+      { "cite": "Amendment XIV", "note": "Due process and equal protection, which extend the First Amendment's limits to state and local governments, not just Congress." }
+    ],
+    "caveat": "Time, place, and manner rules are constitutional if they are content-neutral and leave open other channels. This page describes constitutional text, not the specific permit or public-order laws of any city."
+  },
+  {
+    "slug": "journalist",
+    "title": "A Journalist in America",
+    "emoji": "📰",
+    "intro": "Press freedom in the United States rides on the same sentence that protects everyone's speech, and it is one of the few places the founders named the press directly.",
+    "items": [
+      { "cite": "Amendment I", "note": "Freedom of the press is named expressly, alongside speech, assembly, and petition. Prior restraint on publication faces the heaviest constitutional burden of all." },
+      { "cite": "Amendment IV", "note": "Protection against unreasonable searches, which bears on newsroom searches and the seizure of a reporter's materials." },
+      { "cite": "Amendment VI", "note": "The right to a public trial, the constitutional hook for press and public access to courtrooms." },
+      { "cite": "Amendment XIV", "note": "Applies these protections against the states, and supplies the due-process backbone of modern press-freedom cases." }
+    ],
+    "caveat": "There is no federal constitutional shield law: protection of sources is a matter of statute and case law, not constitutional text. Libel and true threats sit outside the First Amendment's protection."
+  },
+  {
+    "slug": "under-arrest",
+    "title": "Someone Facing Arrest in America",
+    "emoji": "⚖️",
+    "intro": "If you or someone close to you is taken into custody, the Constitution sets a floor no police station can lower. These are the provisions that apply the moment someone is detained.",
+    "items": [
+      { "cite": "Amendment IV", "note": "No unreasonable searches or seizures, and warrants only upon probable cause. This governs the stop, the search, and the arrest itself." },
+      { "cite": "Amendment V", "note": "No one may be compelled to be a witness against themselves, tried twice for the same offense, or deprived of liberty without due process of law." },
+      { "cite": "Amendment VI", "note": "A speedy and public trial, an impartial jury, notice of the accusation, the right to confront witnesses, and the assistance of counsel." },
+      { "cite": "Amendment VIII", "note": "No excessive bail, no excessive fines, and no cruel and unusual punishment." },
+      { "cite": "Article I, Section 9", "note": "The writ of habeas corpus may not be suspended except in cases of rebellion or invasion, the ancient check against being held without a reason a court will hear." }
+    ],
+    "caveat": "This page describes constitutional provisions; it is not legal advice and does not cover the specific arrest, bail, or detention statutes that may apply. For an actual arrest, contact a lawyer immediately."
+  },
+  {
+    "slug": "gun-owner",
+    "title": "A Gun Owner in America",
+    "emoji": "🎯",
+    "intro": "The Second Amendment is one sentence with two clauses, and nearly every debate about firearms turns on how they relate. Here is the constitutional layer.",
+    "items": [
+      { "cite": "Amendment II", "note": "A well regulated militia being necessary to the security of a free state, the right of the people to keep and bear arms shall not be infringed." },
+      { "cite": "Amendment IV", "note": "Protection against unreasonable searches and seizures, which bears on how firearms may be searched for or confiscated." },
+      { "cite": "Amendment XIV", "note": "Due process, the vehicle through which the Second Amendment applies to the states, not only the federal government." }
+    ],
+    "caveat": "The scope of permissible firearm regulation is heavily statutory and varies by state. This page shows only what the Constitution itself says, not any state or federal statute."
+  },
+  {
+    "slug": "immigrant",
+    "title": "An Immigrant in America",
+    "emoji": "🌎",
+    "intro": "The Constitution draws a careful line: some protections say 'the people' or 'citizens,' but the great due-process guarantees say 'any person,' and the Supreme Court has enforced them for non-citizens on US soil.",
+    "items": [
+      { "cite": "Amendment XIV", "note": "No state shall deny to any person the equal protection of the laws or deprive any person of life, liberty, or property without due process. 'Any person' has been read to include non-citizens present in the country." },
+      { "cite": "Amendment V", "note": "The federal counterpart: no person shall be deprived of life, liberty, or property without due process of law." },
+      { "cite": "Amendment IV", "note": "Protection against unreasonable searches and seizures, which applies to persons within the United States." },
+      { "cite": "Article I, Section 8", "note": "Naturalization is a federal power: Congress sets a uniform rule for how immigrants become citizens." }
+    ],
+    "caveat": "Immigration status, admission, and removal are governed by a dense body of federal statute and regulation, not by the constitutional text alone. This page describes the constitutional floor and is not legal advice."
+  },
+  {
+    "slug": "voter",
+    "title": "A Voter in America",
+    "emoji": "🗳",
+    "intro": "There is no single 'right to vote' clause in the original Constitution. Instead the right was built out over a century and a half, one amendment at a time, each closing a door that had been used to keep people from the ballot.",
+    "items": [
+      { "cite": "Amendment XV", "note": "The vote may not be denied on account of race, color, or previous condition of servitude." },
+      { "cite": "Amendment XIX", "note": "The vote may not be denied on account of sex." },
+      { "cite": "Amendment XXIV", "note": "The vote in federal elections may not be conditioned on paying a poll tax or any other tax." },
+      { "cite": "Amendment XXVI", "note": "The vote may not be denied to citizens eighteen years of age or older on account of age." },
+      { "cite": "Amendment XIV", "note": "Equal protection, the ground on which many modern voting and redistricting cases are decided." }
+    ],
+    "caveat": "Registration, districting, and the mechanics of elections are largely set by state law within these constitutional limits. This page lists the constitutional guarantees, not any state election code."
+  },
+  {
+    "slug": "criminal-defendant",
+    "title": "A Criminal Defendant in America",
+    "emoji": "🏛",
+    "intro": "More of the Bill of Rights is devoted to criminal procedure than to any other subject. Four amendments together set the rules for how the state may accuse, try, and punish a person.",
+    "items": [
+      { "cite": "Amendment IV", "note": "The evidence against you must be gathered without unreasonable searches or seizures, and generally on a warrant supported by probable cause." },
+      { "cite": "Amendment V", "note": "A grand jury for serious federal charges, no double jeopardy, no compelled self-incrimination, and no loss of liberty without due process." },
+      { "cite": "Amendment VI", "note": "A speedy and public trial, an impartial local jury, notice of the charges, confrontation of witnesses, compulsory process, and the assistance of counsel." },
+      { "cite": "Amendment VIII", "note": "No excessive bail or fines, and no cruel and unusual punishment." },
+      { "cite": "Article I, Section 9", "note": "No ex post facto law and no bill of attainder: you cannot be punished under a law passed after the act, or convicted by legislative decree." }
+    ],
+    "caveat": "Criminal procedure is elaborated by statute, court rule, and a large body of case law. This page describes the constitutional provisions only and is not legal advice."
+  },
+  {
+    "slug": "business-owner",
+    "title": "A Business Owner in America",
+    "emoji": "🏪",
+    "intro": "The Constitution shaped American business long before any regulatory agency existed: it built a single national market, protected contracts and property, and placed the commerce power with Congress.",
+    "items": [
+      { "cite": "Article I, Section 8", "note": "Congress regulates commerce among the states. This commerce power is the constitutional basis of most federal business regulation, and of the national market itself." },
+      { "cite": "Article I, Section 10", "note": "No state may pass a law impairing the obligation of contracts, or lay its own duties on imports and exports. The Constitution's guardrails against state interference in trade." },
+      { "cite": "Amendment V", "note": "Private property may not be taken for public use without just compensation, and no person is deprived of property without due process. The takings and due-process protections businesses rely on." },
+      { "cite": "Amendment XIV", "note": "Extends due process and equal protection against the states, the ground on which businesses most often challenge arbitrary state action." }
+    ],
+    "caveat": "Licensing, tax, employment, and sector regulation are statutory and vary by jurisdiction. This page is the constitutional floor under all of it, not a compliance guide."
+  }
+]
