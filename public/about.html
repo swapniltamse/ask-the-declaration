@@ -106,7 +106,7 @@ footer .motto{font-style:italic;color:var(--gold);font-size:17px}
   <dd>By design. A generation step can misquote; a retrieval step cannot. Every word you read here was written in 1776, 1787, 1788, or 1791. A future version may add generated summaries with citations, but the founders' own words ship first.</dd>
 
   <dt>What exactly is in the index?</dt>
-  <dd>The Declaration of Independence, the U.S. Constitution (the original seven articles), the Bill of Rights, and Federalist Nos. 10, 51, and 78, parsed into 91 passages along the documents' own structure. Texts are the public domain Project Gutenberg editions. Stack: <code>all-MiniLM-L6-v2</code> embeddings, Transformers.js in the browser, static hosting. The full engineering story is on the <a href="how.html">Under the Hood</a> page.</dd>
+  <dd>The Declaration of Independence, the U.S. Constitution (the original seven articles), all 27 Amendments, and Federalist Nos. 10, 51, and 78, parsed into 108 passages along the documents' own structure. Texts are the public domain Project Gutenberg editions. Stack: three-signal retrieval (<code>all-MiniLM-L6-v2</code> dense embeddings + BM25 + a <code>ms-marco-MiniLM</code> cross-encoder reranker), cross-document lineage, all open-weights and running in the browser on static hosting. The full engineering story, with a measured eval, is on the <a href="how.html">Under the Hood</a> page.</dd>
 
   <dt>I found a bug or want the full Federalist Papers.</dt>
   <dd>The framers took amendments; so do I. Send it via <a href="https://www.linkedin.com/in/swapniltamse/" target="_blank" rel="noopener">LinkedIn</a>.</dd>
@@ -116,6 +116,7 @@ footer .motto{font-style:italic;color:var(--gold);font-size:17px}
 
 <footer>
   <p class="motto">Happy 250th, America. Ship your v1.</p>
+  <p class="colophon" style="font-size:13px;margin-bottom:14px"><a href="rights/">Your Rights</a> &#10022; <a href="how.html">Under the Hood</a> &middot; three-signal retrieval &middot; cross-document lineage &middot; on-device open-weights models &middot; <a href="https://github.com/swapniltamse/ask-the-declaration">measured eval</a></p>
   <a class="btn" href="index.html">Ask the Documents</a>
 </footer>
 </article>

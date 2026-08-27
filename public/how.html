@@ -288,13 +288,35 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
   </div>
 </div>
 
-<h2><span class="no">&sect;2</span> Why 108 Passages, Not 500-Token Windows</h2>
+<h2><span class="no">&sect;2</span> Three Signals, Not One</h2>
+<p>The diagram above is the first version of this site: one model, dense vectors, a dot product. It shipped, and it worked. But a single bi-encoder only retrieves well when the user phrases a question in the documents' own vocabulary, and real questions rarely do. So retrieval here now runs three signals that fail in different ways, so one covers for another.</p>
+<p><strong>Dense</strong> (all-MiniLM-L6-v2) catches meaning and sets the default order. <strong>BM25</strong>, a classic keyword score, catches the exact wording the small model misses; it does not reorder results, it only widens the candidate pool so an exact-match passage reaches the next stage. <strong>A cross-encoder reranker</strong> (ms-marco-MiniLM-L-6-v2) then decides the final order.</p>
+<p>The difference between the two kinds of model is the whole point. A <em>bi-encoder</em> turns the query and each passage into a vector <em>separately</em>, ahead of time, and compares them with a dot product. That is why search is instant: the 108 passage vectors are precomputed, so a query costs one embedding plus 108 cheap multiplications. The price is precision, because a passage's vector has to summarize it for every possible question at once. A <em>cross-encoder</em> does the opposite: it reads the query and one passage <em>together</em>, so every word of the question can attend to every word of the passage, and returns a single relevance score. Far more accurate, but it cannot be precomputed. The standard resolution, used here, is <strong>retrieve then rerank</strong>: the bi-encoder and BM25 cheaply narrow 108 passages to about 20, and the cross-encoder scores just those 20 and reorders them. It loads in the background after the first search and degrades gracefully &mdash; until it is ready, results fall back to the dense order, so search never waits on it.</p>
+
+<h2><span class="no">&sect;3</span> The Numbers</h2>
+<p>None of that is worth claiming without measuring it. <code>eval/queries.json</code> is 45 labeled questions, each tagged with the passage a good answer should surface. <code>node eval/run-eval.js</code> replicates the browser's retrieval exactly and reports recall@5 (did the right passage land in the top five) and mean reciprocal rank (how high it landed) for each layer, so every stage's contribution is a number, not an adjective.</p>
+<table class="compare">
+  <tr><th>Configuration</th><th>recall@5</th><th>MRR</th></tr>
+  <tr><td>Dense, text-only (v1)</td><td>93.3%</td><td>0.904</td></tr>
+  <tr><td>+ enriched embeddings</td><td>95.6%</td><td>0.897</td></tr>
+  <tr><td>+ BM25 candidate pool</td><td>95.6%</td><td>0.897</td></tr>
+  <tr><td>+ cross-encoder rerank</td><td>97.8%</td><td>0.952</td></tr>
+  <tr><td>Cross-document (multi-hop) slice</td><td>100.0%</td><td>1.000</td></tr>
+</table>
+<p>Two honest readings. First, this corpus is <em>easy</em>: 108 canonical passages with distinctive vocabulary, so dense retrieval already hits 93%. Second, the reranker earns its keep on precision more than recall &mdash; recall@5 rises two points, but MRR jumps from 0.897 to 0.952 because the cross-encoder pulls the right passage <em>higher</em>. It recovered "which branch can declare war," which the bi-encoder had buried below the top five.</p>
+<div class="note"><b>Is a reranker even justified at 108 passages?</b> For latency, arguably not. It is here to demonstrate the retrieve-then-rerank pattern and to <em>measure</em> whether it helps, and the measurement said yes on ranking quality. Knowing that difference, and being willing to say it out loud, is the engineering. I also tested a larger embedder (bge-base, 768-dim, ~110&nbsp;MB) against the small one: it had <em>lower</em> dense recall (91.1%) and only tied after reranking, so the site keeps the 5&times;-smaller model. The bigger model did not earn its bytes, and the eval is how I know.</div>
+
+<h2><span class="no">&sect;4</span> The Thread: Reading Across the Documents</h2>
+<p>The American founding is not one document but a 250-year conversation between several: a grievance in the 1776 Declaration becomes a power in the 1787 Constitution becomes a right in the 1791 Bill of Rights. The complaint about quartering troops (Grievance 14) becomes the Third Amendment. "Taxes without our consent" (Grievance 17) becomes Congress's taxing power, and later the Sixteenth Amendment. So each result here carries a <strong>lineage strip</strong> that traces its principle across the documents and across the years &mdash; some threads hand-curated for accuracy, the rest computed as each passage's nearest neighbors in a <em>different</em> source document, found by the same vectors that power search.</p>
+<p>This is also the sharpest way this site differs from its sister project, <a href="https://asktheindianconstitution.com">Ask the Constitution of India</a>. That corpus is a single document, so it optimizes for the opposite end of the same curve: minimize the download, stay CPU-only, because its readers may be on a weak connection asking privacy-sensitive questions. This one assumes broadband and an intertextual corpus, so it spends that budget on cross-document reasoning and a reranker. Same architecture, same $0 hosting, same nothing-leaves-your-browser &mdash; opposite operating points, each chosen for its audience.</p>
+
+<h2><span class="no">&sect;5</span> Why 108 Passages, Not 500-Token Windows</h2>
 <p>The default way to chunk documents for retrieval is mechanical: slice the text into fixed windows of a few hundred tokens, with some overlap so nothing falls between the cracks. It works, and it is also why so many retrieval systems cite "chunk 47" and hand you a passage that starts mid-sentence.</p>
 <p>These documents deserve better, and they make it easy. The founding documents carry their own semantic boundaries: each grievance in the Declaration is one complete complaint against the king. Each section of the Constitution is one power or one limit. Each amendment is one right. Chunk along those seams and every unit of retrieval is a complete thought with a name a human already understands.</p>
 <p>That is why a result here says <em>Article I, Section 8</em> or <em>Grievance 17</em> instead of a byte offset. A journalist can quote it. A teacher can assign it. A lawyer would recognize the citation. The retrieval system speaks the same language as the document it searches.</p>
 <div class="note"><b>The transferable rule:</b> before reaching for a token splitter, ask what the document's own atomic unit is. Contracts have clauses. API docs have endpoints. Runbooks have steps. Structure-aware chunking costs one afternoon of parsing and pays out every single query.</div>
 
-<h2><span class="no">&sect;3</span> The Economics of Zero</h2>
+<h2><span class="no">&sect;6</span> The Economics of Zero</h2>
 <p>First, precision: this is not a "local LLM." It is a local <em>embedding model</em>, about 25&nbsp;MB of quantized ONNX, running in your browser tab. There is no text generation anywhere in the system, which is why it cannot hallucinate and why the numbers below look the way they do.</p>
 <table class="compare">
   <tr><th>Cost line</th><th>Typical hosted RAG</th><th>This site</th></tr>
@@ -306,11 +328,11 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 </table>
 <p>The only real cost is the one-time model download on a visitor's first search, cached by the browser afterward. That is the honest tradeoff, and for a public demo it is the right one: a demo that costs money per query dies the day it goes viral. This one cannot, because its marginal cost per query is zero at ten visitors and zero at ten million.</p>
 
-<h2><span class="no">&sect;4</span> When to Use This Pattern, and When Not To</h2>
+<h2><span class="no">&sect;7</span> When to Use This Pattern, and When Not To</h2>
 <p><strong>Use it</strong> for small, public, read-heavy corpora: documentation sites, legal and policy texts, product manuals, FAQ knowledge bases. Anywhere under a few thousand chunks where the content is not secret and the questions repeat.</p>
 <p><strong>Do not use it</strong> for private data (the whole index ships to every visitor), for large corpora (the index download outgrows its welcome), or when users need generated prose rather than retrieved passages. Engineering maturity is matching the architecture to the problem, not to the hype cycle.</p>
 
-<h2><span class="no">&sect;5</span> What Is Curated vs. Computed</h2>
+<h2><span class="no">&sect;8</span> What Is Curated vs. Computed</h2>
 <p>Honesty about the seams: the AI here does retrieval and question-matching, nothing else. The plain-words explainers under each passage, and the short answers for common questions, were written by a person at build time and shipped as static text. The founders' words are quoted exactly from the public domain Project Gutenberg editions. Each layer is labeled in the interface, so you always know who is talking: 1776, or 2026.</p>
 
 <div class="divider">&#10022; &#10022; &#10022;</div>
@@ -321,7 +343,8 @@ footer .colophon{font-size:15px;color:var(--ink-soft);margin-top:12px}
 
 <footer>
   <p class="motto">Happy 250th, America. Ship your v1.</p>
-  <p class="colophon"><a href="review.html">The Review</a> &#10022; <a href="about.html">About this project &amp; author</a></p>
+  <p class="colophon"><a href="rights/">Your Rights</a> &#10022; <a href="review.html">The Review</a> &#10022; <a href="about.html">About this project &amp; author</a></p>
+  <p class="colophon" style="margin-top:10px;font-size:13px">Three-signal retrieval (dense &plus; BM25 &plus; cross-encoder rerank) &middot; cross-document lineage &middot; on-device open-weights models &middot; <a href="https://github.com/swapniltamse/ask-the-declaration">measured eval</a></p>
   <a class="btn" href="index.html">Ask the Documents</a>
 </footer>
 </article>

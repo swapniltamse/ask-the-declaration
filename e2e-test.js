@@ -98,6 +98,19 @@ const check = (name, ok, detail) => {
   const deepCite = await page.$eval("#results .cite", (e) => e.textContent);
   check("deep link auto-runs shared query", /Article V/.test(deepCite), deepCite.trim());
 
+  // 7b. Cross-document lineage strip ("The Thread")
+  const textOf = async (el) => (await (await el.getProperty("textContent")).jsonValue());
+  await runQuery("can soldiers be quartered in my home");
+  await page.waitForSelector(".thread", { timeout: 30000 }).catch(() => {});
+  const hasThread = (await page.$(".thread")) !== null;
+  check("lineage 'The Thread' strip renders", hasThread);
+  if (hasThread) {
+    const citeEls = await page.$$(".thread-item .thread-cite");
+    const threadCites = [];
+    for (const el of citeEls) threadCites.push(await textOf(el));
+    check("lineage links grievance to amendment", threadCites.some((c) => /Grievance 14/.test(c)) && threadCites.some((c) => /Amendment III/.test(c)), threadCites.join(" | "));
+  }
+
   // 8. Easter eggs
   check("console declaration egg", consoleLogs.some((t) => /self-evident/.test(t)));
   await runQuery("is a hot dog a sandwich");
@@ -123,7 +136,17 @@ const check = (name, ok, detail) => {
   const howUrl = URL.replace(/index\.html$/, "how.html").replace(/\/$/, "/how.html");
   await page.goto(howUrl, { waitUntil: "domcontentloaded" });
   const howText = await page.$eval("article", (e) => e.textContent);
-  check("how.html has pipeline + economics", /91 citation-ready passages/.test(howText) && /Economics of Zero/i.test(howText));
+  check("how.html has three-signal pipeline + eval + economics", /Three Signals/i.test(howText) && /recall@5/i.test(howText) && /Economics of Zero/i.test(howText));
+
+  // 7c. Persona rights pages
+  const rightsUrl = URL.replace(/index\.html$/, "rights/index.html").replace(/\/$/, "/rights/index.html");
+  await page.goto(rightsUrl, { waitUntil: "domcontentloaded" });
+  const personaLinks = await page.$$(".plist a");
+  check("rights index lists personas", personaLinks.length >= 8, `${personaLinks.length} personas`);
+  const personaUrl = URL.replace(/index\.html$/, "rights/under-arrest.html").replace(/\/$/, "/rights/under-arrest.html");
+  await page.goto(personaUrl, { waitUntil: "domcontentloaded" });
+  const personaText = await textOf(await page.$(".sheet"));
+  check("persona page has cites + caveat", /Amendment VI/.test(personaText) && /honest caveat/i.test(personaText));
 
   await page.screenshot({ path: "shots/v2-results.png", fullPage: false });
   await browser.close();
