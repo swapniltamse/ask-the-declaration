@@ -935,6 +935,64 @@
           padding: 0 16px;
         }
       }
+      /* ---------- cross-document lineage strip ("The Thread") ---------- */
+      .thread {
+        border-left: 3px solid var(--gold);
+        background: var(--paper-deep);
+        padding: 14px 18px;
+        margin: 18px 0 6px;
+      }
+      .thread-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .thread-label span {
+        color: var(--ink-soft);
+        text-transform: none;
+        letter-spacing: 0;
+      }
+      .thread-item {
+        display: grid;
+        grid-template-columns: 52px 190px 1fr;
+        gap: 12px;
+        align-items: baseline;
+        padding: 6px 0;
+        border-top: 1px solid var(--rule);
+        font-size: 15px;
+      }
+      .thread-item:first-of-type {
+        border-top: 0;
+      }
+      .thread-year {
+        font-family: "IBM Plex Mono", monospace;
+        color: var(--crimson);
+        font-weight: 600;
+      }
+      .thread-cite {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--rule);
+      }
+      .thread-note {
+        color: var(--ink-soft);
+      }
+      @media (max-width: 560px) {
+        .thread-item {
+          grid-template-columns: 44px 1fr;
+        }
+        .thread-cite {
+          grid-column: 2;
+        }
+        .thread-note {
+          grid-column: 2;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1295,6 +1353,27 @@
         return candidates.map((h, i) => ({ ...h, rerank: scores[i] })).sort((a, b) => b.rerank - a.rerank);
       }
 
+      // ---------- Cross-document lineage ("The Thread") ----------
+      // A result's lineage: a curated thread whose items include this passage (matched by
+      // section AND source, since "Preamble" exists in two documents), else the passage's
+      // computed cross-document neighbors. Curated leads; computed backfills the long tail.
+      // This is the feature a single-document corpus structurally cannot offer.
+      function lineageFor(chunk) {
+        const hit = (it) =>
+          it.source === chunk.source &&
+          (chunk.section === it.cite || chunk.section.startsWith(it.cite + " ") || chunk.section.startsWith(it.cite + ","));
+        const curatedThread = (index.lineage || []).find((t) => t.thread.some(hit));
+        if (curatedThread)
+          return { kind: "curated", principle: curatedThread.principle, items: curatedThread.thread };
+        const rel = (chunk.related || []).map((id) => index.chunks.find((c) => c.id === id)).filter(Boolean);
+        if (!rel.length) return null;
+        return {
+          kind: "computed",
+          principle: "Echoes across the founding documents",
+          items: rel.map((c) => ({ cite: c.section, source: c.source, year: c.year, note: (c.plain || c.text).slice(0, 100).trim() + "…" })),
+        };
+      }
+
       const ANSWER_THRESHOLD = 0.6; // paraphrases score 0.63+, off-topic stays under 0.2
 
       async function ask(q) {
@@ -1422,6 +1501,40 @@
         document.querySelectorAll("#results .result").forEach(el => {
           if (el.textContent.toLowerCase().includes("we hold these truths")) el.classList.add("shimmer");
         });
+
+        // Cross-document lineage: trace the top result's principle across the documents.
+        // Built with safe DOM methods (textContent); every value is trusted corpus data.
+        if (hits.length) {
+          const thread = lineageFor(hits[0].c);
+          if (thread) {
+            const strip = document.createElement("div");
+            strip.className = `thread ${thread.kind}`;
+            const label = document.createElement("div");
+            label.className = "thread-label";
+            label.append("The Thread ");
+            const lspan = document.createElement("span");
+            lspan.textContent = "✦ " + thread.principle;
+            label.appendChild(lspan);
+            strip.appendChild(label);
+            for (const it of thread.items) {
+              const row = document.createElement("div");
+              row.className = "thread-item";
+              const y = document.createElement("span");
+              y.className = "thread-year";
+              y.textContent = it.year;
+              const a = document.createElement("a");
+              a.className = "thread-cite";
+              a.href = "?q=" + encodeURIComponent(it.cite);
+              a.textContent = `${it.source} — ${it.cite}`;
+              const n = document.createElement("span");
+              n.className = "thread-note";
+              n.textContent = it.note;
+              row.append(y, a, n);
+              strip.appendChild(row);
+            }
+            results.appendChild(strip);
+          }
+        }
 
         if (curated || hits.length) {
           const share = document.createElement("div");
