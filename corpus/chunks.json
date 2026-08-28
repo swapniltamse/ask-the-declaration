@@ -726,5 +726,141 @@
   "year": 1788,
   "text": "Upon the whole, there can be no room to doubt that the convention acted wisely in copying from the models of those constitutions which have established good behavior as the tenure of their judicial offices, in point of duration; and that so far from being blamable on this account, their plan would have been inexcusably defective, if it had wanted this important feature of good government. The experience of Great Britain affords an illustrious comment on the excellence of the institution. 1. The celebrated Montesquieu, speaking of them, says: \"Of the three powers above mentioned, the judiciary is next to nothing.\"--Spirit of Laws. Vol. I, page 186. 3. Vide Protest of the Minority of the Convention of Pennsylvania, Martin's Speech, etc.",
   "plain": "The wrap-up: lifetime tenure during good behavior, copied from the best existing models, is the wisest available design for an independent judiciary. The convention would have been at fault to omit it."
+ },
+ {
+  "id": 91,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XI (1795)",
+  "year": 1795,
+  "text": "The Judicial power of the United States shall not be construed to extend to any suit in law or equity, commenced or prosecuted against one of the United States by Citizens of another State, or by Citizens or Subjects of any Foreign State.",
+  "plain": "Citizens of one state (or foreign citizens) cannot sue another state in federal court unless the state consents."
+ },
+ {
+  "id": 92,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XII (1804)",
+  "year": 1804,
+  "text": "The Electors shall meet in their respective states and vote by ballot for President and Vice-President... The person having the greatest number of votes for President, shall be the President, if such number be a majority of the whole number of Electors appointed. If no person have such majority, then from the persons having the highest numbers not exceeding three on the list of those voted for as President, the House of Representatives shall choose immediately, by ballot, the President.",
+  "plain": "President and Vice President are now voted on separately in the Electoral College. If no one wins a majority, the House picks the President from the top three candidates."
+ },
+ {
+  "id": 93,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XIII (1865)",
+  "year": 1865,
+  "text": "Neither slavery nor involuntary servitude, except as a punishment for crime whereof the party shall have been duly convicted, shall exist within the United States, or any place subject to their jurisdiction. Congress shall have power to enforce this article by appropriate legislation.",
+  "plain": "Slavery is abolished — with one explicit exception: people convicted of crimes can legally be compelled to work without pay. This 'punishment clause' is the constitutional basis for prison labor. Advocates have proposed removing it since Reconstruction; as of 2026 it remains unchanged."
+ },
+ {
+  "id": 94,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XIV (1868)",
+  "year": 1868,
+  "text": "All persons born or naturalized in the United States, and subject to the jurisdiction thereof, are citizens of the United States and of the State wherein they reside. No State shall make or enforce any law which shall abridge the privileges or immunities of citizens of the United States; nor shall any State deprive any person of life, liberty, or property, without due process of law; nor deny to any person within its jurisdiction the equal protection of the laws.",
+  "plain": "Anyone born or naturalized in the US is automatically a citizen (birthright citizenship). States cannot take away your rights, deprive you of life, liberty, or property without legal process, or treat people differently under the law without justification."
+ },
+ {
+  "id": 95,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XV (1870)",
+  "year": 1870,
+  "text": "The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any State on account of race, color, or previous condition of servitude. The Congress shall have power to enforce this article by appropriate legislation.",
+  "plain": "Formerly enslaved men and Black men gained the constitutional right to vote. In practice, poll taxes, literacy tests, and violence suppressed this right for nearly a century until the Voting Rights Act of 1965."
+ },
+ {
+  "id": 96,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XVI (1913)",
+  "year": 1913,
+  "text": "The Congress shall have power to lay and collect taxes on incomes, from whatever source derived, without apportionment among the several States, and without regard to any census or enumeration.",
+  "plain": "Congress can tax personal and corporate income directly, without dividing the burden proportionally among states by population. This created the modern federal income tax."
+ },
+ {
+  "id": 97,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XVII (1913)",
+  "year": 1913,
+  "text": "The Senate of the United States shall be composed of two Senators from each State, elected by the people thereof, for six years; and each Senator shall have one vote. The electors in each State shall have the qualifications requisite for electors of the most numerous branch of the State legislatures.",
+  "plain": "Before 1913, state legislatures chose senators. This amendment changed it: senators are now directly elected by voters, the same way representatives are."
+ },
+ {
+  "id": 98,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XVIII (1919)",
+  "year": 1919,
+  "text": "After one year from the ratification of this article the manufacture, sale, or transportation of intoxicating liquors within, the importation thereof into, or the exportation thereof from the United States and all territory subject to the jurisdiction thereof for beverage purposes is hereby prohibited.",
+  "plain": "Prohibition. Making, selling, or transporting alcohol for drinking became illegal nationwide. Repealed 14 years later by the 21st Amendment."
+ },
+ {
+  "id": 99,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XIX (1920)",
+  "year": 1920,
+  "text": "The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any State on account of sex. Congress shall have power to enforce this article by appropriate legislation.",
+  "plain": "Women gained the constitutional right to vote, 144 years after the Declaration's claim that all men are created equal."
+ },
+ {
+  "id": 100,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XX (1933)",
+  "year": 1933,
+  "text": "The terms of the President and Vice President shall end at noon on the 20th day of January, and the terms of Senators and Representatives at noon on the 3d day of January, of the years in which such terms would have ended if this article had not been ratified; and the terms of their successors shall then begin.",
+  "plain": "The 'Lame Duck Amendment.' Presidential terms now end January 20 (moved from March 4), shrinking the period between election and inauguration when the outgoing president holds power but has no mandate."
+ },
+ {
+  "id": 101,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXI (1933)",
+  "year": 1933,
+  "text": "The eighteenth article of amendment to the Constitution of the United States is hereby repealed. The transportation or importation into any State, Territory, or Possession of the United States for delivery or use therein of intoxicating liquors, in violation of the laws thereof, is hereby prohibited.",
+  "plain": "Prohibition was repealed. The 21st Amendment is the only amendment to repeal another. Alcohol became legal again federally, though states retained the right to regulate or ban it within their borders."
+ },
+ {
+  "id": 102,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXII (1951)",
+  "year": 1951,
+  "text": "No person shall be elected to the office of the President more than twice, and no person who has held the office of President, or acted as President, for more than two years of a term to which some other person was elected President shall be elected to the office of the President more than once.",
+  "plain": "Presidents are limited to two terms (eight years). Passed after FDR won four terms. The two-term tradition had been a norm since Washington — FDR broke it; this amendment made it law."
+ },
+ {
+  "id": 103,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXIII (1961)",
+  "year": 1961,
+  "text": "The District constituting the seat of Government of the United States shall appoint in such manner as the Congress may direct: A number of electors of President and Vice President equal to the whole number of Senators and Representatives in Congress to which the District would be entitled if it were a State, but in no event more than the least populous State.",
+  "plain": "Washington, D.C. gets 3 Electoral College votes for president, the same as the smallest state. DC residents had been unable to vote for president since 1788. They still have no voting representation in Congress."
+ },
+ {
+  "id": 104,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXIV (1964)",
+  "year": 1964,
+  "text": "The right of citizens of the United States to vote in any primary or other election for President or Vice President, for electors for President or Vice President, or for Senator or Representative in Congress, shall not be denied or abridged by the United States or any State by reason of failure to pay any poll tax or other tax.",
+  "plain": "Poll taxes — fees charged to vote — are unconstitutional in federal elections. Southern states had used them for decades to prevent poor Black voters from voting despite the 15th Amendment's guarantee."
+ },
+ {
+  "id": 105,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXV (1967)",
+  "year": 1967,
+  "text": "In case of the removal of the President from office or of his death or resignation, the Vice President shall become President. Whenever there is a vacancy in the office of the Vice President, the President shall nominate a Vice President who shall take office upon confirmation by a majority vote of both Houses of Congress. Whenever the President transmits to the President pro tempore of the Senate and the Speaker of the House of Representatives his written declaration that he is unable to discharge the powers and duties of his office... the Vice President shall immediately assume the powers and duties of the office as Acting President.",
+  "plain": "Clarifies the line of succession and what happens if a president becomes incapacitated. The VP becomes president on death or resignation. If the president declares themselves unable to serve, the VP takes over temporarily."
+ },
+ {
+  "id": 106,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXVI (1971)",
+  "year": 1971,
+  "text": "The right of citizens of the United States, who are eighteen years of age or older, to vote shall not be denied or abridged by the United States or by any State on account of age. The Congress shall have power to enforce this article by appropriate legislation.",
+  "plain": "Lowered the voting age from 21 to 18. Driven by Vietnam-era protests: if 18-year-olds could be drafted and die for their country, they argued, they should be able to vote for the leaders who sent them to war."
+ },
+ {
+  "id": 107,
+  "source": "Constitutional Amendments",
+  "section": "Amendment XXVII (1992)",
+  "year": 1992,
+  "text": "No law, varying the compensation for the services of the Senators and Representatives, shall take effect, until an election of Representatives shall have intervened.",
+  "plain": "Congress cannot give itself an immediate pay raise. Any raise they vote for only takes effect after the next election, letting voters weigh in. Proposed by Madison in 1789 as part of the original Bill of Rights — ratified 203 years later."
  }
 ]

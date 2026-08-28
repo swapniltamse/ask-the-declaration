@@ -1,0 +1,72 @@
+[
+  {
+    "id": "quartering",
+    "principle": "Soldiers in your home: a 1776 grievance that became a 1791 right",
+    "thread": [
+      { "cite": "Grievance 14", "source": "Declaration of Independence", "year": 1776, "note": "The Declaration lists quartering large bodies of armed troops among the king's abuses." },
+      { "cite": "Amendment III", "source": "Bill of Rights", "year": 1791, "note": "The Bill of Rights answers it directly: no soldier quartered in any house in peacetime without the owner's consent." }
+    ]
+  },
+  {
+    "id": "jury-trial",
+    "principle": "Trial by jury: the complaint the Sixth and Seventh Amendments resolved",
+    "thread": [
+      { "cite": "Grievance 18", "source": "Declaration of Independence", "year": 1776, "note": "The Declaration protests being deprived, in many cases, of the benefits of trial by jury." },
+      { "cite": "Amendment VI", "source": "Bill of Rights", "year": 1791, "note": "A speedy public trial by an impartial jury in criminal cases." },
+      { "cite": "Amendment VII", "source": "Bill of Rights", "year": 1791, "note": "The right to a jury extended to civil suits at common law." }
+    ]
+  },
+  {
+    "id": "taxation-consent",
+    "principle": "No taxation without consent: from grievance, to the taxing power, to the income tax",
+    "thread": [
+      { "cite": "Grievance 17", "source": "Declaration of Independence", "year": 1776, "note": "Imposing taxes on the colonists without their consent." },
+      { "cite": "Article I, Section 8", "source": "U.S. Constitution", "year": 1787, "note": "The Constitution vests the taxing power in Congress, the people's elected representatives." },
+      { "cite": "Amendment XVI", "source": "Constitutional Amendments", "year": 1913, "note": "Later authorizes a federal income tax laid directly on incomes." }
+    ]
+  },
+  {
+    "id": "transported-overseas",
+    "principle": "Tried far from home: the grievance behind the right to a local jury",
+    "thread": [
+      { "cite": "Grievance 19", "source": "Declaration of Independence", "year": 1776, "note": "Transporting the colonists beyond the seas to be tried for pretended offences." },
+      { "cite": "Amendment VI", "source": "Bill of Rights", "year": 1791, "note": "Guarantees trial by a jury of the state and district where the crime was committed." }
+    ]
+  },
+  {
+    "id": "standing-armies",
+    "principle": "Standing armies without consent: the fear that shaped Congress's war power and the Third Amendment",
+    "thread": [
+      { "cite": "Grievance 11", "source": "Declaration of Independence", "year": 1776, "note": "The king kept standing armies among the colonists in peacetime without the consent of their legislatures." },
+      { "cite": "Article I, Section 8", "source": "U.S. Constitution", "year": 1787, "note": "The Constitution answers by placing the power to raise and fund armies with Congress, the elected legislature." },
+      { "cite": "Amendment III", "source": "Bill of Rights", "year": 1791, "note": "And forbids quartering those soldiers in private homes in peacetime without consent." }
+    ]
+  },
+  {
+    "id": "consent-of-governed",
+    "principle": "Government by consent: from a self-evident truth to 'We the People'",
+    "thread": [
+      { "cite": "Preamble", "source": "Declaration of Independence", "year": 1776, "note": "Governments derive their just powers from the consent of the governed." },
+      { "cite": "Preamble", "source": "U.S. Constitution", "year": 1787, "note": "The Constitution enacts that consent in its first three words: We the People." },
+      { "cite": "Amendment X", "source": "Bill of Rights", "year": 1791, "note": "Powers not delegated are reserved to the states, or to the people themselves." }
+    ]
+  },
+  {
+    "id": "suspended-legislatures",
+    "principle": "Self-rule: the grievance of suspended legislatures and the vesting of legislative power",
+    "thread": [
+      { "cite": "Grievance 22", "source": "Declaration of Independence", "year": 1776, "note": "The king suspended the colonists' own legislatures and claimed the power to legislate for them." },
+      { "cite": "Article I, Section 1", "source": "U.S. Constitution", "year": 1787, "note": "The Constitution vests all legislative powers in a Congress elected by the people." }
+    ]
+  },
+  {
+    "id": "equality",
+    "principle": "All are created equal: a 1776 ideal, made enforceable law over the next 144 years",
+    "thread": [
+      { "cite": "Preamble", "source": "Declaration of Independence", "year": 1776, "note": "We hold these truths to be self-evident, that all men are created equal." },
+      { "cite": "Amendment XIV", "source": "Constitutional Amendments", "year": 1868, "note": "Turns the ideal into law: equal protection of the laws for every person." },
+      { "cite": "Amendment XV", "source": "Constitutional Amendments", "year": 1870, "note": "The vote may not be denied on account of race, color, or previous servitude." },
+      { "cite": "Amendment XIX", "source": "Constitutional Amendments", "year": 1920, "note": "The vote may not be denied on account of sex." }
+    ]
+  }
+]

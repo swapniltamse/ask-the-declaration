@@ -7,3 +7,9 @@ lh-mobile*.json
 
 .vercel
 .env*
+
+# Internal design/strategy docs — never publish to the public repo
+docs/superpowers/
+
+# throwaway bge comparison index (rebuild via the Phase 1 plan snippet)
+eval/index-bge.json
