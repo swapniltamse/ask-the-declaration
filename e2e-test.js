@@ -86,6 +86,17 @@ const check = (name, ok, detail) => {
   });
   check("world flags section precedes the search box", worldFirst);
 
+  // 6c. Browse section (personas + lenses) sits below the search box
+  const rightsChips = await page.$$(".browse-group:nth-child(1) .browse-chips a");
+  const lensChips = await page.$$(".browse-group:nth-child(2) .browse-chips a");
+  check("browse section lists 8 personas + 4 lenses", rightsChips.length === 8 && lensChips.length === 4, `${rightsChips.length} personas, ${lensChips.length} lenses`);
+  const browseBelowSearch = await page.evaluate(() => {
+    const box = document.querySelector(".searchbox");
+    const browse = document.querySelector("section.browse");
+    return !!(box && browse && box.compareDocumentPosition(browse) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  check("browse section is below the search box", browseBelowSearch);
+
   // 7b. Share + guardrails
   await runQuery("What protects free speech?");
   check("share button after results", (await page.$("#results .sharebtn")) !== null);

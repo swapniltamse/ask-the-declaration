@@ -1015,6 +1015,27 @@
         cursor: default;
         opacity: 0.7;
       }
+      /* ---------- browse section: personas + reading lenses ---------- */
+      .browse { max-width: 760px; margin: 8px auto 0; padding: 0 4px; }
+      .browse-lead { text-align: center; font-style: italic; color: var(--ink-soft); margin-bottom: 22px; }
+      .browse-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+      .browse-h {
+        font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500;
+      }
+      .browse-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .browse-chips a {
+        display: inline-block; font-size: 15px; color: var(--ink); text-decoration: none;
+        background: var(--paper-deep); border: 1px solid var(--rule); padding: 6px 12px;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .browse-chips a:hover { border-color: var(--crimson); color: var(--crimson); }
+      .browse-all {
+        display: inline-block; margin-top: 12px; font-family: "IBM Plex Mono", monospace;
+        font-size: 12px; letter-spacing: 0.08em; color: var(--crimson); text-decoration: none;
+      }
+      .browse-all:hover { text-decoration: underline; }
+      @media (max-width: 600px) { .browse-cols { grid-template-columns: 1fr; gap: 24px; } }
     </style>
   </head>
   <body>
@@ -1179,6 +1200,37 @@
       <div class="results-wrap">
         <section id="results" aria-live="polite"></section>
       </div>
+
+      <!-- Browse entry points. Keep in sync with corpus/personas.json and corpus/lenses.json. -->
+      <section class="browse" aria-label="Browse the founding documents another way">
+        <p class="browse-lead">Not sure what to ask? Start from who you are, or from how you want to read.</p>
+        <div class="browse-cols">
+          <div class="browse-group">
+            <h3 class="browse-h">Your rights, by who you are</h3>
+            <div class="browse-chips">
+              <a href="rights/protester.html">&#9994; Protester</a>
+              <a href="rights/journalist.html">&#128240; Journalist</a>
+              <a href="rights/under-arrest.html">&#9878;&#65039; Facing arrest</a>
+              <a href="rights/gun-owner.html">&#127919; Gun owner</a>
+              <a href="rights/immigrant.html">&#127758; Immigrant</a>
+              <a href="rights/voter.html">&#128499; Voter</a>
+              <a href="rights/criminal-defendant.html">&#127963; Criminal defendant</a>
+              <a href="rights/business-owner.html">&#127978; Business owner</a>
+            </div>
+            <a class="browse-all" href="rights/">All rights pages &rarr;</a>
+          </div>
+          <div class="browse-group">
+            <h3 class="browse-h">Ways to read the founding documents</h3>
+            <div class="browse-chips">
+              <a href="lenses/originalist.html">&#128220; The Originalist</a>
+              <a href="lenses/plain-english.html">&#128483; Plain-English</a>
+              <a href="lenses/skeptic.html">&#128269; The Skeptic</a>
+              <a href="lenses/new-citizen.html">&#127793; The New Citizen</a>
+            </div>
+            <a class="browse-all" href="lenses/">All reading lenses &rarr;</a>
+          </div>
+        </div>
+      </section>
 
       <div class="divider" aria-hidden="true">
         <span class="divider-line"></span>
