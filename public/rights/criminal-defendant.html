@@ -33,7 +33,15 @@ footer{margin-top:38px;border-top:4px double var(--rule);padding-top:14px;font-s
 footer a{color:var(--crimson)}
 .plist{list-style:none;margin-top:8px}
 .plist li{margin:10px 0}
-.plist a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--rule);font-size:20px}</style>
+.plist a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--rule);font-size:20px}
+.pgroup{margin:28px 0 0}
+.pgroup-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pcard{border:1px solid var(--rule);background:#fffdf6;padding:14px 16px;transition:border-color .15s}
+.pcard:hover{border-color:var(--crimson)}
+.pcard a{color:var(--crimson);text-decoration:none;font-size:19px;display:block}
+.pcard .teaser{color:var(--ink-soft);font-size:15px;margin-top:5px;line-height:1.45}
+@media(max-width:600px){.pgrid{grid-template-columns:1fr}}</style>
 </head>
 <body>
 <div class="bunting"></div>

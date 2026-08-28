@@ -152,8 +152,10 @@ const check = (name, ok, detail) => {
   // 7c. Persona rights pages
   const rightsUrl = URL.replace(/index\.html$/, "rights/index.html").replace(/\/$/, "/rights/index.html");
   await page.goto(rightsUrl, { waitUntil: "domcontentloaded" });
-  const personaLinks = await page.$$(".plist a");
-  check("rights index lists personas", personaLinks.length >= 8, `${personaLinks.length} personas`);
+  const personaLinks = await page.$$(".pcard a");
+  check("rights index lists personas", personaLinks.length >= 13, `${personaLinks.length} personas`);
+  const rightsGroups = await page.$$(".pgroup-label");
+  check("rights index is grouped into sections", rightsGroups.length >= 2, `${rightsGroups.length} groups`);
   const personaUrl = URL.replace(/index\.html$/, "rights/under-arrest.html").replace(/\/$/, "/rights/under-arrest.html");
   await page.goto(personaUrl, { waitUntil: "domcontentloaded" });
   const personaText = await textOf(await page.$(".sheet"));

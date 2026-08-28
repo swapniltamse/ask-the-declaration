@@ -42,6 +42,14 @@ footer a{color:var(--crimson)}
 .plist{list-style:none;margin-top:8px}
 .plist li{margin:10px 0}
 .plist a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--rule);font-size:20px}
+.pgroup{margin:28px 0 0}
+.pgroup-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pcard{border:1px solid var(--rule);background:#fffdf6;padding:14px 16px;transition:border-color .15s}
+.pcard:hover{border-color:var(--crimson)}
+.pcard a{color:var(--crimson);text-decoration:none;font-size:19px;display:block}
+.pcard .teaser{color:var(--ink-soft);font-size:15px;margin-top:5px;line-height:1.45}
+@media(max-width:600px){.pgrid{grid-template-columns:1fr}}
 `.trim();
 
 const head = (title, desc, canonical) => `<!DOCTYPE html>
@@ -90,13 +98,24 @@ for (const p of personas) {
   urls.push(canonical);
 }
 
+// Persona grouping for the index: lead with everyday, civic identities, then the harder cases.
+const bySlug = Object.fromEntries(personas.map((p) => [p.slug, p]));
+const teaser = (o) => { const s = o.intro.split(/\.(\s|$)/)[0].trim(); return s.length > 135 ? s.slice(0, 132).trim() + "…" : s + "."; };
+const personaGroups = [
+  { label: "In everyday civic life", slugs: ["voter", "student", "homeowner", "taxpayer", "juror", "woman", "journalist", "business-owner"] },
+  { label: "When your rights are tested", slugs: ["protester", "under-arrest", "gun-owner", "immigrant", "criminal-defendant"] },
+];
+const personaCard = (p) => `\n<div class="pcard"><a href="/rights/${p.slug}.html">My rights as ${esc(p.title.replace(/^(A|An|Someone) /, "").toLowerCase())}</a><div class="teaser">${esc(teaser(p))}</div></div>`;
+
 // rights index
 {
-  let html = head("Your Rights, By Who You Are", "America's founding documents mapped to real lives: protesters, journalists, gun owners, immigrants, voters, defendants, business owners.", `${SITE}/rights/`);
-  html += `\n<h1>Your Rights, By Who You Are</h1>\n<p class="intro">Nobody thinks in amendment numbers. Pick who you are, and see where the founding documents touch your life, in their own words.</p>\n<ul class="plist">`;
-  for (const p of personas)
-    html += `\n<li><a href="/rights/${p.slug}.html">My rights as ${esc(p.title.replace(/^(A|An|Someone) /, "").toLowerCase())}</a></li>`;
-  html += `\n</ul>` + foot;
+  let html = head("Your Rights, By Who You Are", "America's founding documents mapped to real lives: voters, students, homeowners, taxpayers, jurors, journalists, business owners, and more.", `${SITE}/rights/`);
+  html += `\n<h1>Your Rights, By Who You Are</h1>\n<p class="intro">Nobody thinks in amendment numbers. Pick who you are, and see where the founding documents touch your life, in their own words.</p>`;
+  for (const g of personaGroups) {
+    const cards = g.slugs.map((s) => bySlug[s]).filter(Boolean).map(personaCard).join("");
+    html += `\n<div class="pgroup"><div class="pgroup-label">${g.label}</div><div class="pgrid">${cards}</div></div>`;
+  }
+  html += foot;
   fs.writeFileSync(path.join(__dirname, "public", "rights", "index.html"), html);
 }
 
@@ -116,9 +135,8 @@ for (const l of lenses) {
 }
 {
   let html = lensCrumb(head("Ways to Read the Founding Documents", "Four lenses on the same text: the Originalist, the Plain-English Reader, the Skeptic, and the New Citizen.", `${SITE}/lenses/`));
-  html += `\n<h1>Ways to Read the Founding Documents</h1>\n<p class="intro">The same sentence reads differently depending on who is reading it. Pick a frame of mind and see where it takes you.</p>\n<ul class="plist">`;
-  for (const l of lenses) html += `\n<li><a href="/lenses/${l.slug}.html">${esc(l.title)}</a></li>`;
-  html += `\n</ul>` + foot;
+  html += `\n<h1>Ways to Read the Founding Documents</h1>\n<p class="intro">The same sentence reads differently depending on who is reading it. Pick a frame of mind and see where it takes you.</p>`;
+  html += `\n<div class="pgroup"><div class="pgrid">` + lenses.map((l) => `\n<div class="pcard"><a href="/lenses/${l.slug}.html">${esc(l.title)}</a><div class="teaser">${esc(teaser(l))}</div></div>`).join("") + `</div></div>` + foot;
   fs.writeFileSync(path.join(__dirname, "public", "lenses", "index.html"), html);
 }
 
