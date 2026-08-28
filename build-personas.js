@@ -95,7 +95,7 @@ for (const p of personas) {
   let html = head("Your Rights, By Who You Are", "America's founding documents mapped to real lives: protesters, journalists, gun owners, immigrants, voters, defendants, business owners.", `${SITE}/rights/`);
   html += `\n<h1>Your Rights, By Who You Are</h1>\n<p class="intro">Nobody thinks in amendment numbers. Pick who you are, and see where the founding documents touch your life, in their own words.</p>\n<ul class="plist">`;
   for (const p of personas)
-    html += `\n<li><a href="/rights/${p.slug}.html">${p.emoji} My rights as ${esc(p.title.replace(/^(A|An|Someone) /, "").toLowerCase())}</a></li>`;
+    html += `\n<li><a href="/rights/${p.slug}.html">My rights as ${esc(p.title.replace(/^(A|An|Someone) /, "").toLowerCase())}</a></li>`;
   html += `\n</ul>` + foot;
   fs.writeFileSync(path.join(__dirname, "public", "rights", "index.html"), html);
 }
@@ -107,7 +107,7 @@ const lensUrls = [];
 for (const l of lenses) {
   const canonical = `${SITE}/lenses/${l.slug}.html`;
   let html = lensCrumb(head(`Reading as ${l.title}`, l.intro.slice(0, 155), canonical));
-  html += `\n<h1>${l.emoji} ${esc(l.title)}</h1>\n<p class="intro">${esc(l.intro)}</p>\n<p class="disclaim">A way of reading, not a verdict &middot; the founding documents' own words</p>`;
+  html += `\n<h1>${esc(l.title)}</h1>\n<p class="intro">${esc(l.intro)}</p>\n<p class="disclaim">A way of reading, not a verdict &middot; the founding documents' own words</p>`;
   html += `\n<p style="margin:20px 0 6px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)">Try these, in this frame of mind</p>\n<ul class="plist">`;
   for (const q of l.questions) html += `\n<li><a href="/?q=${encodeURIComponent(q)}">${esc(q)}</a></li>`;
   html += `\n</ul>\n<a class="askcta" href="/">Ask your own question &rarr;</a>` + foot;
@@ -117,7 +117,7 @@ for (const l of lenses) {
 {
   let html = lensCrumb(head("Ways to Read the Founding Documents", "Four lenses on the same text: the Originalist, the Plain-English Reader, the Skeptic, and the New Citizen.", `${SITE}/lenses/`));
   html += `\n<h1>Ways to Read the Founding Documents</h1>\n<p class="intro">The same sentence reads differently depending on who is reading it. Pick a frame of mind and see where it takes you.</p>\n<ul class="plist">`;
-  for (const l of lenses) html += `\n<li><a href="/lenses/${l.slug}.html">${l.emoji} ${esc(l.title)}</a></li>`;
+  for (const l of lenses) html += `\n<li><a href="/lenses/${l.slug}.html">${esc(l.title)}</a></li>`;
   html += `\n</ul>` + foot;
   fs.writeFileSync(path.join(__dirname, "public", "lenses", "index.html"), html);
 }
