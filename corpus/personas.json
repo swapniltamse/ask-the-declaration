@@ -103,5 +103,64 @@
       { "cite": "Amendment XIV", "note": "Extends due process and equal protection against the states, the ground on which businesses most often challenge arbitrary state action." }
     ],
     "caveat": "Licensing, tax, employment, and sector regulation are statutory and vary by jurisdiction. This page is the constitutional floor under all of it, not a compliance guide."
+  },
+  {
+    "slug": "student",
+    "title": "A Student in America",
+    "intro": "You keep your constitutional rights when you walk through the schoolhouse gate, even if schools may draw the lines tighter than a public street would. Here is where the founding documents touch a student's life.",
+    "items": [
+      { "cite": "Amendment I", "note": "Freedom of speech, assembly, and the press. Student journalism, walkouts, and clubs stand on these rights, subject to reasonable school rules." },
+      { "cite": "Amendment IV", "note": "Protection against unreasonable searches and seizures, which shapes when a school official or officer may search a student, a bag, a locker, or a phone." },
+      { "cite": "Amendment XIV", "note": "Equal protection and due process: the ground of equal access to public education and of fair procedure before serious school discipline." },
+      { "cite": "Amendment XXVI", "note": "The vote may not be denied on account of age to citizens eighteen or older, which brought most college students into the electorate." }
+    ],
+    "caveat": "Courts read students' rights more narrowly inside a school than on a public sidewalk, and schools may impose reasonable, content-neutral rules. This page is the constitutional layer, not any district's code of conduct."
+  },
+  {
+    "slug": "homeowner",
+    "title": "A Homeowner in America",
+    "intro": "The home holds a special place in the Constitution. More of the Bill of Rights points at your front door than most people realize, from soldiers to searches to the taking of property itself.",
+    "items": [
+      { "cite": "Amendment III", "note": "No soldier may be quartered in your house in peacetime without your consent. Rarely litigated, but a direct constitutional promise about the home." },
+      { "cite": "Amendment IV", "note": "The home is the core of the Fourth Amendment. No unreasonable searches or seizures, and generally a warrant on probable cause before the government may enter." },
+      { "cite": "Amendment V", "note": "Private property may not be taken for public use without just compensation, and no one is deprived of property without due process of law." },
+      { "cite": "Amendment XIV", "note": "Carries due process against the states, the route by which most protections for your property reach city and county action." }
+    ],
+    "caveat": "Zoning, property tax, and eminent-domain procedure are statutory and vary widely by state and locality. This page describes the constitutional floor under your property, not a real-estate or tax guide."
+  },
+  {
+    "slug": "taxpayer",
+    "title": "A Taxpayer in America",
+    "intro": "Every tax you pay traces back to a specific grant of power in the Constitution, and to specific limits on it. The document written in part because of taxation without consent has a great deal to say about who may tax you, and how.",
+    "items": [
+      { "cite": "Article I, Section 8", "note": "Congress holds the power to lay and collect taxes, duties, imposts, and excises. Every federal tax rests on this clause." },
+      { "cite": "Article I, Section 9", "note": "Limits on that power, including the historical rule on direct taxes and the ban on taxing goods exported from any state." },
+      { "cite": "Amendment XVI", "note": "Authorizes Congress to tax incomes directly, without apportioning it among the states. The constitutional basis of the modern income tax." },
+      { "cite": "Amendment I", "note": "The right to petition the government for a redress of grievances, which includes the right to challenge and speak against how you are taxed." }
+    ],
+    "caveat": "The tax code itself is statute and regulation, not constitutional text, and it changes constantly. This page shows only the constitutional source of the taxing power and its limits."
+  },
+  {
+    "slug": "juror",
+    "title": "A Juror in America",
+    "intro": "Jury service is one of the few times an ordinary citizen exercises a piece of government power directly. The Constitution builds the jury into both the structure of the courts and the rights of the accused.",
+    "items": [
+      { "cite": "Article III, Section 2", "note": "The trial of all crimes, except in cases of impeachment, shall be by jury. Jury trial is written into the judicial power itself, not only the Bill of Rights." },
+      { "cite": "Amendment VI", "note": "In criminal cases the accused is entitled to trial by an impartial jury of the state and district where the crime occurred. As a juror, you are that guarantee in practice." },
+      { "cite": "Amendment VII", "note": "In civil suits at common law above a threshold, the right to a jury is preserved, and a jury's findings of fact are shielded from re-examination." },
+      { "cite": "Amendment V", "note": "A grand jury stands between the government and a serious federal charge: no one answers for a capital or infamous crime except on its presentment or indictment." }
+    ],
+    "caveat": "Jury size, selection, and unanimity rules are set by statute and court decisions within these constitutional limits. This page describes the constitutional role of the jury, not the rules of any one court."
+  },
+  {
+    "slug": "woman",
+    "title": "A Woman in America",
+    "intro": "The Constitution names sex explicitly in only one place. Almost everything else a woman can claim rests on words the founders wrote to be read broadly, person and citizen, and on the movements that forced those words to include her.",
+    "items": [
+      { "cite": "Amendment XIX", "note": "The right to vote may not be denied or abridged on account of sex. Ratified in 1920 after a movement that lasted more than seventy years." },
+      { "cite": "Amendment XIV", "note": "Equal protection of the laws for every person. This is the clause the Supreme Court has used to strike down government discrimination on the basis of sex." },
+      { "cite": "Amendment I", "note": "Freedom of speech, assembly, and petition. These were the constitutional tools the suffrage and later women's movements used to win the rest." }
+    ],
+    "caveat": "The Nineteenth Amendment is the only place the Constitution mentions sex by name. Everything else rests on the sex-neutral words person and citizen as the courts have read them. The Equal Rights Amendment, which would have added an explicit guarantee, passed Congress in 1972 but was never ratified by enough states. This page describes the constitutional text as it stands."
   }
 ]
